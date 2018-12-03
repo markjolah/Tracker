@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/markjolah/UncommonCMakeModules.git
+	branch = master
+	commit = fe6e1952980bddf9aa49d4045fdf5b1073b3f350
+	parent = 2b431cba481cf7ec47f9eaca1a8ac6104938ada0
+	method = merge
+	cmdver = 0.4.0
