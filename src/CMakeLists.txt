@@ -1,12 +1,22 @@
 # Tracker CMakeLists.txt
-# Mark J. Olah [mjo@cs.unm.edu] (04/2015)
+# Mark J. Olah [mjo@cs.unm.edu] 2018
 
-set(LIB_SRCS Tracker.cpp LAPTrack.cpp LAP_JVSparse.cpp)
-set(TEST_SRCS lap_test.cpp)
+file(GLOB SRCS *.cpp)  #Gather all .cpp sources
+set(PUBLIC_HEADER_SRC_DIR ${CMAKE_CURRENT_LIST_DIR}/../include)
 
-set(LIB_TARGET tracker${DEBUG_FILE_EXT})
-set(TEST_TARGET test_tracker${DEBUG_FILE_EXT})
+include(AddSharedStaticLibraries)
+add_shared_static_libraries("${SRCS}" ${PROJECT_NAME}) 
 
-set(IFACE_TARGET LAPTrack_Iface)
+foreach(target ${LIB_TARGETS})
+    target_compile_features(${target} PUBLIC cxx_std_14) #C++14 required for variadic templates support.
+    target_compile_options(${target} INTERFACE $<$<CXX_COMPILER_ID:GNU>:-Wno-unused-parameter>)
+    target_include_directories(${target} PUBLIC $<BUILD_INTERFACE:${PUBLIC_HEADER_SRC_DIR}> 
+                                                $<INSTALL_INTERFACE:include>)
+    target_link_libraries(${target} PUBLIC ${ARMADILLO_LIBRARIES})
+endforeach()
 
-include(${LOCAL_CMAKE_DIR}/SMAToolbox-Build.cmake)
+install(TARGETS ${LIB_TARGETS} EXPORT ${PROJECT_NAME}Targets
+        LIBRARY DESTINATION lib COMPONENT Runtime
+        ARCHIVE DESTINATION lib COMPONENT Development)
+
+install(DIRECTORY ${PUBLIC_HEADER_SRC_DIR}/ DESTINATION include COMPONENT Development)

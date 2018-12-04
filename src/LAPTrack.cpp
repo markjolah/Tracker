@@ -4,8 +4,8 @@
  *  @brief The member definitions for LAPTrack
  */
 #include <cassert>
-#include "LAPTrack.h"
-#include "LAP_JVSparse.h"
+#include "Tracker/LAPTrack.h"
+#include "Tracker/LAP_JVSparse.h"
 
 LAPTrack::LAPTrack(const VecParamT &param) : Tracker(param)
 {

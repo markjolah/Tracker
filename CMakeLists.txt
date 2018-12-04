@@ -56,9 +56,9 @@ endif()
 if(OPT_MATLAB)
     #MexIFace allows for cross-building of .mex modules for matlab in linux win64 and macosX
     message(STATUS "*** Matlab Module Building Enabled ***")
-    set(MexIFaceURL https://github.com/markjolah/MexIFace.git CACHE STRING URL of MexIFace library dependency)
+    set(MexIFaceURL "https://github.com/markjolah/MexIFace.git" CACHE STRING "URL of MexIFace library dependency")
     include(AddExternalDependency)
-    AddExternalDependency(MexIFace ${MexIFaceURL} SHARED)
+    add_external_dependency(NAME MexIFace URL ${MexIFaceURL} SHARED)
     include(MexIFace) #Configure MexIFace environment
     add_subdirectory(src/MexIFace) #Build C++ MATLAB Modules
 endif()
