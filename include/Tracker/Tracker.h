@@ -11,8 +11,8 @@
 * is double.
 * 
 */
-#ifndef _TRACKER_H
-#define _TRACKER_H
+#ifndef TRACKER_TRACKER_H
+#define TRACKER_TRACKER_H
 
 #include <cstdint>
 #include <armadillo>
@@ -21,35 +21,53 @@
 #include <list>
 #include <vector>
 
+#include <BacktraceException/
+namespace tracker {
+
+
+using TrackerError = backtrace_exception::BacktraceException;
+
+
+/** @brief Parameter value is not valid.
+ */
+struct ParameterValueError : public TrackerError
+{
+    ParameterValueError(std::string message) : TrackerError("ParameterValueError",message) {}
+};
+
+/** @brief Parameter value is not valid.
+ */
+struct LogicalError : public TrackerError
+{
+    LogicalError(std::string message) : TrackerError("LogicalError",message) {}
+};
 
 class Tracker {
 public:
-    typedef double FloatT; /* Set this to control float/double settings */
-    typedef int32_t IndexT; 
-    typedef arma::Col<FloatT> VecT;
-    typedef arma::Mat<FloatT> MatT;
-    typedef arma::Col<IndexT> IVecT;
-    typedef arma::Mat<IndexT> IMatT;
-    typedef arma::field<IVecT> IVecFieldT;
-    typedef std::vector<IndexT> IndexVectorT;
-    typedef std::list<IndexT> TrackT; /**< A type for an individual track*/
-    typedef std::vector<TrackT> TrackVecT;       /**< A type for a vector of tracks*/
-    typedef std::map<std::string,FloatT> ParamT;  /**< A convenient form for reporting dictionaries of named FP data to matlab */
-    typedef std::map<std::string,VecT> VecParamT;  /**< A convenient form for reporting dictionaries of named FP data to matlab */
+    using FloatT = double; /* Set this to control float/double settings */
+    using IdxT = int32_t;
+    using VecT = arma::Col<FloatT>;
+    using MatT = arma::Mat<FloatT>;
+    using IVecT = arma::Col<IdxT>;
+    using IMatT = arma::Mat<IdxT>;
+    using IVecFieldT = arma::field<IVecT>;
+    using IndexVectorT = std::vector<IdxT>;
+    using TrackT =  std::list<IdxT>; /**< A type for an individual track*/
+    using TrackVecT = std::vector<TrackT>;       /**< A type for a vector of tracks*/
+    using ParamT = std::map<std::string,FloatT>;  /**< A convenient form for reporting dictionaries of named FP data to matlab */
+    using VecParamT = std::map<std::string,VecT>;  /**< A convenient form for reporting dictionaries of named FP data to matlab */
 
-    
-    
-    int N = 0; // Number of emitters
-    int nDims = 0; //number of columns for postions 
-    int nFeatures = 0;  //number of columns for features
+    IdxT N = 0; // Number of emitters
+    IdxT nDims = 0; //number of columns for postions
+    IdxT nFeatures = 0;  //number of columns for features
     IVecT frameIdx; // length: N
     MatT position; // N x nDims;
     MatT SE_position; // N x nDims;
     MatT feature; // N x nFeatures;
     MatT SE_feature; // N x nFeatures;
-    int firstFrame = 0; //index of first frame
-    int lastFrame = 0; //index of last frame
-    int nFrames = 0; //lastFrame-firstFrame+1 
+    IdxT firstFrame = 0; //index of first frame
+    IdxT lastFrame = 0; //index of last frame
+    IdxT nFrames = 0; //lastFrame-firstFrame+1
 
     //Pre-computed on initialization
     IVecT nFrameLocs; //number of localizations for each frame, continuous indexing from firstFrame=0 to lastFrame=nFrames-1
@@ -60,7 +78,7 @@ public:
 
     /**
      * param - A dictionary of floating point values to pass in.  This is a flexible interface to
-     * the higher-level matlab code allowing each subclass to take in arbitrary floating point arguments!
+     * the higher-level matlab code allowing each subclass to take in arbitrary floating point arguments.
      */
     Tracker(const VecParamT &param);
     virtual ~Tracker() {}
@@ -72,8 +90,9 @@ public:
     void printTracks() const;
 protected:
     static const FloatT log2pi;// = log(2*pi);
-    IVecT trackAssignment; //A vector giving the track index of each loalizations
-    
+    IVecT trackAssignment; //A vector giving the track index of each localizations
 };
 
-#endif /* _TRACKER_H */
+} /* namespace tracker */
+
+#endif /* TRACKER_TRACKER_H */

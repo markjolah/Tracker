@@ -6,17 +6,19 @@
 * A simple  LAP/Jaquman based tracker
 */
 
-#ifndef _LAPTRACK_H
-#define _LAPTRACK_H
+#ifndef TRACKER_LAPTRACK_H
+#define TRACKER_LAPTRACK_H
 
-#include "Tracker.h"
+#include "Tracker/Tracker.h"
+
+namespace tracker {
 
 class LAPTrack : public Tracker {
 public:
-    typedef arma::SpMat<FloatT> SpMatT;
-    typedef arma::Col<arma::uword> UVecT;
-
-    typedef arma::umat UMatT;
+    using SpMatT = arma::SpMat<FloatT> ;
+    using UVecT = arma::Col<arma::uword> ;
+    using UMatT = arma::umat;
+    
     FloatT D; //  D - um^2/s
     FloatT kon;//  kon  - s^-1
     FloatT koff;//  koff - s^-1
@@ -25,9 +27,9 @@ public:
     FloatT maxSpeed = 0;  //Maximum speed
     FloatT maxPositionDisplacementSigma = 5.0; //Maximum standard deviations out to propose a connection
     VecT maxFeatureDisplacementSigma;  //Maximum standard deviations out to propose a connection
-    IndexT maxGapCloseFrames = 20;
-    IndexT minGapCloseTrackLength = 1;
-    IndexT minFinalTrackLength = 1;
+    IdxT maxGapCloseFrames = 20;
+    IdxT minGapCloseTrackLength = 1;
+    IdxT minFinalTrackLength = 1;
     
     
     const FloatT cost_epsilon = std::numeric_limits<FloatT>::epsilon();
@@ -59,7 +61,8 @@ protected:
     //We can assemble the gap closing index without searching for tracks that are born at a particular frame.
     IndexVectorT birthFrameIdx; //frame index for the beginning of each track.
     IVecT frameBirthStartIdx; //for each frameIdx list the first track to start at that frame Idx or later.
-    
 };
 
-#endif /* _LAPTRACK_H */
+} /* namespace tracker */
+
+#endif /* TRACKER_LAPTRACK_H */

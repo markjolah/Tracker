@@ -9,19 +9,21 @@
  * Adapted from text of Jonker and Volgenant. Computing 38, 324-340 (1986)
  * 
  */
-#ifndef _LAP_JVSPARSE_H
-#define _LAP_JVSPARSE_H
+#ifndef TRACKER_LAP_JVSPARSE_H
+#define TRACKER_LAP_JVSPARSE_H
 
 #include <armadillo>
 #include <vector>
 
+namespace tracker {
+
 template<class FloatT>
 class LAP_JVSparse {
-    typedef int32_t IndexT; //The type for the indexes
-    typedef arma::SpMat<FloatT> SpMatT;
-    typedef arma::Col<FloatT> VecT;
-    typedef arma::Col<IndexT> IVecT;
-    typedef arma::Mat<IndexT> IMatT;
+    using IdxT = int32_t; //The type for the indexes
+    using SpMatT = arma::SpMat<FloatT>;
+    using VecT = arma::Col<FloatT>;
+    using IVecT = arma::Col<IdxT>;
+    using IMatT = arma::Mat<IdxT>;
 
 public:
     static IVecT solve(const SpMatT &C);
@@ -33,10 +35,10 @@ public:
 
 private:
     /* The original sparse lapjv code which is outdated and should be updated. */
-    static void lap_orig(IndexT n, const FloatT C_vals[], const IndexT C_cols[], const IndexT C_row_ptrs[],
-                           IndexT x[], IndexT y[], FloatT u[], FloatT v[]);
-    
+    static void lap_orig(IdxT n, const FloatT C_vals[], const IdxT C_cols[], const IdxT C_row_ptrs[],
+                           IdxT x[], IdxT y[], FloatT u[], FloatT v[]);    
 };
 
+} /* namespace tracker */
 
-#endif /* _LAP_JVSPARSE_H */
+#endif /* TRACKER_LAP_JVSPARSE_H */

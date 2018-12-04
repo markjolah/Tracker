@@ -60,5 +60,6 @@ if(OPT_MATLAB)
     include(AddExternalDependency)
     add_external_dependency(NAME MexIFace URL ${MexIFaceURL} SHARED)
     include(MexIFace) #Configure MexIFace environment
+    message(STATUS "MexIFace initialized")
     add_subdirectory(src/MexIFace) #Build C++ MATLAB Modules
 endif()

@@ -3,7 +3,6 @@
  *  @date 04-2015
  *  @brief The member definitions for LAPTrack
  */
-#include <cassert>
 #include "Tracker/LAPTrack.h"
 #include "Tracker/LAP_JVSparse.h"
 
@@ -27,11 +26,11 @@ LAPTrack::LAPTrack(const VecParamT &param) : Tracker(param)
     if (param.find("maxFeatureDisplacementSigma") != param.end())
         maxFeatureDisplacementSigma =  static_cast<FloatT>(param.at("maxFeatureDisplacementSigma")(0));
     if (param.find("maxGapCloseFrames") != param.end())
-        maxGapCloseFrames =  static_cast<int>(param.at("maxGapCloseFrames")(0));
+        maxGapCloseFrames =  static_cast<IdxT>(param.at("maxGapCloseFrames")(0));
     if (param.find("minGapCloseTrackLength") != param.end())
-        minGapCloseTrackLength =  static_cast<int>(param.at("minGapCloseTrackLength")(0));
+        minGapCloseTrackLength =  static_cast<IdxT>(param.at("minGapCloseTrackLength")(0));
     if (param.find("minFinalTrackLength") != param.end())
-        minFinalTrackLength =  static_cast<int>(param.at("minFinalTrackLength")(0));
+        minFinalTrackLength =  static_cast<IdxT>(param.at("minFinalTrackLength")(0));
     if (param.find("featureVar") != param.end())
         featureVar = param.at("featureVar");
     //Pre-compute logarithms of commonly used values
@@ -86,27 +85,31 @@ void LAPTrack::generateTracks()
     }
 }
 
-void LAPTrack::debugF2F(int curFrame, IVecT &cur_locs, IVecT &next_locs, SpMatT &cost, IMatT &connections, VecT &conn_costs) const
+void LAPTrack::debugF2F(IdxT curFrame, IVecT &cur_locs, IVecT &next_locs, SpMatT &cost, IMatT &connections, VecT &conn_costs) const
 {
-    assert(curFrame!=lastFrame);
-    int nextFrame = curFrame+1;
+    if(curFrame>=lastFrame || curFrame<0){
+        std::ostringstream msg;
+        msg<<"got bad curFrame: "<<curFrame;
+        throw LogicalError(msg.str());
+    }
+    IdxT nextFrame = curFrame+1;
     while(frameLocIdx(nextFrame-firstFrame).is_empty()) nextFrame++; //Find next frame with localizations
     cur_locs = frameLocIdx(curFrame-firstFrame);
     next_locs = frameLocIdx(nextFrame-firstFrame);
     cost = computeF2FCostMat(curFrame, nextFrame);
     IVecT frame_assignment = LAP_JVSparse<FloatT>::solve(cost);
-    int nCurLocs = nFrameLocs(curFrame-firstFrame);
-    int nNextLocs = nFrameLocs(nextFrame-firstFrame);
+    IdxT nCurLocs = nFrameLocs(curFrame-firstFrame);
+    IdxT nNextLocs = nFrameLocs(nextFrame-firstFrame);
     //Comput nCons - number of connections.  This includes track->track, births, and deaths, but not phantom connections.
-    int nCons = nCurLocs;
-    for(int n=nCurLocs; n<nCurLocs+nNextLocs; n++) {
+    IdxT nCons = nCurLocs;
+    for(IdxT n=nCurLocs; n<nCurLocs+nNextLocs; n++) {
         if(frame_assignment(n)<nNextLocs) {
             nCons++;
         }//otherwise is a phantom connection so don't report it.
     }
     connections.set_size(nCons,2);
-    int conIdx=0;
-    for(int n=0;n<nCurLocs+nNextLocs;n++){
+    IdxT conIdx=0;
+    for(IdxT n=0;n<nCurLocs+nNextLocs;n++){
         if (n>=nCurLocs) {
             if (frame_assignment(n)>=nNextLocs) continue; //phantom
             connections(conIdx,0) = -1; //birth
@@ -122,15 +125,15 @@ void LAPTrack::debugF2F(int curFrame, IVecT &cur_locs, IVecT &next_locs, SpMatT 
 
 void LAPTrack::linkF2F()
 {
-    assert(state==UNTRACKED);
+    if(state!=UNTRACKED) throw LogicalError("linkF2F: frame is not UNTRACKED");
     //firstFrame and lastFrame are guaranteed to have the localizations others may not
     //we choose to connect with the next non-empty frame
     IndexT curFrame = firstFrame;
     //Initialize first frame of tracks
     IVecT &initLocs = frameLocIdx(0);
     frameBirthStartIdx.set_size(nFrames);
-    for(int i=0; i< nFrameLocs(0); i++){
-        int locIdx = initLocs(i);
+    for(IdxT i=0; i< nFrameLocs(0); i++){
+        IdxT locIdx = initLocs(i);
         tracks.push_back(TrackT());
         tracks[i].push_back(locIdx);
         trackAssignment[locIdx]=i;
@@ -142,15 +145,16 @@ void LAPTrack::linkF2F()
         IndexT nextFrame = curFrame+1;
 //         std::cout<<"------------F2F------------"<<"\n";
         while(frameLocIdx(nextFrame-firstFrame).is_empty()){
-            frameBirthStartIdx(nextFrame-firstFrame) = static_cast<int>(tracks.size());//Record absence of new births for frame nextFrame
+            frameBirthStartIdx(nextFrame-firstFrame) = static_cast<IdxT>(tracks.size());//Record absence of new births for frame nextFrame
             nextFrame++;
         }
 //         std::cout<<"curFrame:"<<curFrame<<" nextFrame:"<<nextFrame<<"\n";
 //         std::cout<<"trackAssignment: "<<trackAssignment.t()<<"\n";
 //         std::cout<<"NTracks:"<<tracks.size()<<"\n";
-        int nCur = nFrameLocs(curFrame-firstFrame);
-        assert(nCur>0);
-        int nNext=nFrameLocs(nextFrame-firstFrame);
+        IdxT nCur = nFrameLocs(curFrame-firstFrame);
+        if(nCur<=0) throw LogicalError("linkF2F: nCur non positive");
+
+        IdxT nNext=nFrameLocs(nextFrame-firstFrame);
 //         std::cout<<"Ncur:"<<nCur<<" Nnext:"<<nNext<<"\n";
         
         SpMatT cost = computeF2FCostMat(curFrame, nextFrame); //Make the cost sparse matrix
@@ -165,19 +169,17 @@ void LAPTrack::linkF2F()
 
         
         
-        for(int i=0; i<nCur; i++){
+        for(IdxT i=0; i<nCur; i++){
             //process frame_assignment for each of the current frame localizations
-            int asgn = frame_assignment(i); //In terms of the possible next frames connections or deaths.
-            int cur_id = curFrameIdxs(i);
-            int track_id = trackAssignment(cur_id);
-//              {//death
-//                 std::cout<<"Death: Loc:"<<cur_id<<"Track:"<<track_id<<"\n";
-//                 deathLocIdx[track_id] = cur_id; // record death index
-//                 deathFrameIdx[track_id] = curFrame; // record deth frame
+            IdxT asgn = frame_assignment(i); //In terms of the possible next frames connections or deaths.
+            IdxT cur_id = curFrameIdxs(i);
+            IdxT track_id = trackAssignment(cur_id);
             if (asgn < nNext) { //connection - extend track corresponding to current frame localization
-                assert(track_id>=0);
-                int next_loc_idx = nextFrameIdxs(asgn);
-                assert(trackAssignment(next_loc_idx)==-1);  //unassigned
+                if(track_id<=0) throw LogicalError("linkF2F: connection: bad track_id");
+
+                IdxT next_loc_idx = nextFrameIdxs(asgn);
+                if(trackAssignment(next_loc_idx) != -1) throw LogicalError("linkF2F: connection: bad next_loc_idx. Expected trackAssignment is unassigned.");
+
                 trackAssignment(next_loc_idx) = track_id;
                 tracks[track_id].push_back(next_loc_idx);
 //                 std::cout<<"Connect: Track:"<<track_id<<" "<<cur_id<<"->"<<next_loc_idx<<"\n";
@@ -186,16 +188,16 @@ void LAPTrack::linkF2F()
         //Process births
         frameBirthStartIdx(nextFrame-firstFrame) = tracks.size(); //Births for next frame start with next track added.
 //         std::cout<<"Frame Birth Start Idx: "<<frameBirthStartIdx.t()<<"\n";
-        for(int i=nCur; i<nCur+nNext; i++) {
-            int birth_id = i-nCur; //index into nextFrameIdx of this localization
-            int asgn = frame_assignment(i);
+        for(IdxT i=nCur; i<nCur+nNext; i++) {
+            IdxT birth_id = i-nCur; //index into nextFrameIdx of this localization
+            IdxT asgn = frame_assignment(i);
             if (asgn < nNext) { //birth - make a track of size 1.
-                int track_id = tracks.size(); //new track_id
+                IdxT track_id = tracks.size(); //new track_id
 //                 std::cout<<"Birthing NewTrackID: "<<track_id<<std::endl;
                 
 //                 assert(track_id>=1);
-                int birth_loc_idx = nextFrameIdxs(birth_id); //Actual localization index of the birth localization
-                assert(trackAssignment(birth_loc_idx)==-1);  //unassigned
+                IdxT birth_loc_idx = nextFrameIdxs(birth_id); //Actual localization index of the birth localization
+                if(trackAssignment(birth_loc_idx) != -1) throw LogicalError("linkF2F: birth: bad birth_loc_idx. Expected trackAssignment is unassigned.");
                 trackAssignment(birth_loc_idx) = track_id;
                 tracks.push_back(TrackT());
                 tracks[track_id].push_back(birth_loc_idx);
@@ -210,7 +212,7 @@ void LAPTrack::linkF2F()
     //Finalize deaths of tracks still going in last frame
 //     for(unsigned i=0; i<deathLocIdx.size();i++){
 //         if(deathLocIdx[i]==-1) {
-//             int lastIdx = tracks[i].back();
+//             IdxT lastIdx = tracks[i].back();
 //             std::cout<<"Finalize Tracks: TrackID: "<<i<<" lastIdx:"<<lastIdx<<" frameIdx:"<<frameIdx(lastIdx)<<" deathLocIdx:"<<deathLocIdx[i]<<"\n";
 //             assert(frameIdx(lastIdx)==lastFrame);
 //         }
@@ -223,21 +225,21 @@ void LAPTrack::linkF2F()
 }
 
 LAPTrack::SpMatT
-LAPTrack::computeF2FCostMat(int curFrame, int nextFrame) const
+LAPTrack::computeF2FCostMat(IdxT curFrame, IdxT nextFrame) const
 {
-    int nCur = nFrameLocs(curFrame-firstFrame);
-    int nNext = nFrameLocs(nextFrame-firstFrame);
-    int nTot = nCur+nNext;
+    IdxT nCur = nFrameLocs(curFrame-firstFrame);
+    IdxT nNext = nFrameLocs(nextFrame-firstFrame);
+    IdxT nTot = nCur+nNext;
     //These will be our sparse matrix format vectors
     std::vector<arma::uword> row_index;
     std::vector<arma::uword> col_index;
     std::vector<FloatT> values;
-    int reserve_size = nTot+2*std::min(nCur*nNext, std::max(nCur,nNext)*10); //Guesstimate amount of entries used
+    IdxT reserve_size = nTot+2*std::min(nCur*nNext, std::max(nCur,nNext)*10); //Guesstimate amount of entries used
     row_index.reserve(reserve_size);
     col_index.reserve(reserve_size);
     values.reserve(reserve_size);
 
-    int deltaT = nextFrame - curFrame; //The number of frames spanned in the link
+    IdxT deltaT = nextFrame - curFrame; //The number of frames spanned in the link
     FloatT DdT = 2*D*deltaT;
     FloatT position_gaussian_exponent_cuttoff = (maxPositionDisplacementSigma*maxPositionDisplacementSigma)/2.; //Only allow connections within 5 sigma
     VecT feature_gaussian_exponent_cuttoff = (maxFeatureDisplacementSigma%maxFeatureDisplacementSigma)/2.; //Only allow connections within 5 sigma
@@ -249,15 +251,15 @@ LAPTrack::computeF2FCostMat(int curFrame, int nextFrame) const
 //     std::cout<<"nCur:"<<nCur<<" nNext:"<<nNext<<"\n";
 //     std::cout<<"nFrameLocs:"<<nFrameLocs.t()<<"\n";
     //connecting locI in current frame to locJ in next frame
-    for(int j=0; j<nNext; j++) {
-        int next_idx = nextFrameLocs(j);
-        for(int i=0; i<nCur; i++){
-            int cur_idx = curFrameLocs(i);
+    for(IdxT j=0; j<nNext; j++) {
+        IdxT next_idx = nextFrameLocs(j);
+        for(IdxT i=0; i<nCur; i++){
+            IdxT cur_idx = curFrameLocs(i);
 //             std::cout<<"i:"<<i<<" j:"<<j<<" curIdx:"<<cur_idx<<" nextIdx:"<<next_idx<<" DdT:"<<DdT<<"\n";
             FloatT C=0;
             bool feasible = true;
             FloatT total_dist_sq=0;
-            for(int d=0; d<nDims; d++){
+            for(IdxT d=0; d<nDims; d++){
                 FloatT dist_var = DdT + SE_position(cur_idx,d) + SE_position(next_idx,d);
                 FloatT dist = position(cur_idx,d) - position(next_idx,d);
                 FloatT dist_sq = dist*dist;
@@ -274,7 +276,7 @@ LAPTrack::computeF2FCostMat(int curFrame, int nextFrame) const
             }
             if(!feasible) continue; //gaussian sigma constraint violated: move to next pair.
             if(maxSpeed>0 && sqrt(total_dist_sq)/deltaT > maxSpeed) continue; //maxSpeed constraint violated
-            for(int f=0; f<nFeatures; f++){
+            for(IdxT f=0; f<nFeatures; f++){
                 FloatT feat_var = featureVar(f) + SE_feature(cur_idx,f)+ SE_feature(next_idx,f);
                 FloatT feat_dist = feature(cur_idx,f) - feature(next_idx,f);
                 FloatT cost_exponent = feat_dist*feat_dist/feat_var;
@@ -302,41 +304,41 @@ LAPTrack::computeF2FCostMat(int curFrame, int nextFrame) const
     }
     //Fill in death costs
     FloatT deathC= -logkoff;
-    for(int i=0; i<nCur; i++){
+    for(IdxT i=0; i<nCur; i++){
         row_index.push_back(i);
         col_index.push_back(nNext+i);
         values.push_back(deathC);
     }
     //Fill in birth costs
     FloatT birthC = -logrho-logkon;
-    for(int j=0; j<nNext; j++){
+    for(IdxT j=0; j<nNext; j++){
         row_index.push_back(nCur+j);
         col_index.push_back(j);
         values.push_back(birthC);
     }
     //Assemble sparse matrix
-    int nnz = values.size();
+    IdxT nnz = values.size();
     UMatT locations(2,nnz);
-    for(int n=0; n<nnz;n++){
+    for(IdxT n=0; n<nnz;n++){
         locations(0,n) = row_index[n];
         locations(1,n) = col_index[n];
     }
     VecT values_vec(values.data(), nnz, false);//Re-use the vector's memory directly.
-    bool sort_them=true; //Make sure armadillo sorts the locations
-    bool check_for_zeros=false; //Don't bother checking for zeros
-    return SpMatT(locations, values_vec, nTot, nTot, sort_them, check_for_zeros);
+    bool sort_them = true; //Make sure armadillo sorts the locations
+    bool check_for_zeros = false; //Don't bother checking for zeros
+    return {locations, values_vec, nTot, nTot, sort_them, check_for_zeros};
 }
 
 void LAPTrack::checkFrameIdxs()
 {
     if(state!=F2F_LINKED) throw std::runtime_error("state != F2F_LINKED");
-    int trackIdx=0;
-    for(int n=firstFrame; n<=lastFrame; n++){
-        int stidx = frameBirthStartIdx(n-firstFrame);
+    IdxT trackIdx=0;
+    for(IdxT n=firstFrame; n<=lastFrame; n++){
+        IdxT stidx = frameBirthStartIdx(n-firstFrame);
 //         std::cout<<"Frame:"<<n<<" TrackIdx:"<<trackIdx<<" StartIdx:"<<stidx<<"\n";
         if(stidx!=trackIdx) throw std::runtime_error("startidx != trackidx");
-        if(!(trackIdx == static_cast<int>(tracks.size()) ||  frameIdx(tracks[trackIdx].front()) >=n)) throw std::runtime_error("Track indexing error");
-        while(trackIdx < static_cast<int>(tracks.size()) && frameIdx(tracks[trackIdx].front())==n) {
+        if(!(trackIdx == static_cast<IdxT>(tracks.size()) ||  frameIdx(tracks[trackIdx].front()) >=n)) throw std::runtime_error("Track indexing error");
+        while(trackIdx < static_cast<IdxT>(tracks.size()) && frameIdx(tracks[trackIdx].front())==n) {
 //             std::cout<<"TrackIdx:"<<trackIdx<<" Correctly begins at frame:"<<n<<"\n";
             trackIdx++;
         }
@@ -348,13 +350,13 @@ void LAPTrack::debugCloseGaps(SpMatT &cost, IMatT &connections, VecT &conn_costs
     assert(state==F2F_LINKED);
     cost = computeGapCloseMatrix();
     IVecT track_assignment = LAP_JVSparse<FloatT>::solve(cost);
-    int nTracks = static_cast<int>(tracks.size());
-    int nCons = nTracks;
-    for(int n=nTracks; n<2*nTracks; n++) 
+    IdxT nTracks = static_cast<IdxT>(tracks.size());
+    IdxT nCons = nTracks;
+    for(IdxT n=nTracks; n<2*nTracks; n++)
         if(track_assignment(n) < nTracks) nCons++;
     connections.set_size(nCons,2);
-    int conIdx=0;
-    for(int n=0;n<2*nTracks;n++){
+    IdxT conIdx=0;
+    for(IdxT n=0;n<2*nTracks;n++){
         if (n>=nTracks) {
             if (track_assignment(n)>=nTracks) continue; //phantom
             connections(conIdx,0) = -1; //birth
@@ -377,11 +379,11 @@ void LAPTrack::closeGaps()
 //     arma::mat dC(cost);
 //     std::cout<<"Cost: ("<<cost.n_rows<<","<<cost.n_cols<<"):\n"<<dC<<"\n";
     IVecT track_assignment = LAP_JVSparse<FloatT>::solve(cost);
-    int nTracks = tracks.size();
-    int nNewTracks = nTracks;
-    for(int m=nTracks-1; m>=0; m--){ //start at the end.  Last track cannot connect so skip it.
+    IdxT nTracks = tracks.size();
+    IdxT nNewTracks = nTracks;
+    for(IdxT m=nTracks-1; m>=0; m--){ //start at the end.  Last track cannot connect so skip it.
         //we are considerting the connection for trackM -> trackN
-        int n = track_assignment(m);
+        IdxT n = track_assignment(m);
         assert(m<n); //either we don't connect or we connect to an N born after M. so M<N.
         if(n < nTracks) {
             //Valid track join operation.
@@ -396,7 +398,7 @@ void LAPTrack::closeGaps()
     TrackVecT new_tracks(nNewTracks);
     //Remove empty tracks and any not meeting minFinalTrackLength
     std::copy_if(tracks.cbegin(), tracks.cend(), new_tracks.begin(), 
-                    [this](const TrackT &t) {return t.size()>0 && (minFinalTrackLength<=1 || static_cast<int>(t.size())>minFinalTrackLength);});
+                    [this](const TrackT &t) {return t.size()>0 && (minFinalTrackLength<=1 || static_cast<IdxT>(t.size())>minFinalTrackLength);});
     tracks = new_tracks;
     //These are all now invalid since tracks variable is changed
     trackAssignment.clear();
@@ -408,13 +410,13 @@ void LAPTrack::closeGaps()
 LAPTrack::SpMatT 
 LAPTrack::computeGapCloseMatrix() const
 {
-    int nTracks = static_cast<int>(tracks.size());
+    IdxT nTracks = static_cast<IdxT>(tracks.size());
     
     //These will be our sparse matrix format vectors
     std::vector<arma::uword> row_index;
     std::vector<arma::uword> col_index;
     std::vector<FloatT> values;
-    int reserve_size = nTracks*10; //Guesstimate amount of entries used
+    IdxT reserve_size = nTracks*10; //Guesstimate amount of entries used
     row_index.reserve(reserve_size);
     col_index.reserve(reserve_size);
     values.reserve(reserve_size);
@@ -428,27 +430,27 @@ LAPTrack::computeGapCloseMatrix() const
 //     std::cout<<"frameBirthStartIdx: "<<frameBirthStartIdx.t()<<"\n";
     
     //connect trackI to trackJ so trackJ must start after trackI ends.
-    for(int i=0; i<nTracks; i++){
-        if(static_cast<int>(tracks[i].size()) < minGapCloseTrackLength) continue; //Don't connect tracks shorter than minGapCloseTrackLength
-        int locI = tracks[i].back(); //last localization for track I.
-        int trackIend = frameIdx(locI); //frame death
+    for(IdxT i=0; i<nTracks; i++){
+        if(static_cast<IdxT>(tracks[i].size()) < minGapCloseTrackLength) continue; //Don't connect tracks shorter than minGapCloseTrackLength
+        IdxT locI = tracks[i].back(); //last localization for track I.
+        IdxT trackIend = frameIdx(locI); //frame death
         if (trackIend >= lastFrame-1) continue; //Tracks ending on last 2 frames can be a "start" point since this would be connected by F2F
-        for(int j=frameBirthStartIdx(trackIend+2-firstFrame); j<nTracks; j++){
-            if(static_cast<int>(tracks[j].size()) < minGapCloseTrackLength) continue; //Don't connect tracks shorter than minGapCloseTrackLength
-            int trackJstart = birthFrameIdx[j];
+        for(IdxT j=frameBirthStartIdx(trackIend+2-firstFrame); j<nTracks; j++){
+            if(static_cast<IdxT>(tracks[j].size()) < minGapCloseTrackLength) continue; //Don't connect tracks shorter than minGapCloseTrackLength
+            IdxT trackJstart = birthFrameIdx[j];
 //             std::cout<<"Track:"<<j<<" Birth Loc:"<<tracks[j].front()<<std::endl;
 //             std::cout<<" Birth Frame Idx:"<<frameIdx(tracks[j].front())<<std::endl;
 //             std::cout<<" Recorded: "<<birthFrameIdx[j]<<std::endl;
-            int deltaT = trackJstart - trackIend;
+            IdxT deltaT = trackJstart - trackIend;
 //             std::cout<<"i("<<i<<") -> j("<<j<<"): endI:"<<trackIend<<" startJ:"<<trackJstart<<" deltaT:"<<deltaT<<"\n";
             assert(deltaT>=1);
             if(deltaT>=maxGapCloseFrames) continue; //Gap must be at most maxGapCloseFrames
-            int locJ = tracks[j].front();
+            IdxT locJ = tracks[j].front();
             FloatT DdT = 2*D*deltaT;
             FloatT total_dist_sq=0;
             FloatT C=0;
             bool feasible = true;
-            for(int d=0; d<nDims; d++){
+            for(IdxT d=0; d<nDims; d++){
                 FloatT dist_var = DdT + SE_position(locI,d) + SE_position(locJ,d);
                 FloatT dist = position(locI,d) - position(locJ,d);
                 FloatT dist_sq = dist*dist;
@@ -464,7 +466,7 @@ LAPTrack::computeGapCloseMatrix() const
             }
             if(!feasible) continue; //gaussian sigma constraint violated: move to next pair.
             if(maxSpeed>0 && sqrt(total_dist_sq)/deltaT > maxSpeed) continue; //maxSpeed constraint violated
-            for(int f=0; f<nFeatures; f++){
+            for(IdxT f=0; f<nFeatures; f++){
                 FloatT feat_var = featureVar(f) + SE_feature(locI,f)+ SE_feature(locJ,f);
                 FloatT feat_dist = feature(locI,f) - feature(locJ,f);
                 FloatT cost_exponent = feat_dist*feat_dist/feat_var;
@@ -490,7 +492,7 @@ LAPTrack::computeGapCloseMatrix() const
         }
     }
     
-    for(int i=0; i<nTracks; i++){
+    for(IdxT i=0; i<nTracks; i++){
         //Fill in death costs
         row_index.push_back(i);
         col_index.push_back(nTracks+i);
@@ -500,14 +502,14 @@ LAPTrack::computeGapCloseMatrix() const
         col_index.push_back(i);
         values.push_back(birthC);
     }
-    int nnz = values.size();
+    IdxT nnz = values.size();
     UMatT locations(2,nnz);
-    for(int n=0; n<nnz;n++){
+    for(IdxT n=0; n<nnz;n++){
         locations(0,n) = row_index[n];
         locations(1,n) = col_index[n];
     }
 //     VecT values_vec(values.data(), nnz, false);//Re-use the vector's memory directly.
-    bool sort_them=true; //Make sure armadillo sorts the locations
-    bool check_for_zeros=false; //Don't bother checking for zeros
-    return SpMatT(locations, VecT(values), 2*nTracks, 2*nTracks, sort_them, check_for_zeros);
+    bool sort_them = true; //Make sure armadillo sorts the locations
+    bool check_for_zeros = false; //Don't bother checking for zeros
+    return {locations, VecT(values), 2*nTracks, 2*nTracks, sort_them, check_for_zeros};
 }

@@ -1,15 +1,15 @@
 /** @file LAPTrack_Iface.cpp
  *  @author Mark J. Olah (mjo at cs.unm.edu)
- *  @date 05-2015
+ *  @date 2015-2018
  *  @brief The entry point for LAPTrack_Iface mex module.
  * 
  */
 #include "Tracker_IFace.h"
 #include "Tracker/LAPTrack.h"
 
+tracker::Tracker_IFace<tracker::LAPTrack> iface; /**< Global iface object provides a iface.mexFunction */
+
 void mexFunction(int nlhs, mxArray *lhs[], int nrhs, const mxArray *rhs[])
 {
-    Tracker_Iface<LAPTrack> iface("LAPTrack");
     iface.mexFunction(nlhs, lhs, nrhs, rhs);
 }
-

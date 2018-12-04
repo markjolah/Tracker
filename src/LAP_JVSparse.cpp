@@ -17,7 +17,7 @@ template<class FloatT>
 typename LAP_JVSparse<FloatT>::IVecT
 LAP_JVSparse<FloatT>::solve(const SpMatT &C)
 {
-    IndexT N = static_cast<IndexT>(C.n_rows);
+    IdxT N = static_cast<IdxT>(C.n_rows);
     IVecT x(N), y(N);
     VecT u(N), v(N);
     checkCosts(C);//optional
@@ -43,24 +43,24 @@ LAP_JVSparse<FloatT>::solve(const SpMatT &C)
 template<class FloatT>
 void LAP_JVSparse<FloatT>::solveLAP_orig(const SpMatT &C, IVecT &x, IVecT &y, VecT &u, VecT &v)
 {
-    IndexT Ndim = static_cast<IndexT>(C.n_rows);
-    IndexT Nvals = static_cast<IndexT>(C.n_nonzero);
+    IdxT Ndim = static_cast<IdxT>(C.n_rows);
+    IdxT Nvals = static_cast<IdxT>(C.n_nonzero);
     
     IVecT C_row_ind(Nvals);
-    for(IndexT n=0; n<Nvals; n++) C_row_ind(n) = static_cast<IndexT>(C.row_indices[n])+1;
+    for(IdxT n=0; n<Nvals; n++) C_row_ind(n) = static_cast<IdxT>(C.row_indices[n])+1;
 
     IVecT C_col_starts(Ndim+1);
-    for(IndexT n=0; n<=Ndim;n++) C_col_starts(n) = static_cast<IndexT>(C.col_ptrs[n])+1;
+    for(IdxT n=0; n<=Ndim;n++) C_col_starts(n) = static_cast<IdxT>(C.col_ptrs[n])+1;
 
     x.set_size(Ndim);
     y.set_size(Ndim);
     u.set_size(Ndim);
     v.set_size(Ndim);
     const FloatT *C_values_ptr = C.values-1;
-    IndexT *C_row_ind_ptr = C_row_ind.memptr() -1;
-    IndexT *C_col_starts_ptr = C_col_starts.memptr()-1;
-    IndexT *x_ptr = y.memptr()-1; //Swap x&y
-    IndexT *y_ptr = x.memptr()-1; //Swap x&y
+    IdxT *C_row_ind_ptr = C_row_ind.memptr() -1;
+    IdxT *C_col_starts_ptr = C_col_starts.memptr()-1;
+    IdxT *x_ptr = y.memptr()-1; //Swap x&y
+    IdxT *y_ptr = x.memptr()-1; //Swap x&y
     FloatT *u_ptr = v.memptr()-1; //Swap u&v
     FloatT *v_ptr = u.memptr()-1; //Swap u&v
     lap_orig(Ndim, C_values_ptr, C_row_ind_ptr, C_col_starts_ptr, x_ptr, y_ptr, u_ptr, v_ptr);
@@ -84,9 +84,9 @@ template<class FloatT>
 typename LAP_JVSparse<FloatT>::VecT
 LAP_JVSparse<FloatT>::computeCost(const SpMatT &C, const IVecT &row_sol)
 {
-    IndexT N= static_cast<IndexT>(C.n_rows);
+    IdxT N= static_cast<IdxT>(C.n_rows);
     VecT cost(C.n_rows);
-    for(IndexT n=0; n<N; n++) cost(n) = C(n,row_sol(n));
+    for(IdxT n=0; n<N; n++) cost(n) = C(n,row_sol(n));
     return cost;
 }
 
@@ -98,11 +98,11 @@ bool LAP_JVSparse<FloatT>::checkCosts(const SpMatT &C)
     const FloatT *const vals = C.values;
     const arma::uword *const row_ind = C.row_indices;
     const arma::uword *const col_ptr = C.col_ptrs;
-    IndexT N= static_cast<IndexT>(C.n_rows);
+    IdxT N= static_cast<IdxT>(C.n_rows);
     
     //Check for negative reduced cost
-    for (IndexT j=0; j<N; j++) for(arma::uword t=col_ptr[j]; t<col_ptr[j+1]; t++) {
-        IndexT i=row_ind[t]; //i - row, j - col;
+    for (IdxT j=0; j<N; j++) for(arma::uword t=col_ptr[j]; t<col_ptr[j+1]; t++) {
+        IdxT i=row_ind[t]; //i - row, j - col;
         if(vals[t]<0){
             ok=false;
             std::cout<<">> NegativeCost: "<<vals[t]<<" ("<<i<<","<<j<<")\n";
@@ -117,33 +117,33 @@ bool LAP_JVSparse<FloatT>::checkCosts(const SpMatT &C)
 template<class FloatT>
 bool LAP_JVSparse<FloatT>::checkSolution(const SpMatT &C, const IVecT &x, const IVecT &y, const VecT &u, const VecT &v)
 {
-    bool ok=true;
+    bool ok = true;
     const FloatT *const vals = C.values;
     const arma::uword *const row_ind = C.row_indices;
     const arma::uword *const col_ptr = C.col_ptrs;
-    IndexT N= static_cast<IndexT>(C.n_rows);
+    IdxT N = static_cast<IdxT>(C.n_rows);
     
     //Check for negative reduced cost
-    for (IndexT j=0; j<N; j++) for(arma::uword t=col_ptr[j]; t<col_ptr[j+1]; t++) {
-        IndexT i=row_ind[t]; //i - row, j - col;
+    for (IdxT j=0; j<N; j++) for(arma::uword t=col_ptr[j]; t<col_ptr[j+1]; t++) {
+        IdxT i=row_ind[t]; //i - row, j - col;
         FloatT redC = vals[t] - u[i] - v[j];
         if(redC<0){
             std::cout<<">> NegativeReducedCost: "<<redC<<" ("<<i<<","<<j<<")\n";
-            ok=false;
+            ok = false;
         }
     }
     //Check row solution
     if(arma::any(x<0) || arma::any(x>=N)){
         std::cout<<">> InvalidRowSol: X:"<<x.t()<<"\n";
-        ok=false;
+        ok = false;
     }
     if(static_cast<int>(arma::unique(x).eval().n_elem) != N){
         std::cout<<">> NonUniqueRowSolPermutation: X:"<<x.t()<<"\n";
-        ok=false;
+        ok = false;
     }
 
     //Triggered when there is only one solution for some/row column.  Not sure if this is bad or not, but I am seeming to still get good result
-//     for (IndexT i=0; i<N; i++) {
+//     for (IdxT i=0; i<N; i++) {
 //         FloatT redC = C(i,x(i)) - u(i) - v(x(i));
 //         if(redC!=0) {
 //             std::cout<<">> NonNullReducedRowCost: "<<redC<<" row:"<<i<<" row_sol:"<<x(i)<<"\n";
@@ -153,14 +153,14 @@ bool LAP_JVSparse<FloatT>::checkSolution(const SpMatT &C, const IVecT &x, const 
      //Check col solution
     if(arma::any(y<0) || arma::any(y>=N)){
         std::cout<<">> InvalidColSol: Y:"<<y.t()<<"\n";
-        ok=false;
+        ok = false;
     }
     if(static_cast<int>(arma::unique(y).eval().n_elem) != N){
         std::cout<<">> NonUniqueColSolPermutation: Y:"<<y.t()<<"\n";
-        ok=false;
+        ok = false;
     }
     //Triggered when there is only one solution for some/row column.  Not sure if this is bad or not, but I am seeming to still get good result
-//     for (IndexT j=0; j<N; j++) {
+//     for (IdxT j=0; j<N; j++) {
 //         FloatT redC = C(y(j),j) - u(y(j)) - v(j);
 //         if(redC!=0) {
 //             std::cout<<">> NonNullReducedColCost: "<<redC<<" col:"<<j<<" col_sol:"<<y(j)<<"\n";
@@ -169,16 +169,16 @@ bool LAP_JVSparse<FloatT>::checkSolution(const SpMatT &C, const IVecT &x, const 
 //     }
     
     //Check solution parity
-    for (IndexT i=0; i<N; i++) {
+    for (IdxT i=0; i<N; i++) {
         if (y(x(i))!=i) {
             std::cout<<">> RowSolutionError: i:"<<i<<" rowsol:"<<x(i)<<" col[rowsol]:"<<y(x(i))<<"\n";
-            ok=false;
+            ok = false;
         }
     }
-    for (IndexT j=0; j<N; j++) {
+    for (IdxT j=0; j<N; j++) {
         if (x(y(j))!=j) {
             std::cout<<">> ColSolutionError: j:"<<j<<" colsol:"<<y(j)<<" row[colsol]:"<<x(y(j))<<"\n";
-            ok=false;
+            ok = false;
         }
     }
     return ok;
@@ -186,12 +186,12 @@ bool LAP_JVSparse<FloatT>::checkSolution(const SpMatT &C, const IVecT &x, const 
 
 //The raw lap file with the original matlab-style indexing
 template<class FloatT>
-void LAP_JVSparse<FloatT>::lap_orig(IndexT n, const FloatT cc[], const IndexT kk[], const IndexT first[],
-                                    IndexT x[], IndexT y[], FloatT u[], FloatT v[])
+void LAP_JVSparse<FloatT>::lap_orig(IdxT n, const FloatT cc[], const IdxT kk[], const IdxT first[],
+                                    IdxT x[], IdxT y[], FloatT u[], FloatT v[])
 {
-   IndexT h, i,j,k,l,t,last,tel,td1=0,td2,i0,j0=0,j1=0,l0;
+   IdxT h, i,j,k,l,t,last,tel,td1=0,td2,i0,j0=0,j1=0,l0;
 
-   IndexT *lab, *freeRow, *todo;
+   IdxT *lab, *freeRow, *todo;
    bool *ok;
    FloatT min, v0, vj, dj, tmp;
    FloatT *d;
@@ -199,9 +199,9 @@ void LAP_JVSparse<FloatT>::lap_orig(IndexT n, const FloatT cc[], const IndexT kk
 
 
    ok = new bool[n + 1];
-   lab = new IndexT[n + 2];
-   freeRow = new IndexT[n + 2];
-   todo = new IndexT[n + 2];
+   lab = new IdxT[n + 2];
+   freeRow = new IdxT[n + 2];
+   todo = new IdxT[n + 2];
    d = new FloatT[n + 2];
      
    /* Initialize */
@@ -434,6 +434,6 @@ label2:
 
 
 /* Explicit Template Instantiation */
-/* These ensure the compiler emits code for both the double and float versions of DEstimator */
+/* These ensure the compiler emits code for both the double and float versions of LAP_JVSparse solver */
 template class LAP_JVSparse<float>;
 template class LAP_JVSparse<double>;

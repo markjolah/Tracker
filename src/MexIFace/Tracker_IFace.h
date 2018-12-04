@@ -4,24 +4,26 @@
  * @brief The class declaration and inline and templated functions for Tracker_Iface.
  */
 
-#ifndef _TRACKER_IFACE_H
-#define _TRACKER_IFACE_H
+#ifndef TRACKER_TRACKER_IFACE_H
+#define TRACKER_TRACKER_IFACE_H
 
 #include "MexIFace/MexIFace.h"
 #include "Tracker/Tracker.h"
 
 template<class TrackerT>
-class Tracker_Iface : public Mex_Iface
+class Tracker_Iface : public Mex_Iface, public MexIFaceHandler<TrackerT>
 {
 public:
-    Tracker_Iface(std::string name);
-private:
-    TrackerT *obj;
-    //Abstract member functions inherited from Mex_Iface
-    void objConstruct();
-    void objDestroy();
-    void getObjectFromHandle(const mxArray *mxhandle);
-    //Exposed method calls
+    Tracker_Iface();
+
+protected:
+    using MexIFaceHandler<TrackerT>::obj;
+    using FloatT = TrackerT::FloatT;
+    using IdxT = TrackerT::IdxT;
+    //Constructor
+    void objConstruct() override;
+
+    //Non-static method calls
     void objInitializeTracks();
     void objGetTracks();
     void objDebugF2F();
@@ -33,8 +35,17 @@ private:
 };
 
 template<class TrackerT>
-Tracker_Iface<TrackerT>::Tracker_Iface(std::string name) 
-    : Mex_Iface(name)
+void Tracker_Iface<TrackerT>::objConstruct()
+{
+    // args:
+    // [params] - struct of named double vectors.
+    this->checkNumArgs(1,1);
+    auto params = this->getVecDict(); //Dictionary of vectors
+    this->outputHandle(new TrackerT(params));
+}
+
+template<class TrackerT>
+Tracker_Iface<TrackerT>::Tracker_Iface()
 {
     methodmap["initializeTracks"] = boost::bind(&Tracker_Iface::objInitializeTracks, this);
     methodmap["debugF2F"] = boost::bind(&Tracker_Iface::objDebugF2F, this);
@@ -46,16 +57,6 @@ Tracker_Iface<TrackerT>::Tracker_Iface(std::string name)
     methodmap["generateTracks"] = boost::bind(&Tracker_Iface::objGenerateTracks, this);
 }
 
-template<class TrackerT>
-void Tracker_Iface<TrackerT>::objConstruct()
-{
-    // args:
-    // [params] - struct of named doubles doubles.
-    this->checkNumArgs(1,1);
-    auto params=this->getDoubleVecStruct();
-    TrackerT *tk = new TrackerT(params);
-    this->outputMXArray(Handle<TrackerT>::makeHandle(tk));
-}
 
 template<class TrackerT>
 void Tracker_Iface<TrackerT>::objInitializeTracks()
@@ -63,9 +64,10 @@ void Tracker_Iface<TrackerT>::objInitializeTracks()
     // [in]
     //  frameIdx - vector giving frame of each localization (1-based)
     //  positions - matrix of positions and standard errors columns: [x y SE_x SE_y].
+    //  positions - matrix of positions and standard errors columns: [x y SE_x SE_y].
     //  features - [optional] matrix of features and SE's columns [L SE_L];
-    auto frameIdx = this->getIVec();
-    auto position = this->getDMat();
+    auto frameIdx = getVec<IdxT>();
+    auto position = getMat<FloatT>();
     auto SE_position = this->getDMat();
     if(this->nrhs==3) {
         obj->initializeTracks(frameIdx,position, SE_position);
@@ -187,4 +189,4 @@ void Tracker_Iface<TrackerT>::objDestroy()
     Handle<TrackerT>::destroyObject(rhs[0]);
 }
 
-#endif /* _TRACKER_IFACE_H */
+#endif /* TRACKER_TRACKER_IFACE_H */
