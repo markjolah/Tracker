@@ -1,7 +1,7 @@
 
 #include<iostream>
-#include "LAPTrack.h"
-#include "LAP_JVSparse.h"
+#include "Tracker/LAPTrack.h"
+#include "Tracker/LAP_JVSparse.h"
 // typedef double FloatT;
 // typedef int32_t IndexT;
 // typedef arma::SpMat<FloatT> SpMatT;

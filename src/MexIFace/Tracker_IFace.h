@@ -7,8 +7,8 @@
 #ifndef _TRACKER_IFACE_H
 #define _TRACKER_IFACE_H
 
-#include "Mex_Iface.h"
-#include "Tracker.h"
+#include "MexIFace/MexIFace.h"
+#include "Tracker/Tracker.h"
 
 template<class TrackerT>
 class Tracker_Iface : public Mex_Iface

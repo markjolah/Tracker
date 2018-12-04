@@ -5,7 +5,7 @@
  */
 #include <cassert>
 #include <cmath>
-#include "Tracker.h"
+#include "Tracker/Tracker.h"
 
 const Tracker::FloatT Tracker::log2pi = log(2*arma::Datum<Tracker::FloatT>::pi);
 

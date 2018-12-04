@@ -4,8 +4,8 @@
  *  @brief The entry point for LAPTrack_Iface mex module.
  * 
  */
-#include "Tracker_Iface.h"
-#include "LAPTrack.h"
+#include "Tracker_IFace.h"
+#include "Tracker/LAPTrack.h"
 
 void mexFunction(int nlhs, mxArray *lhs[], int nrhs, const mxArray *rhs[])
 {

@@ -8,5 +8,5 @@ rm -rf $INSTALL_PATH/Debug
 
 set -e
 
-cmake -H. -B$BUILD_PATH/Debug -DCMAKE_BUILD_TYPE=Debug ${COMMON_ARGS}
+cmake -H. -B$BUILD_PATH/Debug -DCMAKE_BUILD_TYPE=Debug -DOPT_TESTING=ON ${COMMON_ARGS}
 VERBOSE=1 cmake --build $BUILD_PATH/Debug --target install -- -j${NUM_PROCS}

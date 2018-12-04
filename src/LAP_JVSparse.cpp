@@ -11,7 +11,7 @@
  */
 #include <cmath>
 #include <iostream>
-#include "LAP_JVSparse.h"
+#include "Tracker/LAP_JVSparse.h"
 
 template<class FloatT>
 typename LAP_JVSparse<FloatT>::IVecT
