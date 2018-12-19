@@ -8,7 +8,7 @@ if(OPT_MATLAB)
     foreach(src ${SRCS})
         get_filename_component(target "${src}" NAME_WE)
         message("MakingMex: ${target}")
-        make_mex(${target})
-        target_link_libraries(${target} Tracker::Tracker) #Link to main C++ library
+        mexiface_make_mex(MEXNAME ${target} SOURCES ${src}
+                          PUBLIC_LINK_LIBRARIES Tracker::Tracker)
     endforeach()
 endif()

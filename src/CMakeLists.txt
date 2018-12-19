@@ -2,21 +2,21 @@
 # Mark J. Olah [mjo@cs.unm.edu] 2018
 
 file(GLOB SRCS *.cpp)  #Gather all .cpp sources
-set(PUBLIC_HEADER_SRC_DIR ${CMAKE_CURRENT_LIST_DIR}/../include)
 
 include(AddSharedStaticLibraries)
-add_shared_static_libraries("${SRCS}" ${PROJECT_NAME}) 
+# add_shared_static_libraries()
+# * Add shared and static library targets to project namespace
+# * Sets target_include_directories
+# * Sets target_compile_features and target_link_libraries
+# * Installs target libraries and headers
+# * returns lsit SHARED_STATIC_LIB_TARGETS of created targets for adjusting additional target properties
+add_shared_static_libraries(SOURCES ${SRCS}
+                            PUBLIC_COMPILE_FEATURES cxx_std_11
+                            PUBLIC_INCLUDE_DIRECTORIES ${ARMADILLO_INCLUDE_DIRS}
+                            PUBLIC_HEADER_DIR ${CMAKE_SOURCE_DIR}/include
+                            PUBLIC_DEBUG_HEADER_DIR $${CMAKE_SOURCE_DIR}/include/debug)
 
-foreach(target ${LIB_TARGETS})
-    target_compile_features(${target} PUBLIC cxx_std_14) #C++14 required for variadic templates support.
+foreach(target ${SHARED_STATIC_LIB_TARGETS})
+    #avoid having to modify old LAP_JVSparse code for ussed variable problems
     target_compile_options(${target} INTERFACE $<$<CXX_COMPILER_ID:GNU>:-Wno-unused-parameter>)
-    target_include_directories(${target} PUBLIC $<BUILD_INTERFACE:${PUBLIC_HEADER_SRC_DIR}> 
-                                                $<INSTALL_INTERFACE:include>)
-    target_link_libraries(${target} PUBLIC ${ARMADILLO_LIBRARIES})
 endforeach()
-
-install(TARGETS ${LIB_TARGETS} EXPORT ${PROJECT_NAME}Targets
-        LIBRARY DESTINATION lib COMPONENT Runtime
-        ARCHIVE DESTINATION lib COMPONENT Development)
-
-install(DIRECTORY ${PUBLIC_HEADER_SRC_DIR}/ DESTINATION include COMPONENT Development)
