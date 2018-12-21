@@ -7,7 +7,7 @@
 #include "Tracker_IFace.h"
 #include "Tracker/LAPTrack.h"
 
-tracker::Tracker_IFace<tracker::LAPTrack> iface; /**< Global iface object provides a iface.mexFunction */
+Tracker_IFace<tracker::LAPTrack> iface; /**< Global iface object provides a iface.mexFunction */
 
 void mexFunction(int nlhs, mxArray *lhs[], int nrhs, const mxArray *rhs[])
 {

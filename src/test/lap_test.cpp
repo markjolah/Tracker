@@ -1,5 +1,6 @@
 
 #include<iostream>
+#include<armadillo>
 #include "Tracker/LAPTrack.h"
 #include "Tracker/LAP_JVSparse.h"
 // typedef double FloatT;
@@ -11,6 +12,7 @@
 
 using namespace arma;
 using namespace std;
+using namespace tracker;
 
 void testLAP()
 {

@@ -8,6 +8,8 @@
 
 #include "Tracker/Tracker.h"
 
+namespace tracker {
+
 const Tracker::FloatT Tracker::log2pi = log(2*arma::Datum<Tracker::FloatT>::pi);
 
 Tracker::Tracker(const VecParamT &param)
@@ -107,7 +109,7 @@ void Tracker::initializeTracks(const IVecT &frameIdx_, const MatT &position_, co
     if(cur_frame!=lastFrame) {
         std::ostringstream msg;
         msg<<"initializeTracks: Initialize frameLocIdx. Expected cur_frame="<<cur_frame<<" == lastFrame="<<lastFrame;
-        throw LogicError(msg.str());
+        throw LogicalError(msg.str());
     }
     for(IdxT n=0; n<nFrames; n++) nFrameLocs(n)= frameLocIdx(n).n_elem;
     
@@ -136,3 +138,4 @@ void Tracker::printTracks() const
     }
 }
 
+} /* namespace tracker */

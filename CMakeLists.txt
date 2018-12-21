@@ -45,6 +45,8 @@ endif()
 find_package(OpenMP REQUIRED)
 
 include(AddExternalDependency)
+#BacktraceException allows for exceptions that encode a backtrace for debugging
+add_external_dependency(NAME BacktraceException URL https://github.com/markjolah/BacktraceException.git SHARED)
 
 #Configure cmake packaging for easy integration into other CMake builds
 include(ExportPackageWizzard)
@@ -61,8 +63,7 @@ endif()
 if(OPT_MATLAB)
     #MexIFace allows for cross-building of .mex modules for matlab in linux win64 and macosX
     message(STATUS "*** Matlab Module Building Enabled ***")
-    set(MexIFaceURL "https://github.com/markjolah/MexIFace.git" CACHE STRING "URL of MexIFace library dependency")
-    add_external_dependency(NAME MexIFace URL ${MexIFaceURL} SHARED)
+    add_external_dependency(NAME MexIFace URL "https://github.com/markjolah/MexIFace.git" SHARED)
     add_subdirectory(src/MexIFace) #Build C++ MATLAB Modules
-    mexiface_matlab_install() #Matlab code and startupTracker.m configure and install
+    mexiface_configure_install() #Matlab code and startupTracker.m configure and install
 endif()

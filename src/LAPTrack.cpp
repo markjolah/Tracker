@@ -6,6 +6,8 @@
 #include "Tracker/LAPTrack.h"
 #include "Tracker/LAP_JVSparse.h"
 
+namespace tracker {
+
 LAPTrack::LAPTrack(const VecParamT &param) : Tracker(param)
 {
 //     for(auto &stat: param)
@@ -128,7 +130,7 @@ void LAPTrack::linkF2F()
     if(state!=UNTRACKED) throw LogicalError("linkF2F: frame is not UNTRACKED");
     //firstFrame and lastFrame are guaranteed to have the localizations others may not
     //we choose to connect with the next non-empty frame
-    IndexT curFrame = firstFrame;
+    IdxT curFrame = firstFrame;
     //Initialize first frame of tracks
     IVecT &initLocs = frameLocIdx(0);
     frameBirthStartIdx.set_size(nFrames);
@@ -142,7 +144,7 @@ void LAPTrack::linkF2F()
     }
 
     while(curFrame < lastFrame){  //When curFrame==lastFrame we have linked all frames
-        IndexT nextFrame = curFrame+1;
+        IdxT nextFrame = curFrame+1;
 //         std::cout<<"------------F2F------------"<<"\n";
         while(frameLocIdx(nextFrame-firstFrame).is_empty()){
             frameBirthStartIdx(nextFrame-firstFrame) = static_cast<IdxT>(tracks.size());//Record absence of new births for frame nextFrame
@@ -326,7 +328,7 @@ LAPTrack::computeF2FCostMat(IdxT curFrame, IdxT nextFrame) const
     VecT values_vec(values.data(), nnz, false);//Re-use the vector's memory directly.
     bool sort_them = true; //Make sure armadillo sorts the locations
     bool check_for_zeros = false; //Don't bother checking for zeros
-    return {locations, values_vec, nTot, nTot, sort_them, check_for_zeros};
+    return {locations, values_vec, static_cast<arma::uword>(nTot), static_cast<arma::uword>(nTot), sort_them, check_for_zeros};
 }
 
 void LAPTrack::checkFrameIdxs()
@@ -347,7 +349,7 @@ void LAPTrack::checkFrameIdxs()
 
 void LAPTrack::debugCloseGaps(SpMatT &cost, IMatT &connections, VecT &conn_costs) const
 {
-    assert(state==F2F_LINKED);
+    if(state!=F2F_LINKED) throw std::runtime_error("state != F2F_LINKED");
     cost = computeGapCloseMatrix();
     IVecT track_assignment = LAP_JVSparse<FloatT>::solve(cost);
     IdxT nTracks = static_cast<IdxT>(tracks.size());
@@ -372,9 +374,8 @@ void LAPTrack::debugCloseGaps(SpMatT &cost, IMatT &connections, VecT &conn_costs
 
 void LAPTrack::closeGaps()
 {
-//     assert(checkFrameIdxs());
     //Invariant: tracks are in birth order.  So when connecting trackM->trackN we have M<N;
-    assert(state==F2F_LINKED);
+    if(state!=F2F_LINKED) throw std::runtime_error("state != F2F_LINKED");
     auto cost = computeGapCloseMatrix();
 //     arma::mat dC(cost);
 //     std::cout<<"Cost: ("<<cost.n_rows<<","<<cost.n_cols<<"):\n"<<dC<<"\n";
@@ -382,12 +383,14 @@ void LAPTrack::closeGaps()
     IdxT nTracks = tracks.size();
     IdxT nNewTracks = nTracks;
     for(IdxT m=nTracks-1; m>=0; m--){ //start at the end.  Last track cannot connect so skip it.
-        //we are considerting the connection for trackM -> trackN
+        //we are considering the connection for trackM -> trackN
         IdxT n = track_assignment(m);
-        assert(m<n); //either we don't connect or we connect to an N born after M. so M<N.
+        if(!(m<n)){ //either we don't connect or we connect to an N born after M. so M<N.
+            throw LogicalError("Gap close ordering problem.");
+        }
         if(n < nTracks) {
             //Valid track join operation.
-            assert(~tracks[m].empty());
+            if(tracks[m].empty()) throw LogicalError("Gap close. empty track");
 //             std::cout<<"Tracks(m="<<m<<"):"<<tracks[m].size()<<" Tracks(n="<<n<<"):"<<tracks[n].size()<<std::endl;
             tracks[m].splice(tracks[m].end(),tracks[n]);
             nNewTracks--;
@@ -443,7 +446,7 @@ LAPTrack::computeGapCloseMatrix() const
 //             std::cout<<" Recorded: "<<birthFrameIdx[j]<<std::endl;
             IdxT deltaT = trackJstart - trackIend;
 //             std::cout<<"i("<<i<<") -> j("<<j<<"): endI:"<<trackIend<<" startJ:"<<trackJstart<<" deltaT:"<<deltaT<<"\n";
-            assert(deltaT>=1);
+            if(deltaT<1) throw LogicalError("DeltaT should be positive.");
             if(deltaT>=maxGapCloseFrames) continue; //Gap must be at most maxGapCloseFrames
             IdxT locJ = tracks[j].front();
             FloatT DdT = 2*D*deltaT;
@@ -511,5 +514,8 @@ LAPTrack::computeGapCloseMatrix() const
 //     VecT values_vec(values.data(), nnz, false);//Re-use the vector's memory directly.
     bool sort_them = true; //Make sure armadillo sorts the locations
     bool check_for_zeros = false; //Don't bother checking for zeros
-    return {locations, VecT(values), 2*nTracks, 2*nTracks, sort_them, check_for_zeros};
+    return {locations, VecT(values), 2*static_cast<arma::uword>(nTracks), 2*static_cast<arma::uword>(nTracks), sort_them, check_for_zeros};
 }
+
+} /* namespace tracker */
+

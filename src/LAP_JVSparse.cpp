@@ -12,6 +12,7 @@
 #include <cmath>
 #include <iostream>
 #include "Tracker/LAP_JVSparse.h"
+namespace tracker {
 
 template<class FloatT>
 typename LAP_JVSparse<FloatT>::IVecT
@@ -437,3 +438,6 @@ label2:
 /* These ensure the compiler emits code for both the double and float versions of LAP_JVSparse solver */
 template class LAP_JVSparse<float>;
 template class LAP_JVSparse<double>;
+
+} /* namespace tracker */
+
