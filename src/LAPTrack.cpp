@@ -80,8 +80,10 @@ void LAPTrack::generateTracks()
     switch(state){
         case UNTRACKED:
             linkF2F();
+            /* fall through */
         case F2F_LINKED:
             closeGaps();
+            /* fall through */
         case GAPS_CLOSED:
             break;
     }

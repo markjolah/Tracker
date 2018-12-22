@@ -12,7 +12,7 @@ namespace tracker {
 
 const Tracker::FloatT Tracker::log2pi = log(2*arma::Datum<Tracker::FloatT>::pi);
 
-Tracker::Tracker(const VecParamT &param)
+Tracker::Tracker(const VecParamT &)
 {
 }
 

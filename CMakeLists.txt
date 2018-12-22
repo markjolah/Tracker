@@ -14,16 +14,16 @@ cmake_minimum_required( VERSION 3.9 )
 project(Tracker VERSION 0.1 LANGUAGES CXX)
 
 option(BUILD_SHARED_LIBS "Build shared libraries" ON)
-option(BUILD_STATIC_LIBS "Build static libraries" ON)
+option(BUILD_STATIC_LIBS "Build static libraries" OFF)
 option(OPT_MATLAB "Build and install matlab mex modules and code" ON)
-option(OPT_TESTING "Build testing code" OFF)
+option(BUILD_TESTING "Build testing code" OFF)
 option(OPT_DEBUG "Enable debugging features" OFF)
 option(OPT_EXTRA_DEBUG "Enable extra noisy debugging features" OFF) #Extra debug features (Armadillo)
 
 message(STATUS "OPTION: BUILD_SHARED_LIBS: ${BUILD_SHARED_LIBS}")
 message(STATUS "OPTION: BUILD_STATIC_LIBS: ${BUILD_STATIC_LIBS}")
 message(STATUS "OPTION: OPT_MATLAB: ${OPT_MATLAB}")
-message(STATUS "OPTION: OPT_TESTING: ${OPT_TESTING}")
+message(STATUS "OPTION: BUILD_TESTING: ${BUILD_TESTING}")
 message(STATUS "OPTION: OPT_DEBUG: ${OPT_DEBUG}")
 message(STATUS "OPTION: OPT_EXTRA_DEBUG: ${OPT_EXTRA_DEBUG}") 
 
@@ -48,13 +48,16 @@ include(AddExternalDependency)
 #BacktraceException allows for exceptions that encode a backtrace for debugging
 add_external_dependency(NAME BacktraceException URL https://github.com/markjolah/BacktraceException.git SHARED)
 
+#setup debug build configurations
+include(ConfigureDebugBuilds)
+
 #Configure cmake packaging for easy integration into other CMake builds
 include(ExportPackageWizzard)
 export_package_wizzard()
 
 add_subdirectory(src) #library source
 
-if(OPT_TESTING)
+if(BUILD_TESTING)
     include(CTest)
     enable_testing()
     add_subdirectory(src/test)
