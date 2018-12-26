@@ -3,7 +3,7 @@
 % Mark J. Olah (mjo@cs.unm.edu)
 % 04/2015
 
-classdef Tracker < IfaceMixin
+classdef Tracker < MexIFace.IFaceMixin
     properties (Constant=true)
         Trackers = {'LAPTrack2D'};
     end
@@ -19,8 +19,8 @@ classdef Tracker < IfaceMixin
     methods
         function obj=Tracker(trackerType,params)
             %
-            iface = str2func(sprintf('%s_Iface',trackerType));
-            obj=obj@IfaceMixin(iface);
+            iface = str2func(sprintf('%s_IFace',trackerType));
+            obj=obj@MexIFace.IFaceMixin(iface);
             obj.trackerType = trackerType;
             obj.initialized=obj.openIface(params);
         end

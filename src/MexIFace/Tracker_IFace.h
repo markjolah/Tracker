@@ -64,9 +64,10 @@ void Tracker_IFace<TrackerT>::objInitializeTracks()
 {
     // [in]
     //  frameIdx - vector giving frame of each localization (1-based)
-    //  positions - matrix of positions and standard errors columns: [x y SE_x SE_y].
-    //  positions - matrix of positions and standard errors columns: [x y SE_x SE_y].
-    //  features - [optional] matrix of features and SE's columns [L SE_L];
+    //  positions - matrix of positions as columns: [x y].
+    //  SE_positions - matrix standard errors of positions as columns: [SE_x SE_y].
+    //  features -  [optional] matrix of features as columns: [f1 f2 ... fn].
+    //  SE_features - [optional] matrix standard errors of features as columns: [SE_f1 SE_f2 ... SE_fn].
     auto frameIdx = getVec<IdxT>();
     auto position = getMat<FloatT>();
     auto SE_position = getMat<FloatT>();
