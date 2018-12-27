@@ -1,4 +1,4 @@
-
+.gdb*
 _build
 _install
 _gcc4_9.*

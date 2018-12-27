@@ -31,7 +31,7 @@ pos = [xs, ys];
 posSE = 0.1*ones(N,2);
 
 params.rho = numel(frameIdx)/(sizeX*sizeY*nFrames);
-tk=Tracker(trackMethod, params);
+tk=Tracker.Tracker(trackMethod, params);
 tk.initializeTracks(frameIdx,pos,posSE);
 stats = tk.getStats();
 
