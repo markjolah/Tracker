@@ -179,7 +179,7 @@ void LAPTrack::linkF2F()
             IdxT cur_id = curFrameIdxs(i);
             IdxT track_id = trackAssignment(cur_id);
             if (asgn < nNext) { //connection - extend track corresponding to current frame localization
-                if(track_id<=0) throw LogicalError("linkF2F: connection: bad track_id");
+                if(track_id<0) throw LogicalError("linkF2F: connection: bad track_id");
 
                 IdxT next_loc_idx = nextFrameIdxs(asgn);
                 if(trackAssignment(next_loc_idx) != -1) throw LogicalError("linkF2F: connection: bad next_loc_idx. Expected trackAssignment is unassigned.");
