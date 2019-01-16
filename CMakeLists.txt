@@ -54,7 +54,10 @@ include(ConfigureDebugBuilds)
 
 #Configure cmake packaging for easy integration into other CMake builds
 include(ExportPackageWizzard)
-export_package_wizzard()
+set(_export_pacage_args)
+if(OPT_FIXUP_BUILD_TREE_DEPENDENCIES)
+    set(DISABLE_BUILD_EXPORT
+export_package_wizzard(DISABLE_BUILD_EXPORT)
 
 add_subdirectory(src) #library source
 
