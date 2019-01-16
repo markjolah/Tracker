@@ -72,5 +72,5 @@ if(OPT_MATLAB)
     message(STATUS "*** Matlab Module Building Enabled ***")
     add_external_dependency(NAME MexIFace URL "https://github.com/markjolah/MexIFace.git" SHARED TESTING)
     add_subdirectory(src/MexIFace) #Build C++ MATLAB Modules
-    mexiface_configure_install() #Matlab code and startupTracker.m configure and install
+    mexiface_configure_install(EXPORT_BUILD_TREE "${OPT_EXPORT_BUILD_TREE}") #Matlab code and startupTracker.m configure and install
 endif()
