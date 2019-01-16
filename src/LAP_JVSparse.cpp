@@ -11,6 +11,8 @@
  */
 #include <cmath>
 #include <iostream>
+#include <iomanip>
+
 #include "Tracker/LAP_JVSparse.h"
 namespace tracker {
 
@@ -38,8 +40,11 @@ LAP_JVSparse<FloatT>::solve(const SpMatT &C)
  * 
  * This means x is the row sol and y is the col sol, as it normally would be.
  * 
- * 
- * 
+ * @param[in] C costs sparse matrix
+ * @param[out] x - row assignments
+ * @param[out] y - col assignments
+ * @param[out] u - reduced row costs
+ * @param[out] v - reduced column costs
  */
 template<class FloatT>
 void LAP_JVSparse<FloatT>::solveLAP_orig(const SpMatT &C, IVecT &x, IVecT &y, VecT &u, VecT &v)
@@ -48,10 +53,10 @@ void LAP_JVSparse<FloatT>::solveLAP_orig(const SpMatT &C, IVecT &x, IVecT &y, Ve
     IdxT Nvals = static_cast<IdxT>(C.n_nonzero);
     
     IVecT C_row_ind(Nvals);
-    for(IdxT n=0; n<Nvals; n++) C_row_ind(n) = static_cast<IdxT>(C.row_indices[n])+1;
+    for(IdxT n=0; n<Nvals; n++) C_row_ind(n) = static_cast<IdxT>(C.row_indices[n])+1; //convert to 1-based indexing
 
     IVecT C_col_starts(Ndim+1);
-    for(IdxT n=0; n<=Ndim;n++) C_col_starts(n) = static_cast<IdxT>(C.col_ptrs[n])+1;
+    for(IdxT n=0; n<=Ndim;n++) C_col_starts(n) = static_cast<IdxT>(C.col_ptrs[n])+1;  //convert to 1-based indexing
 
     x.set_size(Ndim);
     y.set_size(Ndim);
@@ -65,15 +70,9 @@ void LAP_JVSparse<FloatT>::solveLAP_orig(const SpMatT &C, IVecT &x, IVecT &y, Ve
     FloatT *u_ptr = v.memptr()-1; //Swap u&v
     FloatT *v_ptr = u.memptr()-1; //Swap u&v
     lap_orig(Ndim, C_values_ptr, C_row_ind_ptr, C_col_starts_ptr, x_ptr, y_ptr, u_ptr, v_ptr);
-    x-=1; //Correct indicies back to 0-based
-    y-=1; //Correct indicies back to 0-based
-//     std::cout<<"X"<<x.t()<<"\n";
-//     std::cout<<"Y"<<y.t()<<"\n";
-//     std::cout<<"U"<<u.t()<<"\n";
-//     std::cout<<"V"<<v.t()<<"\n";
+    x-=1; //Convert to 0-based indexing
+    y-=1; //Convert to 0-based indexing
     VecT cost=computeCost(C,x);
-//     std::cout<<"SolCost: "<<cost.t()<<"\n";
-//     std::cout<<"Tot SolCost:"<<arma::sum(cost)<<"\n";
 }
 
 /**
@@ -106,10 +105,10 @@ bool LAP_JVSparse<FloatT>::checkCosts(const SpMatT &C)
         IdxT i=row_ind[t]; //i - row, j - col;
         if(vals[t]<0){
             ok=false;
-            std::cout<<">> NegativeCost: "<<vals[t]<<" ("<<i<<","<<j<<")\n";
+            std::cout<<"NegativeCost: "<<vals[t]<<" ("<<i<<","<<j<<")\n";
         } else if (!std::isfinite(vals[t])) {
             ok=false;
-            std::cout<<">> NonFiniteCost: "<<vals[t]<<" ("<<i<<","<<j<<")\n";
+            std::cout<<"NonFiniteCost: "<<vals[t]<<" ("<<i<<","<<j<<")\n";
         }
     }
     return ok;
@@ -128,18 +127,17 @@ bool LAP_JVSparse<FloatT>::checkSolution(const SpMatT &C, const IVecT &x, const 
     for (IdxT j=0; j<N; j++) for(arma::uword t=col_ptr[j]; t<col_ptr[j+1]; t++) {
         IdxT i=row_ind[t]; //i - row, j - col;
         FloatT redC = vals[t] - u[i] - v[j];
-        if(redC<0){
-            std::cout<<">> NegativeReducedCost: "<<redC<<" ("<<i<<","<<j<<")\n";
-            ok = false;
+        if(redC < -std::numeric_limits<FloatT>::epsilon()){
+            std::cout<<"NegativeReducedCost: "<<redC<<" ("<<i<<","<<j<<")"<<" vals[t]:"<<vals[t]<<" u[i]:"<<u[i]<<" v[j]:"<<v[j]<<" u[i]+v[j]:"<<u[i]+v[j]<<"\n";
         }
     }
     //Check row solution
     if(arma::any(x<0) || arma::any(x>=N)){
-        std::cout<<">> InvalidRowSol: X:"<<x.t()<<"\n";
+        std::cout<<"InvalidRowSol: X:"<<x.t()<<"\n";
         ok = false;
     }
     if(static_cast<int>(arma::unique(x).eval().n_elem) != N){
-        std::cout<<">> NonUniqueRowSolPermutation: X:"<<x.t()<<"\n";
+        std::cout<<"NonUniqueRowSolPermutation: X:"<<x.t()<<"\n";
         ok = false;
     }
 
@@ -153,11 +151,11 @@ bool LAP_JVSparse<FloatT>::checkSolution(const SpMatT &C, const IVecT &x, const 
 //     }
      //Check col solution
     if(arma::any(y<0) || arma::any(y>=N)){
-        std::cout<<">> InvalidColSol: Y:"<<y.t()<<"\n";
+        std::cout<<"InvalidColSol: Y:"<<y.t()<<"\n";
         ok = false;
     }
     if(static_cast<int>(arma::unique(y).eval().n_elem) != N){
-        std::cout<<">> NonUniqueColSolPermutation: Y:"<<y.t()<<"\n";
+        std::cout<<"NonUniqueColSolPermutation: Y:"<<y.t()<<"\n";
         ok = false;
     }
     //Triggered when there is only one solution for some/row column.  Not sure if this is bad or not, but I am seeming to still get good result
@@ -172,13 +170,13 @@ bool LAP_JVSparse<FloatT>::checkSolution(const SpMatT &C, const IVecT &x, const 
     //Check solution parity
     for (IdxT i=0; i<N; i++) {
         if (y(x(i))!=i) {
-            std::cout<<">> RowSolutionError: i:"<<i<<" rowsol:"<<x(i)<<" col[rowsol]:"<<y(x(i))<<"\n";
+            std::cout<<"RowSolutionError: i:"<<i<<" rowsol:"<<x(i)<<" col[rowsol]:"<<y(x(i))<<"\n";
             ok = false;
         }
     }
     for (IdxT j=0; j<N; j++) {
         if (x(y(j))!=j) {
-            std::cout<<">> ColSolutionError: j:"<<j<<" colsol:"<<y(j)<<" row[colsol]:"<<x(y(j))<<"\n";
+            std::cout<<"ColSolutionError: j:"<<j<<" colsol:"<<y(j)<<" row[colsol]:"<<x(y(j))<<"\n";
             ok = false;
         }
     }

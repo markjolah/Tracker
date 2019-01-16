@@ -44,7 +44,7 @@ tracks = tk.getTracks();
 
 fM=full(costMat);
 fM(fM==0)=Inf;
-[rowsol, cost, v, u, rMat] = lapjv(fM);
+[rowsol, cost, v, u, rMat] = Tracker.Test.lapjv(fM);
 % tracks = tk.getTracks();
 
 % [curIdx, nextIdx, costMat, connections, conn_costs]=tk.debugF2F(0);

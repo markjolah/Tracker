@@ -40,6 +40,7 @@ set_property(DIRECTORY APPEND PROPERTY COMPILE_DEFINITIONS $<$<NOT:$<CONFIG:Debu
 if(OPT_EXTRA_DEBUG)
     set_property(DIRECTORY APPEND PROPERTY COMPILE_DEFINITIONS $<$<CONFIG:Debug>:ARMA_EXTRA_DEBUG>)
 endif()
+add_compile_options($<$<CONFIG:Debug>:-Wno-unused-local-typedefs>) # Necessary for armadillo 9.200.6 warnings
 
 #OpenMP
 find_package(OpenMP REQUIRED)

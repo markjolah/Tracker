@@ -213,7 +213,6 @@ void LAPTrack::linkF2F()
         }
         curFrame=nextFrame;
     }
-    //Finalize deaths of tracks still going in last frame
 //     for(unsigned i=0; i<deathLocIdx.size();i++){
 //         if(deathLocIdx[i]==-1) {
 //             IdxT lastIdx = tracks[i].back();
@@ -513,7 +512,6 @@ LAPTrack::computeGapCloseMatrix() const
         locations(0,n) = row_index[n];
         locations(1,n) = col_index[n];
     }
-//     VecT values_vec(values.data(), nnz, false);//Re-use the vector's memory directly.
     bool sort_them = true; //Make sure armadillo sorts the locations
     bool check_for_zeros = false; //Don't bother checking for zeros
     return {locations, VecT(values), 2*static_cast<arma::uword>(nTracks), 2*static_cast<arma::uword>(nTracks), sort_them, check_for_zeros};
