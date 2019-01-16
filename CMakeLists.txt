@@ -15,15 +15,17 @@ project(Tracker VERSION 0.1 LANGUAGES CXX)
 
 option(BUILD_SHARED_LIBS "Build shared libraries" ON)
 option(BUILD_STATIC_LIBS "Build static libraries" OFF)
-option(OPT_MATLAB "Build and install matlab mex modules and code" ON)
 option(BUILD_TESTING "Build testing code" OFF)
+option(OPT_EXPORT_BUILD_TREE "Configure the package so it is usable from the build tree.  Useful for development." OFF)
+option(OPT_MATLAB "Build and install matlab mex modules and code" ON)
 option(OPT_DEBUG "Enable debugging features" OFF)
 option(OPT_EXTRA_DEBUG "Enable extra noisy debugging features" OFF) #Extra debug features (Armadillo)
 
 message(STATUS "OPTION: BUILD_SHARED_LIBS: ${BUILD_SHARED_LIBS}")
 message(STATUS "OPTION: BUILD_STATIC_LIBS: ${BUILD_STATIC_LIBS}")
-message(STATUS "OPTION: OPT_MATLAB: ${OPT_MATLAB}")
 message(STATUS "OPTION: BUILD_TESTING: ${BUILD_TESTING}")
+message(STATUS "OPTION: OPT_EXPORT_BUILD_TREE: ${OPT_EXPORT_BUILD_TREE}")
+message(STATUS "OPTION: OPT_MATLAB: ${OPT_MATLAB}")
 message(STATUS "OPTION: OPT_DEBUG: ${OPT_DEBUG}")
 message(STATUS "OPTION: OPT_EXTRA_DEBUG: ${OPT_EXTRA_DEBUG}") 
 
@@ -52,12 +54,10 @@ add_external_dependency(NAME BacktraceException URL https://github.com/markjolah
 #setup debug build configurations
 include(ConfigureDebugBuilds)
 
-#Configure cmake packaging for easy integration into other CMake builds
+### PackageConfig Exports
 include(ExportPackageWizzard)
-set(_export_pacage_args)
-if(OPT_FIXUP_BUILD_TREE_DEPENDENCIES)
-    set(DISABLE_BUILD_EXPORT
-export_package_wizzard(DISABLE_BUILD_EXPORT)
+export_package_wizzard(EXPORT_BUILD_TREE "${OPT_EXPORT_BUILD_TREE}") #setup build-tree and install-tree exports and packageconfig files
+
 
 add_subdirectory(src) #library source
 
