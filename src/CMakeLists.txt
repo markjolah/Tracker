@@ -16,12 +16,13 @@ add_shared_static_libraries(SOURCES ${SRCS}
                             INCLUDE_DIRECTORIES ${ARMADILLO_INCLUDE_DIRS}
                             PUBLIC_HEADER_DIR ${CMAKE_SOURCE_DIR}/include
                             RETURN_TARGETS SHARED_STATIC_LIB_TARGETS)
-message(STATUS "SHARED_STATIC_LIB_TARGETS:${SHARED_STATIC_LIB_TARGETS}")
-foreach(target IN LISTS SHARED_STATIC_LIB_TARGETS)
-    #avoid having to modify old LAP_JVSparse code for ussed variable problems
-    target_compile_options(${target} INTERFACE $<$<CXX_COMPILER_ID:GNU>:-Wno-unused-parameter>)
-    get_target_property(v ${target} LINK_LIBRARIES)
-    message(STATUS "[${target}] LINK_LIBRARIES: ${v}")
-    get_target_property(v ${target} INCLUDE_DIRECTORIES)
-    message(STATUS "[${target}] INCLUDE_DIRECTORIES: ${v}")
-endforeach()
+
+#                             message(STATUS "SHARED_STATIC_LIB_TARGETS:${SHARED_STATIC_LIB_TARGETS}")
+# foreach(target IN LISTS SHARED_STATIC_LIB_TARGETS)
+#     #avoid having to modify old LAP_JVSparse code for ussed variable problems
+#     target_compile_options(${target} INTERFACE $<$<CXX_COMPILER_ID:GNU>:-Wno-unused-parameter>)
+#     get_target_property(v ${target} LINK_LIBRARIES)
+#     message(STATUS "[${target}] LINK_LIBRARIES: ${v}")
+#     get_target_property(v ${target} INCLUDE_DIRECTORIES)
+#     message(STATUS "[${target}] INCLUDE_DIRECTORIES: ${v}")
+# endforeach()

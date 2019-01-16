@@ -30,7 +30,7 @@ message(STATUS "OPTION: OPT_DEBUG: ${OPT_DEBUG}")
 message(STATUS "OPTION: OPT_EXTRA_DEBUG: ${OPT_EXTRA_DEBUG}") 
 
 #Add UcommonCmakeModules git subpreo to path.
-list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_CURRENT_LIST_DIR}/cmake/UncommonCmakeModules)
+list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_CURRENT_LIST_DIR}/cmake/UncommonCMakeModules)
 
 ### Dependencies
 #Armadillo
@@ -49,7 +49,7 @@ find_package(OpenMP REQUIRED)
 
 include(AddExternalDependency)
 #BacktraceException allows for exceptions that encode a backtrace for debugging
-add_external_dependency(NAME BacktraceException URL https://github.com/markjolah/BacktraceException.git SHARED)
+add_external_dependency(NAME BacktraceException URL https://github.com/markjolah/BacktraceException.git SHARED TESTING)
 
 #setup debug build configurations
 include(ConfigureDebugBuilds)
@@ -70,7 +70,7 @@ endif()
 if(OPT_MATLAB)
     #MexIFace allows for cross-building of .mex modules for matlab in linux win64 and macosX
     message(STATUS "*** Matlab Module Building Enabled ***")
-    add_external_dependency(NAME MexIFace URL "https://github.com/markjolah/MexIFace.git" SHARED)
+    add_external_dependency(NAME MexIFace URL "https://github.com/markjolah/MexIFace.git" SHARED TESTING)
     add_subdirectory(src/MexIFace) #Build C++ MATLAB Modules
     mexiface_configure_install() #Matlab code and startupTracker.m configure and install
 endif()
