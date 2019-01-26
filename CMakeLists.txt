@@ -5,7 +5,7 @@
 # using C++ linear assignment problem (LAP) solvers.
 #
 # Mark J. Olah (mjo@cs.unm DOT edu)
-# Copyright 2014-2018
+# Copyright 2014-2019
 # Licensed under the Apache License, Version 2.0
 # https://www.apache.org/licenses/LICENSE-2.0
 # See: LICENCE file
@@ -68,9 +68,9 @@ if(BUILD_TESTING)
 endif()
 
 if(OPT_MATLAB)
-    #MexIFace allows for cross-building of .mex modules for matlab in linux win64 and macosX
     message(STATUS "*** Matlab Module Building Enabled ***")
-    add_external_dependency(NAME MexIFace URL "https://github.com/markjolah/MexIFace.git" SHARED TESTING)
-    add_subdirectory(src/MexIFace) #Build C++ MATLAB Modules
-    mexiface_configure_install(EXPORT_BUILD_TREE "${OPT_EXPORT_BUILD_TREE}") #Matlab code and startupTracker.m configure and install
+    set(MexIFaceURL https://github.com/markjolah/MexIFace.git CACHE STRING "URL of MexIFace library dependency")
+    add_external_dependency(NAME MexIFace URL ${MexIFaceURL} SHARED TESTING)
+    add_subdirectory(src/MexIFace)
+    mexiface_configure_install(EXPORT_BUILD_TREE "${OPT_EXPORT_BUILD_TREE}") #Matlab code and startupMappel.m configure and install
 endif()

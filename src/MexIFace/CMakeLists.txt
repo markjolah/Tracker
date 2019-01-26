@@ -7,7 +7,7 @@ if(OPT_MATLAB)
     file(GLOB SRCS *.cpp)  #Gather all .cpp sources
     foreach(src IN LISTS SRCS)
         get_filename_component(target ${src} NAME_WE)
-        message(STATUS "MakingMex: ${target}")
+        message(STATUS "MakingMexModule: ${target}")
         mexiface_make_mex(MEXNAME ${target} SOURCES ${src}
                          LINK_LIBRARIES Tracker::Tracker)
     endforeach()
