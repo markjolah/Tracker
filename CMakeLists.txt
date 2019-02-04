@@ -15,34 +15,41 @@ project(Tracker VERSION 0.1 LANGUAGES CXX)
 
 option(BUILD_SHARED_LIBS "Build shared libraries" ON)
 option(BUILD_STATIC_LIBS "Build static libraries" OFF)
-option(BUILD_TESTING "Build testing code" OFF)
+f(${CMAKE_BUILD_TYPE} MATCHES Debug)
+    option(BUILD_TESTING "Build testing framework" ON)
+else()
+    option(BUILD_TESTING "Build testing framework" OFF)
+endif()
+option(OPT_INSTALL_TESTING "Install testing executables" OFF)
 option(OPT_EXPORT_BUILD_TREE "Configure the package so it is usable from the build tree.  Useful for development." OFF)
+option(OPT_ARMADILLO_INT64 "Use 64-bit integers for Armadillo, BLAS, and LAPACK. [Must be on if OPT_MATLAB is on]" ON)
 option(OPT_MATLAB "Build and install matlab mex modules and code" ON)
-option(OPT_DEBUG "Enable debugging features" OFF)
-option(OPT_EXTRA_DEBUG "Enable extra noisy debugging features" OFF) #Extra debug features (Armadillo)
+
+if(OPT_MATLAB AND NOT OPT_ARMADILLO_INT64)
+    set(OPT_ARMADILLO_INT64 True)
+    set(OPT_ARMADILLO_INT64 True CACHE BOOL "Use 64-bit integers for Armadillo, BLAS, and LAPACK. [Forced on by OPT_MATLAB]." FORCE)
+endif()
 
 message(STATUS "OPTION: BUILD_SHARED_LIBS: ${BUILD_SHARED_LIBS}")
 message(STATUS "OPTION: BUILD_STATIC_LIBS: ${BUILD_STATIC_LIBS}")
 message(STATUS "OPTION: BUILD_TESTING: ${BUILD_TESTING}")
+message(STATUS "OPTION: OPT_INSTALL_TESTING: ${OPT_INSTALL_TESTING}")
 message(STATUS "OPTION: OPT_EXPORT_BUILD_TREE: ${OPT_EXPORT_BUILD_TREE}")
+message(STATUS "OPTION: OPT_ARMADILLO_INT64: ${OPT_ARMADILLO_INT64}")
 message(STATUS "OPTION: OPT_MATLAB: ${OPT_MATLAB}")
-message(STATUS "OPTION: OPT_DEBUG: ${OPT_DEBUG}")
-message(STATUS "OPTION: OPT_EXTRA_DEBUG: ${OPT_EXTRA_DEBUG}") 
 
 #Add UcommonCmakeModules git subpreo to path.
 list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_CURRENT_LIST_DIR}/cmake/UncommonCMakeModules)
 
 ### Dependencies
 #Armadillo
-find_package(Armadillo REQUIRED)
-add_definitions(-DARMA_USE_CXX11)
-add_definitions(-DARMA_DONT_USE_LAPACK -DARMA_DONT_USE_BLAS -DARMA_DONT_USE_OPENMP -DARMA_DONT_USE_HDF5) #disable unused dependencies
-set_property(DIRECTORY APPEND PROPERTY COMPILE_DEFINITIONS $<$<CONFIG:Debug>:ARMA_PRINT_ERRORS>)
-set_property(DIRECTORY APPEND PROPERTY COMPILE_DEFINITIONS $<$<NOT:$<CONFIG:Debug>>:ARMA_NO_DEBUG>)
-if(OPT_EXTRA_DEBUG)
-    set_property(DIRECTORY APPEND PROPERTY COMPILE_DEFINITIONS $<$<CONFIG:Debug>:ARMA_EXTRA_DEBUG>)
+if(OPT_ARMADILLO_INT64)
+    set(ARMADILLO_INT64_COMPONENT INT64) #Enable INT64 interface for armadillo, Blas and Lapack
+else()
+    set(ARMADILLO_INT64_COMPONENT)
 endif()
-add_compile_options($<$<CONFIG:Debug>:-Wno-unused-local-typedefs>) # Necessary for armadillo 9.200.6 warnings
+find_package(Armadillo REQUIRED COMPONENTS CXX11 ${ARMADILLO_INT64_COMPONENT})
+# add_compile_options($<$<CONFIG:Debug>:-Wno-unused-local-typedefs>) # Necessary for armadillo 9.200.6 warnings
 
 #OpenMP
 find_package(OpenMP REQUIRED)
