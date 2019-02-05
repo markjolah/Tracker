@@ -1,4 +1,3 @@
-#
 # Tracker - Main CMakeLists.txt
 #
 # A C++ and Matlab interface for trajectory connections in single particle tracking
@@ -22,8 +21,8 @@ else()
 endif()
 option(OPT_INSTALL_TESTING "Install testing executables" OFF)
 option(OPT_EXPORT_BUILD_TREE "Configure the package so it is usable from the build tree.  Useful for development." OFF)
-option(OPT_ARMADILLO_INT64 "Use 64-bit integers for Armadillo, BLAS, and LAPACK. [Must be on if OPT_MATLAB is on]" ON)
-option(OPT_MATLAB "Build and install matlab mex modules and code" ON)
+option(OPT_ARMADILLO_INT64 "Use 64-bit integers for Armadillo, BLAS, and LAPACK. [Must be on if OPT_MATLAB is on]" OFF)
+option(OPT_MATLAB "Build and install matlab mex modules and code" OFF)
 
 if(OPT_MATLAB AND NOT OPT_ARMADILLO_INT64)
     set(OPT_ARMADILLO_INT64 True)
@@ -42,6 +41,15 @@ message(STATUS "OPTION: OPT_MATLAB: ${OPT_MATLAB}")
 list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_CURRENT_LIST_DIR}/cmake/UncommonCMakeModules)
 
 ### Dependencies
+include(AddExternalDependency)
+set(EXTERNAL_DEPENDENCY_TESTING TESTING PASS_CACHE_VARIABLES OPT_INSTALL_TESTING)
+#BacktraceException allows for exceptions that encode a backtrace for debugging
+add_external_dependency(NAME BacktraceException URL https://github.com/markjolah/BacktraceException.git SHARED ${EXTERNAL_DEPENDENCY_TESTING})
+if(OPT_MATLAB)
+    set(MexIFaceURL https://github.com/markjolah/MexIFace.git CACHE STRING "URL of MexIFace library dependency")
+    add_external_dependency(NAME MexIFace URL ${MexIFaceURL} SHARED ${EXTERNAL_DEPENDENCY_TESTING})
+endif()
+
 #Armadillo
 if(OPT_ARMADILLO_INT64)
     set(ARMADILLO_INT64_COMPONENT INT64) #Enable INT64 interface for armadillo, Blas and Lapack
@@ -50,22 +58,15 @@ else()
 endif()
 find_package(Armadillo REQUIRED COMPONENTS CXX11 ${ARMADILLO_INT64_COMPONENT})
 add_compile_definitions(${ARMADILLO_PRIVATE_COMPILE_DEFINITIONS})
-# add_compile_options($<$<CONFIG:Debug>:-Wno-unused-local-typedefs>) # Necessary for armadillo 9.200.6 warnings
 
-#OpenMP
 find_package(OpenMP REQUIRED)
 
-include(AddExternalDependency)
-#BacktraceException allows for exceptions that encode a backtrace for debugging
-add_external_dependency(NAME BacktraceException URL https://github.com/markjolah/BacktraceException.git SHARED TESTING PASS_CACHE_VARIABLES OPT_INSTALL_TESTING)
+include(ConfigureDebugBuilds) #setup debug build configurations
 
-#setup debug build configurations
-include(ConfigureDebugBuilds)
-
-### PackageConfig Exports
+### PackageConfig Exports from UncommonCMakeModules/ExportPackageWizzard.cmake
+#setup build-tree and install-tree exports and PackageConfig files
 include(ExportPackageWizzard)
-export_package_wizzard() #setup build-tree and install-tree exports and packageconfig files
-
+export_package_wizzard()
 
 add_subdirectory(src) #library source
 
@@ -77,8 +78,6 @@ endif()
 
 if(OPT_MATLAB)
     message(STATUS "*** Matlab Module Building Enabled ***")
-    set(MexIFaceURL https://github.com/markjolah/MexIFace.git CACHE STRING "URL of MexIFace library dependency")
-    add_external_dependency(NAME MexIFace URL ${MexIFaceURL} SHARED TESTING PASS_CACHE_VARIABLES OPT_INSTALL_TESTING)
     add_subdirectory(src/MexIFace)
     mexiface_configure_install() #Matlab code and startupMappel.m configure and install
 endif()

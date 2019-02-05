@@ -42,6 +42,7 @@ ARGS="${ARGS} -DOPT_FIXUP_DEPENDENCIES_BUILD_TREE=Off"
 ARGS="${ARGS} -DOPT_FIXUP_DEPENDENCIES_COPY_GCC_LIBS=Off"
 ARGS="${ARGS} -DOPT_MexIFace_INSTALL_DISTRIBUTION_STARTUP=On" #Copy startupPackage.m to root for distribution
 ARGS="${ARGS} -DCMAKE_FIND_PACKAGE_NO_PACKAGE_REGISTRY=On" #Don't try to use any build-tree exports.  Install all dependencies.
+ARGS="${ARGS} -DOPT_MATLAB=On"
 
 set -ex
 rm -rf $BUILD_PATH

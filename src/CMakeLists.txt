@@ -1,5 +1,6 @@
 # Tracker CMakeLists.txt
-# Mark J. Olah [mjo@cs.unm.edu] 2018
+# Main CMakeLists.txt for Tracker libraries
+
 
 file(GLOB SRCS *.cpp)  #Gather all .cpp sources
 
@@ -12,7 +13,11 @@ include(AddSharedStaticLibraries)
 # * returns lsit SHARED_STATIC_LIB_TARGETS of created targets for adjusting additional target properties
 add_shared_static_libraries(SOURCES ${SRCS}
                             COMPILE_FEATURES cxx_std_11
-                            LINK_LIBRARIES BacktraceException::BacktraceException
-                            INCLUDE_DIRECTORIES ${ARMADILLO_INCLUDE_DIRS}
                             PUBLIC_HEADER_DIR ${CMAKE_SOURCE_DIR}/include
-                            RETURN_TARGETS SHARED_STATIC_LIB_TARGETS)
+                            RETURN_TARGETS lib_targets)
+
+#Custom target settings for each lib_target from add_shared_static_libraries
+foreach(target IN LISTS lib_targets)
+    target_link_libraries(${target} PUBLIC BacktraceException::BacktraceException)
+    target_link_libraries(${target} INTERFACE Armadillo::Armadillo)
+endforeach()

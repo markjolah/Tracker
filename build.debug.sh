@@ -1,4 +1,4 @@
-##!/bin/bash
+#!/bin/bash
 # build.debug.sh <cmake args ...>
 # Debug-only build to local install prefix with build-tree export
 

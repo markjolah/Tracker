@@ -1,9 +1,7 @@
 #!/bin/bash
+# build.gcc4_9.debug.sh
 #
-#gcc4_9.build.sh
 #
-#
-
 
 ARCH=gcc4_9
 FULL_ARCH=x86_64-${ARCH}-linux-gnu
