@@ -15,7 +15,7 @@ project(Tracker VERSION 0.1 LANGUAGES CXX)
 
 option(BUILD_SHARED_LIBS "Build shared libraries" ON)
 option(BUILD_STATIC_LIBS "Build static libraries" OFF)
-f(${CMAKE_BUILD_TYPE} MATCHES Debug)
+if(${CMAKE_BUILD_TYPE} MATCHES Debug)
     option(BUILD_TESTING "Build testing framework" ON)
 else()
     option(BUILD_TESTING "Build testing framework" OFF)
@@ -49,6 +49,7 @@ else()
     set(ARMADILLO_INT64_COMPONENT)
 endif()
 find_package(Armadillo REQUIRED COMPONENTS CXX11 ${ARMADILLO_INT64_COMPONENT})
+add_compile_definitions(${ARMADILLO_PRIVATE_COMPILE_DEFINITIONS})
 # add_compile_options($<$<CONFIG:Debug>:-Wno-unused-local-typedefs>) # Necessary for armadillo 9.200.6 warnings
 
 #OpenMP
@@ -56,14 +57,14 @@ find_package(OpenMP REQUIRED)
 
 include(AddExternalDependency)
 #BacktraceException allows for exceptions that encode a backtrace for debugging
-add_external_dependency(NAME BacktraceException URL https://github.com/markjolah/BacktraceException.git SHARED TESTING)
+add_external_dependency(NAME BacktraceException URL https://github.com/markjolah/BacktraceException.git SHARED TESTING PASS_CACHE_VARIABLES OPT_INSTALL_TESTING)
 
 #setup debug build configurations
 include(ConfigureDebugBuilds)
 
 ### PackageConfig Exports
 include(ExportPackageWizzard)
-export_package_wizzard(EXPORT_BUILD_TREE "${OPT_EXPORT_BUILD_TREE}") #setup build-tree and install-tree exports and packageconfig files
+export_package_wizzard() #setup build-tree and install-tree exports and packageconfig files
 
 
 add_subdirectory(src) #library source
@@ -71,13 +72,13 @@ add_subdirectory(src) #library source
 if(BUILD_TESTING)
     include(CTest)
     enable_testing()
-    add_subdirectory(src/test)
+    add_subdirectory(test)
 endif()
 
 if(OPT_MATLAB)
     message(STATUS "*** Matlab Module Building Enabled ***")
     set(MexIFaceURL https://github.com/markjolah/MexIFace.git CACHE STRING "URL of MexIFace library dependency")
-    add_external_dependency(NAME MexIFace URL ${MexIFaceURL} SHARED TESTING)
+    add_external_dependency(NAME MexIFace URL ${MexIFaceURL} SHARED TESTING PASS_CACHE_VARIABLES OPT_INSTALL_TESTING)
     add_subdirectory(src/MexIFace)
-    mexiface_configure_install(EXPORT_BUILD_TREE "${OPT_EXPORT_BUILD_TREE}") #Matlab code and startupMappel.m configure and install
+    mexiface_configure_install() #Matlab code and startupMappel.m configure and install
 endif()

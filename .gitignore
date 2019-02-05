@@ -3,6 +3,7 @@ _build
 _install
 _gcc4_9.*
 _win64.*
+_dist
 
 # Prerequisites
 *.d
