@@ -66,7 +66,10 @@ include(ConfigureDebugBuilds) #setup debug build configurations
 ### PackageConfig Exports from UncommonCMakeModules/ExportPackageWizzard.cmake
 #setup build-tree and install-tree exports and PackageConfig files
 include(ExportPackageWizzard)
-export_package_wizzard()
+set(EXPORTED_FIND_MODULES FindArmadillo.cmake)
+list(TRANSFORM EXPORTED_FIND_MODULES PREPEND cmake/UncommonCMakeModules/)
+export_package_wizzard(PROVIDED_COMPONENTS ${ARMADILLO_INT64_COMPONENT}
+                       FIND_MODULES ${EXPORTED_FIND_MODULES})
 
 add_subdirectory(src) #library source
 
