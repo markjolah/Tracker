@@ -1,28 +1,30 @@
 % File: Tracker.m
 %
+% Implements linear assinment problem based tracking with frame-to-frame and gap-closing track assoications.
+% Efficently calls the LAPJV sparse matrix LAP solver in C.
+%
 % Mark J. Olah (mjo@cs.unm.edu)
-% 04/2015
+% 2015 - 2019
 
-classdef Tracker < MexIFace.IFaceMixin
-    properties (Constant=true)
+classdef Tracker < MexIFace.MexIFaceMixin
+    properties (Constant = true)
         Trackers = {'LAPTrack2D'};
     end
 
-    properties (SetAccess=protected)
+    properties (SetAccess = protected)
         trackerType;
     end
 
-    properties (Access = protected, Transient=true)
-        initialized=false; %True once the object is correctly initialized by the initializeTrack method
+    properties (Access = protected, Transient = true)
+        initialized = false; %True once the object is correctly initialized by the initializeTrack method
     end
     
     methods
-        function obj=Tracker(trackerType,params)
+        function obj = Tracker(trackerType,params)
             %
-            iface = str2func(sprintf('%s_IFace',trackerType));
-            obj=obj@MexIFace.IFaceMixin(iface);
+            obj = obj@MexIFace.MexIFaceMixin([trackerType '_IFace']);
             obj.trackerType = trackerType;
-            obj.initialized=obj.openIface(params);
+            obj.initialized = obj.openIFace(params);
         end
         
         function stats = getStats(obj)
@@ -43,7 +45,7 @@ classdef Tracker < MexIFace.IFaceMixin
         end
 
         function [costMat, connections, conn_costs] = debugCloseGaps(obj)
-            [costMat, connections, conn_costs]= obj.call('debugCloseGaps');
+            [costMat, connections, conn_costs] = obj.call('debugCloseGaps');
         end
         
         function nTracks = linkF2F(obj)
@@ -64,7 +66,7 @@ classdef Tracker < MexIFace.IFaceMixin
     end %public methods
     methods (Access=protected)
         function checkPoints(obj,points)
-            if size(points,2) ~=5
+            if size(points,2)~=5
                 error('SRRender2D:checkPoints','Points Incorrect number of columns');
             end
             if any( points(:,1)<=0 )
