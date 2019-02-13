@@ -1,3 +1,0 @@
-#vendor.yml
-# Exclude gitsubrepos
-cmake/UncommonCMakeModules/* linguist-vendored
