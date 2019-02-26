@@ -50,7 +50,7 @@ install:
     - if [ "${CXX}" == "g++-5" ];   then $APT_INSTALL g++-5; fi
     - if [ "${CXX}" == "g++-6" ];   then $APT_INSTALL g++-6; fi
     - if [ "${CXX}" == "g++-7" ];   then $APT_INSTALL g++-7; fi
-    - $APT_INSTALL libarmadillo-dev
+    - ./scripts/ci-numerical-dependencies/install-armadillo.sh
 
 script:
     - ./scripts/travis-build-test.sh
