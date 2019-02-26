@@ -2,7 +2,7 @@
 #
 # Mark J. Olah (mjo@cs.unm DOT edu)
 # Copyright 2019
-# see file: LICENCE
+# see file: LICENSE
 #
 # This is a modern Find Module replacement for the standard FindLAPACK.cmake modules that produces IMPORTED targets for LAPACK and LAPACKE
 # using pkg-config, and also identifying Static, threaded, and int64 target versions of LAPACK and LAPACKE, for a variety of implementations.
@@ -35,7 +35,8 @@
 #   {LIB}_COMPILE_OPTIONS
 #
 # find_package COMPONENTS respected:
-#   INT64 - Enable finding of 64-bit integer targets
+#   BLAS_INT64 - Enable finding of 64-bit integer targets
+#   BLAS_INT32 - Accepted for compatibility.  Always enables 32-bit integer targets if available.
 #   THREADS - Enable finding of threaded targets
 #   STATIC - Enable finding of static targets
 #   LAPACKE - Find LAPACKE targets also.
@@ -70,11 +71,11 @@ include(${CMAKE_CURRENT_LIST_DIR}/MakePkgConfigTarget.cmake)
 
 #Default LAPACK names to search for in decreasing order of importance
 if(NOT LAPACK_PKG_CONFIG_NAMES)
-    set(LAPACK_PKG_CONFIG_NAMES lapack reflapack)
+    set(LAPACK_PKG_CONFIG_NAMES lapack reflapack lapack-netlib lapack-reference)
 endif()
 
 if(NOT LAPACKE_PKG_CONFIG_NAMES)
-    set(LAPACKE_PKG_CONFIG_NAMES lapacke reflapacke)
+    set(LAPACKE_PKG_CONFIG_NAMES lapacke reflapacke lapacke-netlib lapacke-reference)
 endif()
 
 if(NOT PKG_CONFIG_SUFFIX_INT64)
@@ -116,7 +117,8 @@ foreach(_lib IN LISTS _LIBS)
     #int32 shared/static with threads
     if(THREADS IN_LIST ${CMAKE_FIND_PACKAGE_NAME}_FIND_COMPONENTS)
         if(NOT ${_LIB}_THREADS_PKG_CONFIG_NAMES)
-            list(TRANSFORM ${_LIB}_PKG_CONFIG_NAMES APPEND ${PKG_CONFIG_SUFFIX_THREADS} OUTPUT_VARIABLE ${_LIB}_THREADS_PKG_CONFIG_NAMES)
+            #list(TRANSFORM ${_LIB}_PKG_CONFIG_NAMES APPEND ${PKG_CONFIG_SUFFIX_THREADS} OUTPUT_VARIABLE ${_LIB}_THREADS_PKG_CONFIG_NAMES) #Requires cmake 3.12
+            string(REGEX REPLACE "([^;]+)" "\\1${PKG_CONFIG_SUFFIX_THREADS}" ${_LIB}_THREADS_PKG_CONFIG_NAMES "${${_LIB}_PKG_CONFIG_NAMES}")
         endif()
         make_pkg_config_target(VAR_NAME ${_LIB}_THREADS NAMESPACE ${_LIB} TARGET ${_lib}Threads PCNAMES ${${_LIB}_THREADS_PKG_CONFIG_NAMES})
         if(STATIC IN_LIST ${CMAKE_FIND_PACKAGE_NAME}_FIND_COMPONENTS)
@@ -125,9 +127,10 @@ foreach(_lib IN LISTS _LIBS)
     endif()
 
     #int64 shared/static
-    if(INT64 IN_LIST ${CMAKE_FIND_PACKAGE_NAME}_FIND_COMPONENTS)
+    if(BLAS_INT64 IN_LIST ${CMAKE_FIND_PACKAGE_NAME}_FIND_COMPONENTS)
         if(NOT ${_LIB}_INT64_PKG_CONFIG_NAMES)
-            list(TRANSFORM ${_LIB}_PKG_CONFIG_NAMES APPEND ${PKG_CONFIG_SUFFIX_INT64} OUTPUT_VARIABLE ${_LIB}_INT64_PKG_CONFIG_NAMES)
+            #list(TRANSFORM ${_LIB}_PKG_CONFIG_NAMES APPEND ${PKG_CONFIG_SUFFIX_INT64} OUTPUT_VARIABLE ${_LIB}_INT64_PKG_CONFIG_NAMES) #Requires cmake 3.12
+            string(REGEX REPLACE "([^;]+)" "\\1${PKG_CONFIG_SUFFIX_INT64}" ${_LIB}_INT64_PKG_CONFIG_NAMES "${${_LIB}_PKG_CONFIG_NAMES}")
         endif()
         make_pkg_config_target(VAR_NAME ${_LIB}_INT64 NAMESPACE ${_LIB} TARGET ${_lib}Int64 PCNAMES ${${_LIB}_INT64_PKG_CONFIG_NAMES})
         if(STATIC IN_LIST ${CMAKE_FIND_PACKAGE_NAME}_FIND_COMPONENTS)
@@ -136,10 +139,11 @@ foreach(_lib IN LISTS _LIBS)
     endif()
 
     #int64 shared/static with threads
-    if(INT64 IN_LIST ${CMAKE_FIND_PACKAGE_NAME}_FIND_COMPONENTS AND THREADS IN_LIST ${CMAKE_FIND_PACKAGE_NAME}_FIND_COMPONENTS)
+    if(BLAS_INT64 IN_LIST ${CMAKE_FIND_PACKAGE_NAME}_FIND_COMPONENTS AND THREADS IN_LIST ${CMAKE_FIND_PACKAGE_NAME}_FIND_COMPONENTS)
         if(NOT ${_LIB}_INT64_THREADS_PKG_CONFIG_NAMES)
-            list(TRANSFORM ${_LIB}_PKG_CONFIG_NAMES APPEND ${PKG_CONFIG_SUFFIX_INT64} OUTPUT_VARIABLE ${_LIB}_INT64_THREADS_PKG_CONFIG_NAMES)
-            list(TRANSFORM ${_LIB}_INT64_THREADS_PKG_CONFIG_NAMES APPEND ${PKG_CONFIG_SUFFIX_THREADS})
+            #list(TRANSFORM ${_LIB}_PKG_CONFIG_NAMES APPEND ${PKG_CONFIG_SUFFIX_INT64} OUTPUT_VARIABLE ${_LIB}_INT64_THREADS_PKG_CONFIG_NAMES) #Requires cmake 3.12
+            #list(TRANSFORM ${_LIB}_INT64_THREADS_PKG_CONFIG_NAMES APPEND ${PKG_CONFIG_SUFFIX_THREADS}) #Requires cmake 3.12
+            string(REGEX REPLACE "([^;]+)" "\\1${PKG_CONFIG_SUFFIX_INT64}${PKG_CONFIG_SUFFIX_THREADS}" ${_LIB}_INT64_THREADS_PKG_CONFIG_NAMES "${${_LIB}_PKG_CONFIG_NAMES}")
         endif()
         make_pkg_config_target(VAR_NAME ${_LIB}_INT64_THREADS NAMESPACE ${_LIB} TARGET ${_lib}Int64Threads PCNAMES ${${_LIB}_INT64_THREADS_PKG_CONFIG_NAMES})
         if(STATIC IN_LIST ${CMAKE_FIND_PACKAGE_NAME}_FIND_COMPONENTS)
