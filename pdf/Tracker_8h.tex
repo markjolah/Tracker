@@ -1,0 +1,59 @@
+\hypertarget{Tracker_8h}{}\subsection{Tracker.\+h File Reference}
+\label{Tracker_8h}\index{Tracker.\+h@{Tracker.\+h}}
+
+
+The class declaration and inline and templated functions for Tracker.  
+
+
+{\ttfamily \#include $<$cstdint$>$}\\*
+{\ttfamily \#include $<$armadillo$>$}\\*
+{\ttfamily \#include $<$map$>$}\\*
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$list$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include \char`\"{}Backtrace\+Exception/\+Backtrace\+Exception.\+h\char`\"{}}\\*
+Include dependency graph for Tracker.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{Tracker_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{Tracker_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structtracker_1_1ParameterValueError}{tracker\+::\+Parameter\+Value\+Error}
+\begin{DoxyCompactList}\small\item\em Parameter value is not valid. \end{DoxyCompactList}\item 
+struct \hyperlink{structtracker_1_1LogicalError}{tracker\+::\+Logical\+Error}
+\begin{DoxyCompactList}\small\item\em Parameter value is not valid. \end{DoxyCompactList}\item 
+class \hyperlink{classtracker_1_1Tracker}{tracker\+::\+Tracker}
+\end{DoxyCompactItemize}
+\subsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacetracker}{tracker}
+\end{DoxyCompactItemize}
+\subsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \hyperlink{namespacetracker_afa61236fc365dda12f9244e9277ddf30}{tracker\+::\+Tracker\+Error} = backtrace\+\_\+exception\+::\+Backtrace\+Exception
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+The class declaration and inline and templated functions for Tracker. 
+
+\begin{DoxyAuthor}{Author}
+Mark J. Olah (mjo@cs.\+unm.\+edu) 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+02-\/2015 The base class for all Tracking models
+\end{DoxyDate}
+Insted of templating on the FloatT type, which is problematic for inheritance hierarchies of templated base classes. Instead wuse a typedef to allow configuration of use with either float/double. Default is double. 

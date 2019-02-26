@@ -1,0 +1,158 @@
+\hypertarget{classtracker_1_1LAP__JVSparse}{}\subsection{tracker\+:\+:L\+A\+P\+\_\+\+J\+V\+Sparse$<$ FloatT $>$ Class Template Reference}
+\label{classtracker_1_1LAP__JVSparse}\index{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse$<$ Float\+T $>$@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse$<$ Float\+T $>$}}
+
+
+{\ttfamily \#include $<$/home/travis/build/markjolah/\+Tracker/include/\+Tracker/\+L\+A\+P\+\_\+\+J\+V\+Sparse.\+h$>$}
+
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static I\+VecT \hyperlink{classtracker_1_1LAP__JVSparse_aea34e1276a8b6d217bd08a8a3b1156a8}{solve} (const Sp\+MatT \&C)
+\item 
+static void \hyperlink{classtracker_1_1LAP__JVSparse_a2587babf5d28fee6c4e09659f492e58e}{solve\+L\+A\+P\+\_\+orig} (const Sp\+MatT \&C, I\+VecT \&x, I\+VecT \&y, VecT \&u, VecT \&v)
+\item 
+static VecT \hyperlink{classtracker_1_1LAP__JVSparse_a4d731a155829c5f7c587afa0e518fe62}{compute\+Cost} (const Sp\+MatT \&C, const I\+VecT \&row\+\_\+sol)
+\item 
+static bool \hyperlink{classtracker_1_1LAP__JVSparse_ada3eb6af3023ab78522072c9d36c593a}{check\+Costs} (const Sp\+MatT \&C)
+\item 
+static bool \hyperlink{classtracker_1_1LAP__JVSparse_a6ee562c47e27a223a7e4fae2f92b88aa}{check\+Solution} (const Sp\+MatT \&C, const I\+VecT \&x, const I\+VecT \&y, const VecT \&u, const VecT \&v)
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+\subsubsection*{template$<$class FloatT$>$\\*
+class tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse$<$ Float\+T $>$}
+
+
+
+Definition at line 21 of file L\+A\+P\+\_\+\+J\+V\+Sparse.\+h.
+
+
+
+\subsubsection{Member Function Documentation}
+\index{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}!check\+Costs@{check\+Costs}}
+\index{check\+Costs@{check\+Costs}!tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}}
+\paragraph[{\texorpdfstring{check\+Costs(const Sp\+Mat\+T \&\+C)}{checkCosts(const SpMatT &C)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class FloatT $>$ bool {\bf tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}$<$ FloatT $>$\+::check\+Costs (
+\begin{DoxyParamCaption}
+\item[{const Sp\+MatT \&}]{C}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classtracker_1_1LAP__JVSparse_ada3eb6af3023ab78522072c9d36c593a}{}\label{classtracker_1_1LAP__JVSparse_ada3eb6af3023ab78522072c9d36c593a}
+
+
+Definition at line 95 of file L\+A\+P\+\_\+\+J\+V\+Sparse.\+cpp.
+
+\index{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}!check\+Solution@{check\+Solution}}
+\index{check\+Solution@{check\+Solution}!tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}}
+\paragraph[{\texorpdfstring{check\+Solution(const Sp\+Mat\+T \&\+C, const I\+Vec\+T \&x, const I\+Vec\+T \&y, const Vec\+T \&u, const Vec\+T \&v)}{checkSolution(const SpMatT &C, const IVecT &x, const IVecT &y, const VecT &u, const VecT &v)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class FloatT $>$ bool {\bf tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}$<$ FloatT $>$\+::check\+Solution (
+\begin{DoxyParamCaption}
+\item[{const Sp\+MatT \&}]{C, }
+\item[{const I\+VecT \&}]{x, }
+\item[{const I\+VecT \&}]{y, }
+\item[{const VecT \&}]{u, }
+\item[{const VecT \&}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classtracker_1_1LAP__JVSparse_a6ee562c47e27a223a7e4fae2f92b88aa}{}\label{classtracker_1_1LAP__JVSparse_a6ee562c47e27a223a7e4fae2f92b88aa}
+
+
+Definition at line 118 of file L\+A\+P\+\_\+\+J\+V\+Sparse.\+cpp.
+
+\index{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}!compute\+Cost@{compute\+Cost}}
+\index{compute\+Cost@{compute\+Cost}!tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}}
+\paragraph[{\texorpdfstring{compute\+Cost(const Sp\+Mat\+T \&\+C, const I\+Vec\+T \&row\+\_\+sol)}{computeCost(const SpMatT &C, const IVecT &row_sol)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class FloatT $>$ {\bf L\+A\+P\+\_\+\+J\+V\+Sparse}$<$ FloatT $>$\+::VecT {\bf tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}$<$ FloatT $>$\+::compute\+Cost (
+\begin{DoxyParamCaption}
+\item[{const Sp\+MatT \&}]{C, }
+\item[{const I\+VecT \&}]{row\+\_\+sol}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classtracker_1_1LAP__JVSparse_a4d731a155829c5f7c587afa0e518fe62}{}\label{classtracker_1_1LAP__JVSparse_a4d731a155829c5f7c587afa0e518fe62}
+Compute the total cost of a solution
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em row\+\_\+sol} & This is the \textquotesingle{}x\textquotesingle{} output from the solver giving the col assignment for each row in order \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 85 of file L\+A\+P\+\_\+\+J\+V\+Sparse.\+cpp.
+
+
+
+Referenced by tracker\+::\+L\+A\+P\+Track\+::debug\+Close\+Gaps(), and tracker\+::\+L\+A\+P\+Track\+::debug\+F2\+F().
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=320pt]{classtracker_1_1LAP__JVSparse_a4d731a155829c5f7c587afa0e518fe62_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}!solve@{solve}}
+\index{solve@{solve}!tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}}
+\paragraph[{\texorpdfstring{solve(const Sp\+Mat\+T \&\+C)}{solve(const SpMatT &C)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class FloatT $>$ {\bf L\+A\+P\+\_\+\+J\+V\+Sparse}$<$ FloatT $>$\+::I\+VecT {\bf tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}$<$ FloatT $>$\+::solve (
+\begin{DoxyParamCaption}
+\item[{const Sp\+MatT \&}]{C}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classtracker_1_1LAP__JVSparse_aea34e1276a8b6d217bd08a8a3b1156a8}{}\label{classtracker_1_1LAP__JVSparse_aea34e1276a8b6d217bd08a8a3b1156a8}
+
+
+Definition at line 21 of file L\+A\+P\+\_\+\+J\+V\+Sparse.\+cpp.
+
+
+
+Referenced by tracker\+::\+L\+A\+P\+Track\+::close\+Gaps(), tracker\+::\+L\+A\+P\+Track\+::debug\+Close\+Gaps(), tracker\+::\+L\+A\+P\+Track\+::debug\+F2\+F(), and tracker\+::\+L\+A\+P\+Track\+::link\+F2\+F().
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classtracker_1_1LAP__JVSparse_aea34e1276a8b6d217bd08a8a3b1156a8_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}!solve\+L\+A\+P\+\_\+orig@{solve\+L\+A\+P\+\_\+orig}}
+\index{solve\+L\+A\+P\+\_\+orig@{solve\+L\+A\+P\+\_\+orig}!tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}}
+\paragraph[{\texorpdfstring{solve\+L\+A\+P\+\_\+orig(const Sp\+Mat\+T \&\+C, I\+Vec\+T \&x, I\+Vec\+T \&y, Vec\+T \&u, Vec\+T \&v)}{solveLAP_orig(const SpMatT &C, IVecT &x, IVecT &y, VecT &u, VecT &v)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class FloatT $>$ void {\bf tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}$<$ FloatT $>$\+::solve\+L\+A\+P\+\_\+orig (
+\begin{DoxyParamCaption}
+\item[{const Sp\+MatT \&}]{C, }
+\item[{I\+VecT \&}]{x, }
+\item[{I\+VecT \&}]{y, }
+\item[{VecT \&}]{u, }
+\item[{VecT \&}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classtracker_1_1LAP__JVSparse_a2587babf5d28fee6c4e09659f492e58e}{}\label{classtracker_1_1LAP__JVSparse_a2587babf5d28fee6c4e09659f492e58e}
+This wraps the original sparse lap implementation that for some reason uses 1-\/based indexing, which we correct with some pointer arrithmetic and adjusting of appropriate indicies in the sparse matrix implementation.
+
+Furthermore because the lap\+\_\+orig code assumes a compressed-\/row format, but we pass it the internal datastore of a compressed-\/col format sparse metrix. We invert x/y and u/v on the call to lap\+\_\+orig to effectively let the transformation work easily with the legacy code.
+
+This means x is the row sol and y is the col sol, as it normally would be.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em C} & costs sparse matrix \\
+\hline
+\mbox{\tt out}  & {\em x} & -\/ row assignments \\
+\hline
+\mbox{\tt out}  & {\em y} & -\/ col assignments \\
+\hline
+\mbox{\tt out}  & {\em u} & -\/ reduced row costs \\
+\hline
+\mbox{\tt out}  & {\em v} & -\/ reduced column costs \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 50 of file L\+A\+P\+\_\+\+J\+V\+Sparse.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{LAP__JVSparse_8h}{L\+A\+P\+\_\+\+J\+V\+Sparse.\+h}\item 
+\hyperlink{LAP__JVSparse_8cpp}{L\+A\+P\+\_\+\+J\+V\+Sparse.\+cpp}\end{DoxyCompactItemize}

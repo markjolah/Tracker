@@ -1,0 +1,531 @@
+\hypertarget{classtracker_1_1Tracker}{}\subsection{tracker\+:\+:Tracker Class Reference}
+\label{classtracker_1_1Tracker}\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+
+
+{\ttfamily \#include $<$/home/travis/build/markjolah/\+Tracker/include/\+Tracker/\+Tracker.\+h$>$}
+
+
+
+Inheritance diagram for tracker\+:\+:Tracker\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{classtracker_1_1Tracker__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for tracker\+:\+:Tracker\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=242pt]{classtracker_1_1Tracker__coll__graph}
+\end{center}
+\end{figure}
+\subsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \hyperlink{classtracker_1_1Tracker_a66e8a81f12871e23082264c964f8f103}{FloatT} = double
+\item 
+using \hyperlink{classtracker_1_1Tracker_ad39a875dc6957cb6a9f3affcf6517d80}{IdxT} = int32\+\_\+t
+\item 
+using \hyperlink{classtracker_1_1Tracker_a9905fa9b81b252716e651d87d7d57aff}{VecT} = arma\+::\+Col$<$ \hyperlink{classtracker_1_1Tracker_a66e8a81f12871e23082264c964f8f103}{FloatT} $>$
+\item 
+using \hyperlink{classtracker_1_1Tracker_a60a1d6ee07284ba82f0533c79311ccfd}{MatT} = arma\+::\+Mat$<$ \hyperlink{classtracker_1_1Tracker_a66e8a81f12871e23082264c964f8f103}{FloatT} $>$
+\item 
+using \hyperlink{classtracker_1_1Tracker_a59a6e01be987f9c0093a8ac5ad97ce33}{I\+VecT} = arma\+::\+Col$<$ \hyperlink{classtracker_1_1Tracker_ad39a875dc6957cb6a9f3affcf6517d80}{IdxT} $>$
+\item 
+using \hyperlink{classtracker_1_1Tracker_a6de023cd3b5466996624c7e1b7e5d551}{I\+MatT} = arma\+::\+Mat$<$ \hyperlink{classtracker_1_1Tracker_ad39a875dc6957cb6a9f3affcf6517d80}{IdxT} $>$
+\item 
+using \hyperlink{classtracker_1_1Tracker_a122e1d351fcb4444aec9729cf7625322}{I\+Vec\+FieldT} = arma\+::field$<$ \hyperlink{classtracker_1_1Tracker_a59a6e01be987f9c0093a8ac5ad97ce33}{I\+VecT} $>$
+\item 
+using \hyperlink{classtracker_1_1Tracker_a50ae514521f940c08813b45f53b6ce2d}{Index\+VectorT} = std\+::vector$<$ \hyperlink{classtracker_1_1Tracker_ad39a875dc6957cb6a9f3affcf6517d80}{IdxT} $>$
+\item 
+using \hyperlink{classtracker_1_1Tracker_ac1b06aee1b9d85fb75cf6a9579eb0e84}{TrackT} = std\+::list$<$ \hyperlink{classtracker_1_1Tracker_ad39a875dc6957cb6a9f3affcf6517d80}{IdxT} $>$
+\item 
+using \hyperlink{classtracker_1_1Tracker_a25ee8479eb10f1619a8eefd5d310eeb7}{Track\+VecT} = std\+::vector$<$ \hyperlink{classtracker_1_1Tracker_ac1b06aee1b9d85fb75cf6a9579eb0e84}{TrackT} $>$
+\item 
+using \hyperlink{classtracker_1_1Tracker_a5fd443ec1139ed82910dd16316100db7}{ParamT} = std\+::map$<$ std\+::string, \hyperlink{classtracker_1_1Tracker_a66e8a81f12871e23082264c964f8f103}{FloatT} $>$
+\item 
+using \hyperlink{classtracker_1_1Tracker_a1a79f7073d8e1a032369dcc8105604ce}{Vec\+ParamT} = std\+::map$<$ std\+::string, \hyperlink{classtracker_1_1Tracker_a9905fa9b81b252716e651d87d7d57aff}{VecT} $>$
+\end{DoxyCompactItemize}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classtracker_1_1Tracker_a27dea2aecabed66961d6d27b7a217d49}{Tracker} (const \hyperlink{classtracker_1_1Tracker_a1a79f7073d8e1a032369dcc8105604ce}{Vec\+ParamT} \&param)
+\item 
+virtual \hyperlink{classtracker_1_1Tracker_ab443f280a09da7d955e5e963a64b43cf}{$\sim$\+Tracker} ()
+\item 
+virtual \hyperlink{classtracker_1_1Tracker_a1a79f7073d8e1a032369dcc8105604ce}{Vec\+ParamT} \hyperlink{classtracker_1_1Tracker_a0ff525214ca14a98bacb8af427000cfa}{get\+Stats} () const 
+\item 
+virtual void \hyperlink{classtracker_1_1Tracker_a54cebc540275536380aca0d9ecb7e575}{initialize\+Tracks} (const \hyperlink{classtracker_1_1Tracker_a59a6e01be987f9c0093a8ac5ad97ce33}{I\+VecT} \&frame\+Idx\+\_\+, const \hyperlink{classtracker_1_1Tracker_a60a1d6ee07284ba82f0533c79311ccfd}{MatT} \&position\+\_\+, const \hyperlink{classtracker_1_1Tracker_a60a1d6ee07284ba82f0533c79311ccfd}{MatT} \&S\+E\+\_\+position\+\_\+)
+\item 
+virtual void \hyperlink{classtracker_1_1Tracker_a9fbf44fc368d294b47cd3bc48c0c69bd}{initialize\+Tracks} (const \hyperlink{classtracker_1_1Tracker_a59a6e01be987f9c0093a8ac5ad97ce33}{I\+VecT} \&frame\+Idx\+\_\+, const \hyperlink{classtracker_1_1Tracker_a60a1d6ee07284ba82f0533c79311ccfd}{MatT} \&position\+\_\+, const \hyperlink{classtracker_1_1Tracker_a60a1d6ee07284ba82f0533c79311ccfd}{MatT} \&S\+E\+\_\+position\+\_\+, const \hyperlink{classtracker_1_1Tracker_a60a1d6ee07284ba82f0533c79311ccfd}{MatT} \&feature\+\_\+, const \hyperlink{classtracker_1_1Tracker_a60a1d6ee07284ba82f0533c79311ccfd}{MatT} \&S\+E\+\_\+feature\+\_\+)
+\item 
+virtual void \hyperlink{classtracker_1_1Tracker_a14823a45c80086192c92aa90eb58ca17}{generate\+Tracks} ()=0
+\item 
+void \hyperlink{classtracker_1_1Tracker_a5d1d2a969102d181b69b23333c874fc3}{print\+Tracks} () const 
+\end{DoxyCompactItemize}
+\subsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classtracker_1_1Tracker_ad39a875dc6957cb6a9f3affcf6517d80}{IdxT} \hyperlink{classtracker_1_1Tracker_a5d8cb7831463035649c791311001228f}{N} = 0
+\item 
+\hyperlink{classtracker_1_1Tracker_ad39a875dc6957cb6a9f3affcf6517d80}{IdxT} \hyperlink{classtracker_1_1Tracker_a5efb17589760984816411fb6f69d561d}{n\+Dims} = 0
+\item 
+\hyperlink{classtracker_1_1Tracker_ad39a875dc6957cb6a9f3affcf6517d80}{IdxT} \hyperlink{classtracker_1_1Tracker_ade0b77f0b5ffc71aecddc70593ec16bb}{n\+Features} = 0
+\item 
+\hyperlink{classtracker_1_1Tracker_a59a6e01be987f9c0093a8ac5ad97ce33}{I\+VecT} \hyperlink{classtracker_1_1Tracker_aa3e32ff8183fe70af1d351f6324e7615}{frame\+Idx}
+\item 
+\hyperlink{classtracker_1_1Tracker_a60a1d6ee07284ba82f0533c79311ccfd}{MatT} \hyperlink{classtracker_1_1Tracker_a89978ed5ec72607820f45f3dcf63dd04}{position}
+\item 
+\hyperlink{classtracker_1_1Tracker_a60a1d6ee07284ba82f0533c79311ccfd}{MatT} \hyperlink{classtracker_1_1Tracker_acd4e8651a05dff9170230149b7fe0029}{S\+E\+\_\+position}
+\item 
+\hyperlink{classtracker_1_1Tracker_a60a1d6ee07284ba82f0533c79311ccfd}{MatT} \hyperlink{classtracker_1_1Tracker_ab9d6c09e4ae84ff482cd21cc32878138}{feature}
+\item 
+\hyperlink{classtracker_1_1Tracker_a60a1d6ee07284ba82f0533c79311ccfd}{MatT} \hyperlink{classtracker_1_1Tracker_a0aa2719b06bfd7b630628486b67ca5fd}{S\+E\+\_\+feature}
+\item 
+\hyperlink{classtracker_1_1Tracker_ad39a875dc6957cb6a9f3affcf6517d80}{IdxT} \hyperlink{classtracker_1_1Tracker_a3ba78a0a502bd2ac432601fc204e3ba1}{first\+Frame} = 0
+\item 
+\hyperlink{classtracker_1_1Tracker_ad39a875dc6957cb6a9f3affcf6517d80}{IdxT} \hyperlink{classtracker_1_1Tracker_af3219a1e02551ca5c6aafc4a8c14ff30}{last\+Frame} = 0
+\item 
+\hyperlink{classtracker_1_1Tracker_ad39a875dc6957cb6a9f3affcf6517d80}{IdxT} \hyperlink{classtracker_1_1Tracker_a103afa608ae5693103d81e040a9e29d6}{n\+Frames} = 0
+\item 
+\hyperlink{classtracker_1_1Tracker_a59a6e01be987f9c0093a8ac5ad97ce33}{I\+VecT} \hyperlink{classtracker_1_1Tracker_a84d3000b7a2b7a2566791f05d3b8afcb}{n\+Frame\+Locs}
+\item 
+\hyperlink{classtracker_1_1Tracker_a122e1d351fcb4444aec9729cf7625322}{I\+Vec\+FieldT} \hyperlink{classtracker_1_1Tracker_a089a3af55a168691f56d856658786159}{frame\+Loc\+Idx}
+\item 
+\hyperlink{classtracker_1_1Tracker_a25ee8479eb10f1619a8eefd5d310eeb7}{Track\+VecT} \hyperlink{classtracker_1_1Tracker_a1e43335eb50e56014399a157b261160b}{tracks}
+\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classtracker_1_1Tracker_a59a6e01be987f9c0093a8ac5ad97ce33}{I\+VecT} \hyperlink{classtracker_1_1Tracker_a638ecbd5a6466c2730e7c7b9561e9fc9}{track\+Assignment}
+\end{DoxyCompactItemize}
+\subsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const \hyperlink{classtracker_1_1Tracker_a66e8a81f12871e23082264c964f8f103}{FloatT} \hyperlink{classtracker_1_1Tracker_adf40b4f798f070419f5eb697b36b65ac}{log2pi} = log(2$\ast$arma\+::\+Datum$<$\hyperlink{classtracker_1_1Tracker_a66e8a81f12871e23082264c964f8f103}{Tracker\+::\+FloatT}$>$\+::pi)
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+
+
+Definition at line 45 of file Tracker.\+h.
+
+
+
+\subsubsection{Member Typedef Documentation}
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!FloatT@{FloatT}}
+\index{FloatT@{FloatT}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{FloatT}{FloatT}}]{\setlength{\rightskip}{0pt plus 5cm}using {\bf tracker\+::\+Tracker\+::\+FloatT} =  double}\hypertarget{classtracker_1_1Tracker_a66e8a81f12871e23082264c964f8f103}{}\label{classtracker_1_1Tracker_a66e8a81f12871e23082264c964f8f103}
+
+
+Definition at line 47 of file Tracker.\+h.
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!IdxT@{IdxT}}
+\index{IdxT@{IdxT}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{IdxT}{IdxT}}]{\setlength{\rightskip}{0pt plus 5cm}using {\bf tracker\+::\+Tracker\+::\+IdxT} =  int32\+\_\+t}\hypertarget{classtracker_1_1Tracker_ad39a875dc6957cb6a9f3affcf6517d80}{}\label{classtracker_1_1Tracker_ad39a875dc6957cb6a9f3affcf6517d80}
+
+
+Definition at line 48 of file Tracker.\+h.
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!I\+MatT@{I\+MatT}}
+\index{I\+MatT@{I\+MatT}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{I\+MatT}{IMatT}}]{\setlength{\rightskip}{0pt plus 5cm}using {\bf tracker\+::\+Tracker\+::\+I\+MatT} =  arma\+::\+Mat$<${\bf IdxT}$>$}\hypertarget{classtracker_1_1Tracker_a6de023cd3b5466996624c7e1b7e5d551}{}\label{classtracker_1_1Tracker_a6de023cd3b5466996624c7e1b7e5d551}
+
+
+Definition at line 52 of file Tracker.\+h.
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!Index\+VectorT@{Index\+VectorT}}
+\index{Index\+VectorT@{Index\+VectorT}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{Index\+VectorT}{IndexVectorT}}]{\setlength{\rightskip}{0pt plus 5cm}using {\bf tracker\+::\+Tracker\+::\+Index\+VectorT} =  std\+::vector$<${\bf IdxT}$>$}\hypertarget{classtracker_1_1Tracker_a50ae514521f940c08813b45f53b6ce2d}{}\label{classtracker_1_1Tracker_a50ae514521f940c08813b45f53b6ce2d}
+
+
+Definition at line 54 of file Tracker.\+h.
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!I\+Vec\+FieldT@{I\+Vec\+FieldT}}
+\index{I\+Vec\+FieldT@{I\+Vec\+FieldT}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{I\+Vec\+FieldT}{IVecFieldT}}]{\setlength{\rightskip}{0pt plus 5cm}using {\bf tracker\+::\+Tracker\+::\+I\+Vec\+FieldT} =  arma\+::field$<${\bf I\+VecT}$>$}\hypertarget{classtracker_1_1Tracker_a122e1d351fcb4444aec9729cf7625322}{}\label{classtracker_1_1Tracker_a122e1d351fcb4444aec9729cf7625322}
+
+
+Definition at line 53 of file Tracker.\+h.
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!I\+VecT@{I\+VecT}}
+\index{I\+VecT@{I\+VecT}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{I\+VecT}{IVecT}}]{\setlength{\rightskip}{0pt plus 5cm}using {\bf tracker\+::\+Tracker\+::\+I\+VecT} =  arma\+::\+Col$<${\bf IdxT}$>$}\hypertarget{classtracker_1_1Tracker_a59a6e01be987f9c0093a8ac5ad97ce33}{}\label{classtracker_1_1Tracker_a59a6e01be987f9c0093a8ac5ad97ce33}
+
+
+Definition at line 51 of file Tracker.\+h.
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!MatT@{MatT}}
+\index{MatT@{MatT}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{MatT}{MatT}}]{\setlength{\rightskip}{0pt plus 5cm}using {\bf tracker\+::\+Tracker\+::\+MatT} =  arma\+::\+Mat$<${\bf FloatT}$>$}\hypertarget{classtracker_1_1Tracker_a60a1d6ee07284ba82f0533c79311ccfd}{}\label{classtracker_1_1Tracker_a60a1d6ee07284ba82f0533c79311ccfd}
+
+
+Definition at line 50 of file Tracker.\+h.
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!ParamT@{ParamT}}
+\index{ParamT@{ParamT}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{ParamT}{ParamT}}]{\setlength{\rightskip}{0pt plus 5cm}using {\bf tracker\+::\+Tracker\+::\+ParamT} =  std\+::map$<$std\+::string,{\bf FloatT}$>$}\hypertarget{classtracker_1_1Tracker_a5fd443ec1139ed82910dd16316100db7}{}\label{classtracker_1_1Tracker_a5fd443ec1139ed82910dd16316100db7}
+A convenient form for reporting dictionaries of named FP data to matlab 
+
+Definition at line 57 of file Tracker.\+h.
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!TrackT@{TrackT}}
+\index{TrackT@{TrackT}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{TrackT}{TrackT}}]{\setlength{\rightskip}{0pt plus 5cm}using {\bf tracker\+::\+Tracker\+::\+TrackT} =  std\+::list$<${\bf IdxT}$>$}\hypertarget{classtracker_1_1Tracker_ac1b06aee1b9d85fb75cf6a9579eb0e84}{}\label{classtracker_1_1Tracker_ac1b06aee1b9d85fb75cf6a9579eb0e84}
+A type for an individual track 
+
+Definition at line 55 of file Tracker.\+h.
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!Track\+VecT@{Track\+VecT}}
+\index{Track\+VecT@{Track\+VecT}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{Track\+VecT}{TrackVecT}}]{\setlength{\rightskip}{0pt plus 5cm}using {\bf tracker\+::\+Tracker\+::\+Track\+VecT} =  std\+::vector$<${\bf TrackT}$>$}\hypertarget{classtracker_1_1Tracker_a25ee8479eb10f1619a8eefd5d310eeb7}{}\label{classtracker_1_1Tracker_a25ee8479eb10f1619a8eefd5d310eeb7}
+A type for a vector of tracks 
+
+Definition at line 56 of file Tracker.\+h.
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!Vec\+ParamT@{Vec\+ParamT}}
+\index{Vec\+ParamT@{Vec\+ParamT}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{Vec\+ParamT}{VecParamT}}]{\setlength{\rightskip}{0pt plus 5cm}using {\bf tracker\+::\+Tracker\+::\+Vec\+ParamT} =  std\+::map$<$std\+::string,{\bf VecT}$>$}\hypertarget{classtracker_1_1Tracker_a1a79f7073d8e1a032369dcc8105604ce}{}\label{classtracker_1_1Tracker_a1a79f7073d8e1a032369dcc8105604ce}
+A convenient form for reporting dictionaries of named FP data to matlab 
+
+Definition at line 58 of file Tracker.\+h.
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!VecT@{VecT}}
+\index{VecT@{VecT}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{VecT}{VecT}}]{\setlength{\rightskip}{0pt plus 5cm}using {\bf tracker\+::\+Tracker\+::\+VecT} =  arma\+::\+Col$<${\bf FloatT}$>$}\hypertarget{classtracker_1_1Tracker_a9905fa9b81b252716e651d87d7d57aff}{}\label{classtracker_1_1Tracker_a9905fa9b81b252716e651d87d7d57aff}
+
+
+Definition at line 49 of file Tracker.\+h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!Tracker@{Tracker}}
+\index{Tracker@{Tracker}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{Tracker(const Vec\+Param\+T \&param)}{Tracker(const VecParamT &param)}}]{\setlength{\rightskip}{0pt plus 5cm}tracker\+::\+Tracker\+::\+Tracker (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec\+ParamT} \&}]{param}
+\end{DoxyParamCaption}
+)}\hypertarget{classtracker_1_1Tracker_a27dea2aecabed66961d6d27b7a217d49}{}\label{classtracker_1_1Tracker_a27dea2aecabed66961d6d27b7a217d49}
+param -\/ A dictionary of floating point values to pass in. This is a flexible interface to the higher-\/level matlab code allowing each subclass to take in arbitrary floating point arguments. 
+
+Definition at line 15 of file Tracker.\+cpp.
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!````~Tracker@{$\sim$\+Tracker}}
+\index{````~Tracker@{$\sim$\+Tracker}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{$\sim$\+Tracker()}{~Tracker()}}]{\setlength{\rightskip}{0pt plus 5cm}virtual tracker\+::\+Tracker\+::$\sim$\+Tracker (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classtracker_1_1Tracker_ab443f280a09da7d955e5e963a64b43cf}{}\label{classtracker_1_1Tracker_ab443f280a09da7d955e5e963a64b43cf}
+
+
+Definition at line 84 of file Tracker.\+h.
+
+
+
+\subsubsection{Member Function Documentation}
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!generate\+Tracks@{generate\+Tracks}}
+\index{generate\+Tracks@{generate\+Tracks}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{generate\+Tracks()=0}{generateTracks()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void tracker\+::\+Tracker\+::generate\+Tracks (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classtracker_1_1Tracker_a14823a45c80086192c92aa90eb58ca17}{}\label{classtracker_1_1Tracker_a14823a45c80086192c92aa90eb58ca17}
+
+
+Implemented in \hyperlink{classtracker_1_1LAPTrack_aac61350c9f3e2c12c9aef7892a718f38}{tracker\+::\+L\+A\+P\+Track}.
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!get\+Stats@{get\+Stats}}
+\index{get\+Stats@{get\+Stats}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{get\+Stats() const }{getStats() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Tracker\+::\+Vec\+ParamT} tracker\+::\+Tracker\+::get\+Stats (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classtracker_1_1Tracker_a0ff525214ca14a98bacb8af427000cfa}{}\label{classtracker_1_1Tracker_a0ff525214ca14a98bacb8af427000cfa}
+
+
+Reimplemented in \hyperlink{classtracker_1_1LAPTrack_ab5dc7bdfbaafa9eafec4d9fd7ade3411}{tracker\+::\+L\+A\+P\+Track}.
+
+
+
+Definition at line 19 of file Tracker.\+cpp.
+
+
+
+References first\+Frame, last\+Frame, N, n\+Dims, n\+Features, n\+Frames, track\+Assignment, and tracks.
+
+
+
+Referenced by tracker\+::\+L\+A\+P\+Track\+::get\+Stats().
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=326pt]{classtracker_1_1Tracker_a0ff525214ca14a98bacb8af427000cfa_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!initialize\+Tracks@{initialize\+Tracks}}
+\index{initialize\+Tracks@{initialize\+Tracks}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{initialize\+Tracks(const I\+Vec\+T \&frame\+Idx\+\_\+, const Mat\+T \&position\+\_\+, const Mat\+T \&\+S\+E\+\_\+position\+\_\+)}{initializeTracks(const IVecT &frameIdx_, const MatT &position_, const MatT &SE_position_)}}]{\setlength{\rightskip}{0pt plus 5cm}void tracker\+::\+Tracker\+::initialize\+Tracks (
+\begin{DoxyParamCaption}
+\item[{const {\bf I\+VecT} \&}]{frame\+Idx\+\_\+, }
+\item[{const {\bf MatT} \&}]{position\+\_\+, }
+\item[{const {\bf MatT} \&}]{S\+E\+\_\+position\+\_\+}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classtracker_1_1Tracker_a54cebc540275536380aca0d9ecb7e575}{}\label{classtracker_1_1Tracker_a54cebc540275536380aca0d9ecb7e575}
+
+
+Reimplemented in \hyperlink{classtracker_1_1LAPTrack_a9561d939e76b3ed9afca03cc4d457c9e}{tracker\+::\+L\+A\+P\+Track}.
+
+
+
+Definition at line 33 of file Tracker.\+cpp.
+
+
+
+Referenced by tracker\+::\+L\+A\+P\+Track\+::initialize\+Tracks().
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=327pt]{classtracker_1_1Tracker_a54cebc540275536380aca0d9ecb7e575_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!initialize\+Tracks@{initialize\+Tracks}}
+\index{initialize\+Tracks@{initialize\+Tracks}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{initialize\+Tracks(const I\+Vec\+T \&frame\+Idx\+\_\+, const Mat\+T \&position\+\_\+, const Mat\+T \&\+S\+E\+\_\+position\+\_\+, const Mat\+T \&feature\+\_\+, const Mat\+T \&\+S\+E\+\_\+feature\+\_\+)}{initializeTracks(const IVecT &frameIdx_, const MatT &position_, const MatT &SE_position_, const MatT &feature_, const MatT &SE_feature_)}}]{\setlength{\rightskip}{0pt plus 5cm}void tracker\+::\+Tracker\+::initialize\+Tracks (
+\begin{DoxyParamCaption}
+\item[{const {\bf I\+VecT} \&}]{frame\+Idx\+\_\+, }
+\item[{const {\bf MatT} \&}]{position\+\_\+, }
+\item[{const {\bf MatT} \&}]{S\+E\+\_\+position\+\_\+, }
+\item[{const {\bf MatT} \&}]{feature\+\_\+, }
+\item[{const {\bf MatT} \&}]{S\+E\+\_\+feature\+\_\+}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classtracker_1_1Tracker_a9fbf44fc368d294b47cd3bc48c0c69bd}{}\label{classtracker_1_1Tracker_a9fbf44fc368d294b47cd3bc48c0c69bd}
+
+
+Reimplemented in \hyperlink{classtracker_1_1LAPTrack_a22ba01a68c707be9b3e906e14b84ff1f}{tracker\+::\+L\+A\+P\+Track}.
+
+
+
+Definition at line 39 of file Tracker.\+cpp.
+
+
+
+References feature, first\+Frame, frame\+Idx, frame\+Loc\+Idx, last\+Frame, N, n\+Dims, n\+Features, n\+Frame\+Locs, n\+Frames, position, S\+E\+\_\+feature, S\+E\+\_\+position, track\+Assignment, and tracks.
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!print\+Tracks@{print\+Tracks}}
+\index{print\+Tracks@{print\+Tracks}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{print\+Tracks() const }{printTracks() const }}]{\setlength{\rightskip}{0pt plus 5cm}void tracker\+::\+Tracker\+::print\+Tracks (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classtracker_1_1Tracker_a5d1d2a969102d181b69b23333c874fc3}{}\label{classtracker_1_1Tracker_a5d1d2a969102d181b69b23333c874fc3}
+
+
+Definition at line 126 of file Tracker.\+cpp.
+
+
+
+References frame\+Idx, and tracks.
+
+
+
+\subsubsection{Member Data Documentation}
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!feature@{feature}}
+\index{feature@{feature}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{feature}{feature}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MatT} tracker\+::\+Tracker\+::feature}\hypertarget{classtracker_1_1Tracker_ab9d6c09e4ae84ff482cd21cc32878138}{}\label{classtracker_1_1Tracker_ab9d6c09e4ae84ff482cd21cc32878138}
+
+
+Definition at line 66 of file Tracker.\+h.
+
+
+
+Referenced by tracker\+::\+L\+A\+P\+Track\+::compute\+F2\+F\+Cost\+Mat(), tracker\+::\+L\+A\+P\+Track\+::compute\+Gap\+Close\+Matrix(), and initialize\+Tracks().
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!first\+Frame@{first\+Frame}}
+\index{first\+Frame@{first\+Frame}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{first\+Frame}{firstFrame}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf IdxT} tracker\+::\+Tracker\+::first\+Frame = 0}\hypertarget{classtracker_1_1Tracker_a3ba78a0a502bd2ac432601fc204e3ba1}{}\label{classtracker_1_1Tracker_a3ba78a0a502bd2ac432601fc204e3ba1}
+
+
+Definition at line 68 of file Tracker.\+h.
+
+
+
+Referenced by tracker\+::\+L\+A\+P\+Track\+::check\+Frame\+Idxs(), tracker\+::\+L\+A\+P\+Track\+::compute\+F2\+F\+Cost\+Mat(), tracker\+::\+L\+A\+P\+Track\+::compute\+Gap\+Close\+Matrix(), tracker\+::\+L\+A\+P\+Track\+::debug\+F2\+F(), get\+Stats(), initialize\+Tracks(), and tracker\+::\+L\+A\+P\+Track\+::link\+F2\+F().
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!frame\+Idx@{frame\+Idx}}
+\index{frame\+Idx@{frame\+Idx}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{frame\+Idx}{frameIdx}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\+VecT} tracker\+::\+Tracker\+::frame\+Idx}\hypertarget{classtracker_1_1Tracker_aa3e32ff8183fe70af1d351f6324e7615}{}\label{classtracker_1_1Tracker_aa3e32ff8183fe70af1d351f6324e7615}
+
+
+Definition at line 63 of file Tracker.\+h.
+
+
+
+Referenced by tracker\+::\+L\+A\+P\+Track\+::check\+Frame\+Idxs(), tracker\+::\+L\+A\+P\+Track\+::compute\+Gap\+Close\+Matrix(), initialize\+Tracks(), and print\+Tracks().
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!frame\+Loc\+Idx@{frame\+Loc\+Idx}}
+\index{frame\+Loc\+Idx@{frame\+Loc\+Idx}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{frame\+Loc\+Idx}{frameLocIdx}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\+Vec\+FieldT} tracker\+::\+Tracker\+::frame\+Loc\+Idx}\hypertarget{classtracker_1_1Tracker_a089a3af55a168691f56d856658786159}{}\label{classtracker_1_1Tracker_a089a3af55a168691f56d856658786159}
+
+
+Definition at line 74 of file Tracker.\+h.
+
+
+
+Referenced by tracker\+::\+L\+A\+P\+Track\+::compute\+F2\+F\+Cost\+Mat(), tracker\+::\+L\+A\+P\+Track\+::debug\+F2\+F(), initialize\+Tracks(), and tracker\+::\+L\+A\+P\+Track\+::link\+F2\+F().
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!last\+Frame@{last\+Frame}}
+\index{last\+Frame@{last\+Frame}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{last\+Frame}{lastFrame}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf IdxT} tracker\+::\+Tracker\+::last\+Frame = 0}\hypertarget{classtracker_1_1Tracker_af3219a1e02551ca5c6aafc4a8c14ff30}{}\label{classtracker_1_1Tracker_af3219a1e02551ca5c6aafc4a8c14ff30}
+
+
+Definition at line 69 of file Tracker.\+h.
+
+
+
+Referenced by tracker\+::\+L\+A\+P\+Track\+::check\+Frame\+Idxs(), tracker\+::\+L\+A\+P\+Track\+::compute\+Gap\+Close\+Matrix(), tracker\+::\+L\+A\+P\+Track\+::debug\+F2\+F(), get\+Stats(), initialize\+Tracks(), and tracker\+::\+L\+A\+P\+Track\+::link\+F2\+F().
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!log2pi@{log2pi}}
+\index{log2pi@{log2pi}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{log2pi}{log2pi}}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Tracker\+::\+FloatT} tracker\+::\+Tracker\+::log2pi = log(2$\ast$arma\+::\+Datum$<${\bf Tracker\+::\+FloatT}$>$\+::pi)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}\hypertarget{classtracker_1_1Tracker_adf40b4f798f070419f5eb697b36b65ac}{}\label{classtracker_1_1Tracker_adf40b4f798f070419f5eb697b36b65ac}
+
+
+Definition at line 92 of file Tracker.\+h.
+
+
+
+Referenced by tracker\+::\+L\+A\+P\+Track\+::compute\+F2\+F\+Cost\+Mat(), and tracker\+::\+L\+A\+P\+Track\+::compute\+Gap\+Close\+Matrix().
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!N@{N}}
+\index{N@{N}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{N}{N}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf IdxT} tracker\+::\+Tracker\+::N = 0}\hypertarget{classtracker_1_1Tracker_a5d8cb7831463035649c791311001228f}{}\label{classtracker_1_1Tracker_a5d8cb7831463035649c791311001228f}
+
+
+Definition at line 60 of file Tracker.\+h.
+
+
+
+Referenced by get\+Stats(), and initialize\+Tracks().
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!n\+Dims@{n\+Dims}}
+\index{n\+Dims@{n\+Dims}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{n\+Dims}{nDims}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf IdxT} tracker\+::\+Tracker\+::n\+Dims = 0}\hypertarget{classtracker_1_1Tracker_a5efb17589760984816411fb6f69d561d}{}\label{classtracker_1_1Tracker_a5efb17589760984816411fb6f69d561d}
+
+
+Definition at line 61 of file Tracker.\+h.
+
+
+
+Referenced by tracker\+::\+L\+A\+P\+Track\+::compute\+F2\+F\+Cost\+Mat(), tracker\+::\+L\+A\+P\+Track\+::compute\+Gap\+Close\+Matrix(), get\+Stats(), and initialize\+Tracks().
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!n\+Features@{n\+Features}}
+\index{n\+Features@{n\+Features}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{n\+Features}{nFeatures}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf IdxT} tracker\+::\+Tracker\+::n\+Features = 0}\hypertarget{classtracker_1_1Tracker_ade0b77f0b5ffc71aecddc70593ec16bb}{}\label{classtracker_1_1Tracker_ade0b77f0b5ffc71aecddc70593ec16bb}
+
+
+Definition at line 62 of file Tracker.\+h.
+
+
+
+Referenced by tracker\+::\+L\+A\+P\+Track\+::compute\+F2\+F\+Cost\+Mat(), tracker\+::\+L\+A\+P\+Track\+::compute\+Gap\+Close\+Matrix(), get\+Stats(), and initialize\+Tracks().
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!n\+Frame\+Locs@{n\+Frame\+Locs}}
+\index{n\+Frame\+Locs@{n\+Frame\+Locs}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{n\+Frame\+Locs}{nFrameLocs}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\+VecT} tracker\+::\+Tracker\+::n\+Frame\+Locs}\hypertarget{classtracker_1_1Tracker_a84d3000b7a2b7a2566791f05d3b8afcb}{}\label{classtracker_1_1Tracker_a84d3000b7a2b7a2566791f05d3b8afcb}
+
+
+Definition at line 73 of file Tracker.\+h.
+
+
+
+Referenced by tracker\+::\+L\+A\+P\+Track\+::compute\+F2\+F\+Cost\+Mat(), tracker\+::\+L\+A\+P\+Track\+::debug\+F2\+F(), initialize\+Tracks(), and tracker\+::\+L\+A\+P\+Track\+::link\+F2\+F().
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!n\+Frames@{n\+Frames}}
+\index{n\+Frames@{n\+Frames}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{n\+Frames}{nFrames}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf IdxT} tracker\+::\+Tracker\+::n\+Frames = 0}\hypertarget{classtracker_1_1Tracker_a103afa608ae5693103d81e040a9e29d6}{}\label{classtracker_1_1Tracker_a103afa608ae5693103d81e040a9e29d6}
+
+
+Definition at line 70 of file Tracker.\+h.
+
+
+
+Referenced by get\+Stats(), initialize\+Tracks(), and tracker\+::\+L\+A\+P\+Track\+::link\+F2\+F().
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!position@{position}}
+\index{position@{position}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{position}{position}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MatT} tracker\+::\+Tracker\+::position}\hypertarget{classtracker_1_1Tracker_a89978ed5ec72607820f45f3dcf63dd04}{}\label{classtracker_1_1Tracker_a89978ed5ec72607820f45f3dcf63dd04}
+
+
+Definition at line 64 of file Tracker.\+h.
+
+
+
+Referenced by tracker\+::\+L\+A\+P\+Track\+::compute\+F2\+F\+Cost\+Mat(), tracker\+::\+L\+A\+P\+Track\+::compute\+Gap\+Close\+Matrix(), and initialize\+Tracks().
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!S\+E\+\_\+feature@{S\+E\+\_\+feature}}
+\index{S\+E\+\_\+feature@{S\+E\+\_\+feature}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{S\+E\+\_\+feature}{SE_feature}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MatT} tracker\+::\+Tracker\+::\+S\+E\+\_\+feature}\hypertarget{classtracker_1_1Tracker_a0aa2719b06bfd7b630628486b67ca5fd}{}\label{classtracker_1_1Tracker_a0aa2719b06bfd7b630628486b67ca5fd}
+
+
+Definition at line 67 of file Tracker.\+h.
+
+
+
+Referenced by tracker\+::\+L\+A\+P\+Track\+::compute\+F2\+F\+Cost\+Mat(), tracker\+::\+L\+A\+P\+Track\+::compute\+Gap\+Close\+Matrix(), and initialize\+Tracks().
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!S\+E\+\_\+position@{S\+E\+\_\+position}}
+\index{S\+E\+\_\+position@{S\+E\+\_\+position}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{S\+E\+\_\+position}{SE_position}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MatT} tracker\+::\+Tracker\+::\+S\+E\+\_\+position}\hypertarget{classtracker_1_1Tracker_acd4e8651a05dff9170230149b7fe0029}{}\label{classtracker_1_1Tracker_acd4e8651a05dff9170230149b7fe0029}
+
+
+Definition at line 65 of file Tracker.\+h.
+
+
+
+Referenced by tracker\+::\+L\+A\+P\+Track\+::compute\+F2\+F\+Cost\+Mat(), tracker\+::\+L\+A\+P\+Track\+::compute\+Gap\+Close\+Matrix(), and initialize\+Tracks().
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!track\+Assignment@{track\+Assignment}}
+\index{track\+Assignment@{track\+Assignment}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{track\+Assignment}{trackAssignment}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\+VecT} tracker\+::\+Tracker\+::track\+Assignment\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classtracker_1_1Tracker_a638ecbd5a6466c2730e7c7b9561e9fc9}{}\label{classtracker_1_1Tracker_a638ecbd5a6466c2730e7c7b9561e9fc9}
+
+
+Definition at line 93 of file Tracker.\+h.
+
+
+
+Referenced by tracker\+::\+L\+A\+P\+Track\+::close\+Gaps(), get\+Stats(), initialize\+Tracks(), and tracker\+::\+L\+A\+P\+Track\+::link\+F2\+F().
+
+\index{tracker\+::\+Tracker@{tracker\+::\+Tracker}!tracks@{tracks}}
+\index{tracks@{tracks}!tracker\+::\+Tracker@{tracker\+::\+Tracker}}
+\paragraph[{\texorpdfstring{tracks}{tracks}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Track\+VecT} tracker\+::\+Tracker\+::tracks}\hypertarget{classtracker_1_1Tracker_a1e43335eb50e56014399a157b261160b}{}\label{classtracker_1_1Tracker_a1e43335eb50e56014399a157b261160b}
+
+
+Definition at line 77 of file Tracker.\+h.
+
+
+
+Referenced by tracker\+::\+L\+A\+P\+Track\+::check\+Frame\+Idxs(), tracker\+::\+L\+A\+P\+Track\+::close\+Gaps(), tracker\+::\+L\+A\+P\+Track\+::compute\+Gap\+Close\+Matrix(), tracker\+::\+L\+A\+P\+Track\+::debug\+Close\+Gaps(), get\+Stats(), initialize\+Tracks(), tracker\+::\+L\+A\+P\+Track\+::link\+F2\+F(), and print\+Tracks().
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Tracker_8h}{Tracker.\+h}\item 
+\hyperlink{Tracker_8cpp}{Tracker.\+cpp}\end{DoxyCompactItemize}
