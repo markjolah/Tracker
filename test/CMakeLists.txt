@@ -1,6 +1,6 @@
 # Tracker/test/CMakeLists.txt
 
-set(TEST_TARGET test_lap)
+set(TEST_TARGET test${PROJECT_NAME})
 file(GLOB TEST_SRCS *.cpp)
 add_executable(${TEST_TARGET} ${TEST_SRCS})
 target_link_libraries(${TEST_TARGET} ${PROJECT_NAME}::${PROJECT_NAME})

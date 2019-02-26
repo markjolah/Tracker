@@ -6,7 +6,7 @@
 # Environment variables to be set:
 #  BUILD_TYPE
 #
-PACKAGE_NAME=Mappel
+PACKAGE_NAME=$(grep -Po "project\(\K([A-Za-z]+)" ${SRC_PATH}/CMakeLists.txt)
 if [ -z "$BUILD_TYPE" ]; then
     BUILD_TYPE="Release"
 fi
