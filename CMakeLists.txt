@@ -19,22 +19,22 @@ if(${CMAKE_BUILD_TYPE} MATCHES Debug)
 else()
     option(BUILD_TESTING "Build testing framework" OFF)
 endif()
+option(OPT_DOC "Build documentation" OFF)
 option(OPT_INSTALL_TESTING "Install testing executables" OFF)
 option(OPT_EXPORT_BUILD_TREE "Configure the package so it is usable from the build tree.  Useful for development." OFF)
-option(OPT_ARMADILLO_INT64 "Use 64-bit integers for Armadillo, BLAS, and LAPACK. [Must be on if OPT_MATLAB is on]" OFF)
 option(OPT_MATLAB "Build and install matlab mex modules and code" OFF)
 
-if(OPT_MATLAB AND NOT OPT_ARMADILLO_INT64)
-    set(OPT_ARMADILLO_INT64 True)
-    set(OPT_ARMADILLO_INT64 True CACHE BOOL "Use 64-bit integers for Armadillo, BLAS, and LAPACK. [Forced on by OPT_MATLAB]." FORCE)
+if(OPT_MATLAB AND NOT OPT_BLAS_INT64)
+    set(OPT_BLAS_INT64 True)
+    set(OPT_BLAS_INT64 True CACHE BOOL "Use 64-bit integers for Armadillo, BLAS, and LAPACK. [Forced on by OPT_MATLAB]." FORCE)
 endif()
 
 message(STATUS "OPTION: BUILD_SHARED_LIBS: ${BUILD_SHARED_LIBS}")
 message(STATUS "OPTION: BUILD_STATIC_LIBS: ${BUILD_STATIC_LIBS}")
 message(STATUS "OPTION: BUILD_TESTING: ${BUILD_TESTING}")
+message(STATUS "OPTION: OPT_DOC: ${OPT_DOC}")
 message(STATUS "OPTION: OPT_INSTALL_TESTING: ${OPT_INSTALL_TESTING}")
 message(STATUS "OPTION: OPT_EXPORT_BUILD_TREE: ${OPT_EXPORT_BUILD_TREE}")
-message(STATUS "OPTION: OPT_ARMADILLO_INT64: ${OPT_ARMADILLO_INT64}")
 message(STATUS "OPTION: OPT_MATLAB: ${OPT_MATLAB}")
 
 #Add UcommonCmakeModules git subpreo to path.
@@ -47,17 +47,12 @@ set(EXTERNAL_DEPENDENCY_TESTING TESTING PASS_CACHE_VARIABLES OPT_INSTALL_TESTING
 add_external_dependency(NAME BacktraceException URL https://github.com/markjolah/BacktraceException.git SHARED ${EXTERNAL_DEPENDENCY_TESTING})
 if(OPT_MATLAB)
     set(MexIFaceURL https://github.com/markjolah/MexIFace.git CACHE STRING "URL of MexIFace library dependency")
-    add_external_dependency(NAME MexIFace URL ${MexIFaceURL} SHARED ${EXTERNAL_DEPENDENCY_TESTING})
+    add_external_dependency(NAME MexIFace URL ${MexIFaceURL} VARS OPT_INSTALL_TESTING)
 endif()
 
 #Armadillo
-if(OPT_ARMADILLO_INT64)
-    set(ARMADILLO_INT64_COMPONENT INT64) #Enable INT64 interface for armadillo, Blas and Lapack
-else()
-    set(ARMADILLO_INT64_COMPONENT)
-endif()
-find_package(Armadillo REQUIRED COMPONENTS CXX11 ${ARMADILLO_INT64_COMPONENT})
-add_compile_definitions(${ARMADILLO_PRIVATE_COMPILE_DEFINITIONS})
+find_package(Armadillo REQUIRED COMPONENTS CXX11)
+set_property(DIRECTORY APPEND PROPERTY COMPILE_DEFINITIONS ${ARMADILLO_PRIVATE_COMPILE_DEFINITIONS})
 
 find_package(OpenMP REQUIRED)
 
@@ -66,10 +61,8 @@ include(ConfigureDebugBuilds) #setup debug build configurations
 ### PackageConfig Exports from UncommonCMakeModules/ExportPackageWizzard.cmake
 #setup build-tree and install-tree exports and PackageConfig files
 include(ExportPackageWizzard)
-set(EXPORTED_FIND_MODULES FindArmadillo.cmake)
-list(TRANSFORM EXPORTED_FIND_MODULES PREPEND cmake/UncommonCMakeModules/)
-export_package_wizzard(PROVIDED_COMPONENTS ${ARMADILLO_INT64_COMPONENT}
-                       FIND_MODULES ${EXPORTED_FIND_MODULES})
+set(EXPORTED_FIND_MODULES cmake/UncommonCMakeModules/FindArmadillo.cmake)
+export_package_wizzard(FIND_MODULES ${EXPORTED_FIND_MODULES})
 
 add_subdirectory(src) #library source
 
@@ -83,4 +76,9 @@ if(OPT_MATLAB)
     message(STATUS "*** Matlab Module Building Enabled ***")
     add_subdirectory(src/MexIFace)
     mexiface_configure_install() #Matlab code and startupMappel.m configure and install
+endif()
+
+### Documentation
+if(OPT_DOC)
+    add_subdirectory(doc)
 endif()

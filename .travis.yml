@@ -1,0 +1,76 @@
+#PriorHessian
+language: cpp
+os: linux
+
+git:
+  depth: 3
+  quiet: true
+
+branches:
+    only:
+        - master
+
+env:
+    global:
+        APT_INSTALL="sudo apt-get install -y"
+
+matrix:
+  include:
+      #- env:
+          #- MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
+          #- OPT_BLAS_INT64=On
+      #- env:
+          #- BLAS_INT64=On OPT_PYTHON=On OPT_MATLAB=Off
+          #- MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && FC=/usr/bin/gfortran-7"
+      #- env:
+          #- BLAS_INT64=Off OPT_PYTHON=On OPT_MATLAB=Off
+          #- MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && FC=/usr/bin/gfortran-7"
+      - env:
+          - BLAS_INT64=On OPT_PYTHON=Off OPT_MATLAB=Off
+          - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && FC=/usr/bin/gfortran-7"
+      - env:
+          - BLAS_INT64=Off OPT_PYTHON=Off OPT_MATLAB=Off
+          - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9 && FC=/usr/bin/gfortran-4.9"
+
+      ##Documentation build
+      - env: DOC=On PDFDOC=On DOPT_BLAS_INT64=Off FC=gfortran
+        script: ./scripts/pdf-doc-build.sh -DOPT_BLAS_INT64=${OPT_BLAS_INT64}
+        dist: xenial #supports newer doxygen
+
+#MATRIX_EVAL allows CC and CXX to be set before dependencies are installed
+before_install:
+    - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+    - sudo apt-get update
+    - eval "${MATRIX_EVAL}"
+
+install:
+    - if [ "${DOC}" == "On" ]; then $APT_INSTALL doxygen graphviz; fi
+    - if [ "${DOC}" == "On" ]; then $APT_INSTALL gfortran libblas-dev libblas3 liblapack-dev liblapack3; fi
+    - if [ "${PDFDOC}" == "On" ]; then $APT_INSTALL doxygen-latex; fi
+    - if [ "${CXX}" == "g++-4.9" ]; then $APT_INSTALL g++-4.9 gfortran-4.9; fi
+    - if [ "${CXX}" == "g++-5" ];   then $APT_INSTALL g++-5 gfortran-5; fi
+    - if [ "${CXX}" == "g++-6" ];   then $APT_INSTALL g++-6 gfortran-6; fi
+    - if [ "${CXX}" == "g++-7" ];   then $APT_INSTALL g++-7 gfortran-7; fi
+    - if [ -z "$DOC" ]; then ./scripts/ci-numerical-dependencies/install-blas-lapack.sh; fi
+    - ./scripts/ci-numerical-dependencies/install-armadillo.sh
+    - $APT_INSTALL libboost-math-dev python3
+    - if [ -z "$DOC" ]; then ./scripts/ci-numerical-dependencies/install-gtest.sh; fi
+
+script:
+    - |
+      ./scripts/travis-build-test.sh -DCMAKE_Fortran_COMPILER=${FC} \
+      -DOPT_BLAS_INT64=${BLAS_INT64}  \
+      -DOPT_PYTHON=${OPT_PYTHON} \
+      -DMAPPEL_PYTHON_EXECUTABLE=/usr/bin/python3 \
+
+deploy:
+    name: Docu-Bot
+    provider: pages
+    skip-cleanup: true
+    github-token: $GH_TRAVISCI_DOCUMENTATION_TOKEN
+    keep-history: true
+    verbosed: true
+    local_dir: _build/documentation/doc/html
+    on:
+        branch: master
+        condition: $DOC = On
