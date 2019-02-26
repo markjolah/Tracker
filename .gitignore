@@ -5,6 +5,7 @@ _gcc4_9.*
 _win64.*
 _dist
 _travis*
+_matlab_dist*
 
 # Prerequisites
 *.d

@@ -36,7 +36,7 @@ if [ "$BUILD_TYPE" == "Debug" ]; then
     SUFFIX=".debug"
 fi
 #CTest in build directory
-cmake --build $BUILD_PATH --target test -- -j$NUM_PROCS
+VERBOSE=1 cmake --build $BUILD_PATH --target test -- -j$NUM_PROCS
 #Run test in install directory
 ${INSTALL_PATH}/lib/${PACKAGE_NAME}/test/test${PACKAGE_NAME}${SUFFIX}
 if [ $?==0 ]; then
