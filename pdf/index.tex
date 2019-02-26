@@ -1,6 +1,21 @@
-Particle tracking trajectory connector using a sparse L\+AP solver.
+\href{https://travis-ci.org/markjolah/Tracker}{\tt } \subsection*{Tracker}
 
+Tracker is a particle tracking trajectory connector tool that is based on a sparse-\/matrix \href{https://en.wikipedia.org/wiki/Assignment_problem}{\tt linear assignment problem (L\+AP)} solver.
+\begin{DoxyItemize}
+\item Tracker uses a sparse matrix formulations of the \href{https://dl.acm.org/citation.cfm?id=30107}{\tt Jonker-\/\+Volgenant Algorithm}
+\item Tracker provides C++ and Matlab object-\/oriented interfaces. \href{http://markolah.pecos.us/Tracker/classtracker_1_1LAPTrack.html}{\tt {\ttfamily tracker\+::\+L\+A\+P\+Track}}
+\item Tracker is designed for cross-\/platform complilation to Linux and Windows 64-\/bit targets.
+\end{DoxyItemize}
 
+\subsubsection*{Trajectory connection problem}
+
+In single particle tracking applications, a set of likely particles are localized for each frame of a video capture. The goal of trajectory connection is to partition the localizations from all the frames into a set of trajectories. Each trajectory is a sequence of localizations which are likely to be from the same object (point emitter).
+
+The Tracker library implements a two-\/phase strategy to trajectory connection. First a frame-\/to-\/frame algorithm sequentially builds a set of trajectories connecting localizations in adjacent frames, next a gap-\/closing phase connects shorter trajectories across several frames as particles are often not localized in every frame for various reasons including experimental and photo-\/chemical effects.
+
+\href{https://raw.githubusercontent.com/markjolah/Tracker/master/doc/images/tracker_problem.png}{\tt } 
+
+{\bfseries Figure 1}\+: The frame-\/to-\/frame trajectory connection problem 
 
 \subsubsection*{Documentation}
 
@@ -8,5 +23,22 @@ The Tracker Doxygen documentation can be build with the {\ttfamily O\+P\+T\+\_\+
 \begin{DoxyItemize}
 \item \href{https://markjolah.github.io/Tracker/index.html}{\tt Tracker H\+T\+ML Manual}
 \item \href{https://markjolah.github.io/Tracker/pdf/Tracker-0.1-reference.pdf}{\tt Tracker P\+DF Manual}
-\item \href{https://github.com/markjolah/Tracker}{\tt Tracker github repository} 
+\item \href{https://github.com/markjolah/Tracker}{\tt Tracker github repository}
+\end{DoxyItemize}
+
+\subsubsection*{Dependencies}
+
+
+\begin{DoxyItemize}
+\item \href{http://arma.sourceforge.net/docs.html}{\tt {\itshape Armadillo}} -\/ A high-\/performance array library for C++.
+\end{DoxyItemize}
+
+\paragraph*{External Projects}
+
+These packages are specialized C\+Make projects. If they are not currently installed, at the start of the build process, the \href{https://github.com/markjolah/UncommonCMakeModules/blob/master/AddExternalDependency.cmake}{\tt Add\+External\+Dependency.\+cmake} will automatically download, configure, build and install C\+Make-\/based projects to the {\ttfamily C\+M\+A\+K\+E\+\_\+\+I\+N\+S\+T\+A\+L\+L\+\_\+\+P\+R\+E\+F\+IX}. This process is completed before C\+Make configure-\/time so calls to the normal {\ttfamily find\+\_\+package()} command are used to find the auto-\/added Dependencies.
+
+
+\begin{DoxyItemize}
+\item \href{https://markjolah.github.io/BacktraceException}{\tt Backtrace\+Exception} -\/ A library to provide debugging output on exception calls. Important for Matlab debugging.
+\item \href{https://markjolah.github.io/MexIFace}{\tt Mex\+I\+Face} -\/ A C++/\+Matlab object oriented interface library for high-\/performance numerical computations. Provides cross-\/compilation to Matlab R2016b+ target environments on Linux and Windows 64-\/bit targets. 
 \end{DoxyItemize}

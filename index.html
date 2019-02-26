@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Tracker: Tracker</title>
+<title>Tracker: Main Page</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -77,18 +77,35 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Tracker </div>  </div>
+<div class="title">Tracker Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Particle tracking trajectory connector using a sparse LAP solver.</p>
-<div class="image">
-<img src="doc/images/tracker_problem.png"  alt="Tracker problem"/>
-</div>
+<div class="textblock"><p><a href="https://travis-ci.org/markjolah/Tracker"></a> </p><h1>Tracker</h1>
+<p>Tracker is a particle tracking trajectory connector tool that is based on a sparse-matrix <a href="https://en.wikipedia.org/wiki/Assignment_problem">linear assignment problem (LAP)</a> solver.</p><ul>
+<li>Tracker uses a sparse matrix formulations of the <a href="https://dl.acm.org/citation.cfm?id=30107">Jonker-Volgenant Algorithm</a></li>
+<li>Tracker provides C++ and Matlab object-oriented interfaces. <a href="http://markolah.pecos.us/Tracker/classtracker_1_1LAPTrack.html"><code>tracker::LAPTrack</code></a></li>
+<li>Tracker is designed for cross-platform complilation to Linux and Windows 64-bit targets.</li>
+</ul>
+<h2>Trajectory connection problem</h2>
+<p>In single particle tracking applications, a set of likely particles are localized for each frame of a video capture. The goal of trajectory connection is to partition the localizations from all the frames into a set of trajectories. Each trajectory is a sequence of localizations which are likely to be from the same object (point emitter).</p>
+<p>The Tracker library implements a two-phase strategy to trajectory connection. First a frame-to-frame algorithm sequentially builds a set of trajectories connecting localizations in adjacent frames, next a gap-closing phase connects shorter trajectories across several frames as particles are often not localized in every frame for various reasons including experimental and photo-chemical effects.</p>
+<p><a href="https://raw.githubusercontent.com/markjolah/Tracker/master/doc/images/tracker_problem.png" title="full size image"></a> </p>
+<p><b>Figure 1</b>: The frame-to-frame trajectory connection problem </p>
 <h2>Documentation</h2>
 <p>The Tracker Doxygen documentation can be build with the <code>OPT_DOC</code> CMake option and is also available on online:</p><ul>
 <li><a href="https://markjolah.github.io/Tracker/index.html">Tracker HTML Manual</a></li>
 <li><a href="https://markjolah.github.io/Tracker/pdf/Tracker-0.1-reference.pdf">Tracker PDF Manual</a></li>
-<li><a href="https://github.com/markjolah/Tracker">Tracker github repository</a> </li>
+<li><a href="https://github.com/markjolah/Tracker">Tracker github repository</a></li>
+</ul>
+<h2>Dependencies</h2>
+<ul>
+<li><a href="http://arma.sourceforge.net/docs.html"><em>Armadillo</em></a> - A high-performance array library for C++.</li>
+</ul>
+<h3>External Projects</h3>
+<p>These packages are specialized CMake projects. If they are not currently installed, at the start of the build process, the <a href="https://github.com/markjolah/UncommonCMakeModules/blob/master/AddExternalDependency.cmake">AddExternalDependency.cmake</a> will automatically download, configure, build and install CMake-based projects to the <code>CMAKE_INSTALL_PREFIX</code>. This process is completed before CMake configure-time so calls to the normal <code>find_package()</code> command are used to find the auto-added Dependencies.</p>
+<ul>
+<li><a href="https://markjolah.github.io/BacktraceException">BacktraceException</a> - A library to provide debugging output on exception calls. Important for Matlab debugging.</li>
+<li><a href="https://markjolah.github.io/MexIFace">MexIFace</a> - A C++/Matlab object oriented interface library for high-performance numerical computations. Provides cross-compilation to Matlab R2016b+ target environments on Linux and Windows 64-bit targets. </li>
 </ul>
 </div></div><!-- contents -->
 <!-- start footer part -->

@@ -1,365 +1,365 @@
 \begin{theindex}
 
   \item {$\sim$\+Tracker}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{29}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{30}
 
   \indexspace
 
   \item {birth\+Frame\+Idx}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{17}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{18}
 
   \indexspace
 
   \item {check\+Costs}
-    \subitem {tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}, \hyperpage{4}
+    \subitem {tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}, \hyperpage{5}
   \item {check\+Frame\+Idxs}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{12}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{13}
   \item {check\+Solution}
-    \subitem {tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}, \hyperpage{4}
+    \subitem {tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}, \hyperpage{5}
   \item {close\+Gaps}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{12}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{13}
   \item {compute\+Cost}
-    \subitem {tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}, \hyperpage{4}
+    \subitem {tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}, \hyperpage{5}
   \item {compute\+F2\+F\+Cost\+Mat}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{13}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{14}
   \item {compute\+Gap\+Close\+Matrix}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{13}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{14}
   \item {cost\+\_\+epsilon}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{17}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{18}
 
   \indexspace
 
   \item {D}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{18}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{19}
   \item {debug\+Close\+Gaps}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{14}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{15}
   \item {debug\+F2F}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{14}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{15}
 
   \indexspace
 
   \item {F2\+F\+\_\+\+L\+I\+N\+K\+ED}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{12}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{13}
   \item {feature}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{18}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{30}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{19}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{31}
   \item {feature\+Var}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{18}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{19}
   \item {first\+Frame}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{18}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{30}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{19}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{31}
   \item {FloatT}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{10}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{27}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{11}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{28}
   \item {frame\+Birth\+Start\+Idx}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{18}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{19}
   \item {frame\+Idx}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{18}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{31}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{19}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{32}
   \item {frame\+Loc\+Idx}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{18}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{31}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{19}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{32}
 
   \indexspace
 
   \item {G\+A\+P\+S\+\_\+\+C\+L\+O\+S\+ED}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{12}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{13}
   \item {generate\+Tracks}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{15}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{29}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{16}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{30}
   \item {get\+Stats}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{15}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{29}
-
-  \indexspace
-
-  \item {I\+MatT}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{10}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{27}
-  \item {I\+Vec\+FieldT}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{10}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{28}
-  \item {I\+VecT}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{10}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{28}
-  \item {IdxT}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{10}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{27}
-  \item {Index\+VectorT}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{10}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{27}
-  \item {initialize\+Tracks}
     \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{16}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{29, 30}
-
-  \indexspace
-
-  \item {koff}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{18}
-  \item {kon}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{19}
-
-  \indexspace
-
-  \item {L\+A\+P\+\_\+\+J\+V\+Sparse.\+cpp}, \hyperpage{33}
-  \item {L\+A\+P\+\_\+\+J\+V\+Sparse.\+h}, \hyperpage{34}
-  \item {L\+A\+P\+Track}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{12}
-  \item {L\+A\+P\+Track.\+cpp}, \hyperpage{35}
-  \item {L\+A\+P\+Track.\+h}, \hyperpage{36}
-  \item {last\+Frame}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{19}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{31}
-  \item {link\+F2F}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{16}
-  \item {log1mkoff}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{19}
-  \item {log1mkon}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{19}
-  \item {log2pi}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{19}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{31}
-  \item {Logical\+Error}
-    \subitem {tracker\+::\+Logical\+Error}, \hyperpage{23}
-  \item {logkoff}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{19}
-  \item {logkon}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{19}
-  \item {logrho}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{19}
-
-  \indexspace
-
-  \item {MatT}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{11}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{28}
-  \item {max\+Feature\+Displacement\+Sigma}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{20}
-  \item {max\+Gap\+Close\+Frames}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{20}
-  \item {max\+Position\+Displacement\+Sigma}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{20}
-  \item {max\+Speed}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{20}
-  \item {min\+Cost}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{20}
-  \item {min\+Final\+Track\+Length}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{20}
-  \item {min\+Gap\+Close\+Track\+Length}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{20}
-
-  \indexspace
-
-  \item {N}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{20}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{31}
-  \item {n\+Dims}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{21}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{31}
-  \item {n\+Features}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{21}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{31}
-  \item {n\+Frame\+Locs}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{21}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{32}
-  \item {n\+Frames}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{21}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{32}
-
-  \indexspace
-
-  \item {Parameter\+Value\+Error}
-    \subitem {tracker\+::\+Parameter\+Value\+Error}, \hyperpage{25}
-  \item {ParamT}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{11}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{28}
-  \item {position}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{21}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{32}
-  \item {print\+Tracks}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{17}
     \subitem {tracker\+::\+Tracker}, \hyperpage{30}
 
   \indexspace
 
-  \item {R\+E\+A\+D\+M\+E.\+md}, \hyperpage{37}
-  \item {rho}
+  \item {I\+MatT}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{11}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{28}
+  \item {I\+Vec\+FieldT}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{11}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{29}
+  \item {I\+VecT}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{11}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{29}
+  \item {IdxT}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{11}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{28}
+  \item {Index\+VectorT}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{11}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{28}
+  \item {initialize\+Tracks}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{17}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{30, 31}
+
+  \indexspace
+
+  \item {koff}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{19}
+  \item {kon}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{20}
+
+  \indexspace
+
+  \item {L\+A\+P\+\_\+\+J\+V\+Sparse.\+cpp}, \hyperpage{34}
+  \item {L\+A\+P\+\_\+\+J\+V\+Sparse.\+h}, \hyperpage{35}
+  \item {L\+A\+P\+Track}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{13}
+  \item {L\+A\+P\+Track.\+cpp}, \hyperpage{36}
+  \item {L\+A\+P\+Track.\+h}, \hyperpage{37}
+  \item {last\+Frame}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{20}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{32}
+  \item {link\+F2F}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{17}
+  \item {log1mkoff}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{20}
+  \item {log1mkon}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{20}
+  \item {log2pi}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{20}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{32}
+  \item {Logical\+Error}
+    \subitem {tracker\+::\+Logical\+Error}, \hyperpage{24}
+  \item {logkoff}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{20}
+  \item {logkon}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{20}
+  \item {logrho}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{20}
+
+  \indexspace
+
+  \item {MatT}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{12}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{29}
+  \item {max\+Feature\+Displacement\+Sigma}
     \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{21}
+  \item {max\+Gap\+Close\+Frames}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{21}
+  \item {max\+Position\+Displacement\+Sigma}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{21}
+  \item {max\+Speed}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{21}
+  \item {min\+Cost}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{21}
+  \item {min\+Final\+Track\+Length}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{21}
+  \item {min\+Gap\+Close\+Track\+Length}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{21}
+
+  \indexspace
+
+  \item {N}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{21}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{32}
+  \item {n\+Dims}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{22}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{32}
+  \item {n\+Features}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{22}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{32}
+  \item {n\+Frame\+Locs}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{22}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{33}
+  \item {n\+Frames}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{22}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{33}
+
+  \indexspace
+
+  \item {Parameter\+Value\+Error}
+    \subitem {tracker\+::\+Parameter\+Value\+Error}, \hyperpage{26}
+  \item {ParamT}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{12}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{29}
+  \item {position}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{22}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{33}
+  \item {print\+Tracks}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{18}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{31}
+
+  \indexspace
+
+  \item {R\+E\+A\+D\+M\+E.\+md}, \hyperpage{38}
+  \item {rho}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{22}
 
   \indexspace
 
   \item {S\+E\+\_\+feature}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{21}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{32}
-  \item {S\+E\+\_\+position}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{21}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{32}
-  \item {solve}
-    \subitem {tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}, \hyperpage{5}
-  \item {solve\+L\+A\+P\+\_\+orig}
-    \subitem {tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}, \hyperpage{5}
-  \item {Sp\+MatT}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{11}
-  \item {state}
     \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{22}
-  \item {StateT}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{33}
+  \item {S\+E\+\_\+position}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{22}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{33}
+  \item {solve}
+    \subitem {tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}, \hyperpage{6}
+  \item {solve\+L\+A\+P\+\_\+orig}
+    \subitem {tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}, \hyperpage{6}
+  \item {Sp\+MatT}
     \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{12}
+  \item {state}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{23}
+  \item {StateT}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{13}
 
   \indexspace
 
   \item {track\+Assignment}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{22}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{32}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{23}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{33}
   \item {Track\+VecT}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{11}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{28}
-  \item {Tracker}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{12}
     \subitem {tracker\+::\+Tracker}, \hyperpage{29}
-  \item {tracker}, \hyperpage{3}
-    \subitem {Tracker\+Error}, \hyperpage{3}
-  \item {Tracker.\+cpp}, \hyperpage{37}
-  \item {Tracker.\+h}, \hyperpage{38}
+  \item {Tracker}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{30}
+  \item {tracker}, \hyperpage{4}
+    \subitem {Tracker\+Error}, \hyperpage{4}
+  \item {Tracker.\+cpp}, \hyperpage{38}
+  \item {Tracker.\+h}, \hyperpage{39}
   \item {tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}
-    \subitem {check\+Costs}, \hyperpage{4}
-    \subitem {check\+Solution}, \hyperpage{4}
-    \subitem {compute\+Cost}, \hyperpage{4}
-    \subitem {solve}, \hyperpage{5}
-    \subitem {solve\+L\+A\+P\+\_\+orig}, \hyperpage{5}
+    \subitem {check\+Costs}, \hyperpage{5}
+    \subitem {check\+Solution}, \hyperpage{5}
+    \subitem {compute\+Cost}, \hyperpage{5}
+    \subitem {solve}, \hyperpage{6}
+    \subitem {solve\+L\+A\+P\+\_\+orig}, \hyperpage{6}
   \item {tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse$<$ Float\+T $>$}, 
-		\hyperpage{3}
-  \item {tracker\+::\+L\+A\+P\+Track}, \hyperpage{7}
-    \subitem {birth\+Frame\+Idx}, \hyperpage{17}
-    \subitem {check\+Frame\+Idxs}, \hyperpage{12}
-    \subitem {close\+Gaps}, \hyperpage{12}
-    \subitem {compute\+F2\+F\+Cost\+Mat}, \hyperpage{13}
-    \subitem {compute\+Gap\+Close\+Matrix}, \hyperpage{13}
-    \subitem {cost\+\_\+epsilon}, \hyperpage{17}
-    \subitem {D}, \hyperpage{18}
-    \subitem {debug\+Close\+Gaps}, \hyperpage{14}
-    \subitem {debug\+F2F}, \hyperpage{14}
-    \subitem {F2\+F\+\_\+\+L\+I\+N\+K\+ED}, \hyperpage{12}
-    \subitem {feature}, \hyperpage{18}
-    \subitem {feature\+Var}, \hyperpage{18}
-    \subitem {first\+Frame}, \hyperpage{18}
-    \subitem {FloatT}, \hyperpage{10}
-    \subitem {frame\+Birth\+Start\+Idx}, \hyperpage{18}
-    \subitem {frame\+Idx}, \hyperpage{18}
-    \subitem {frame\+Loc\+Idx}, \hyperpage{18}
-    \subitem {G\+A\+P\+S\+\_\+\+C\+L\+O\+S\+ED}, \hyperpage{12}
-    \subitem {generate\+Tracks}, \hyperpage{15}
-    \subitem {get\+Stats}, \hyperpage{15}
-    \subitem {I\+MatT}, \hyperpage{10}
-    \subitem {I\+Vec\+FieldT}, \hyperpage{10}
-    \subitem {I\+VecT}, \hyperpage{10}
-    \subitem {IdxT}, \hyperpage{10}
-    \subitem {Index\+VectorT}, \hyperpage{10}
-    \subitem {initialize\+Tracks}, \hyperpage{16}
-    \subitem {koff}, \hyperpage{18}
-    \subitem {kon}, \hyperpage{19}
-    \subitem {L\+A\+P\+Track}, \hyperpage{12}
-    \subitem {last\+Frame}, \hyperpage{19}
-    \subitem {link\+F2F}, \hyperpage{16}
-    \subitem {log1mkoff}, \hyperpage{19}
-    \subitem {log1mkon}, \hyperpage{19}
-    \subitem {log2pi}, \hyperpage{19}
-    \subitem {logkoff}, \hyperpage{19}
-    \subitem {logkon}, \hyperpage{19}
-    \subitem {logrho}, \hyperpage{19}
-    \subitem {MatT}, \hyperpage{11}
-    \subitem {max\+Feature\+Displacement\+Sigma}, \hyperpage{20}
-    \subitem {max\+Gap\+Close\+Frames}, \hyperpage{20}
-    \subitem {max\+Position\+Displacement\+Sigma}, \hyperpage{20}
-    \subitem {max\+Speed}, \hyperpage{20}
-    \subitem {min\+Cost}, \hyperpage{20}
-    \subitem {min\+Final\+Track\+Length}, \hyperpage{20}
-    \subitem {min\+Gap\+Close\+Track\+Length}, \hyperpage{20}
-    \subitem {N}, \hyperpage{20}
-    \subitem {n\+Dims}, \hyperpage{21}
-    \subitem {n\+Features}, \hyperpage{21}
-    \subitem {n\+Frame\+Locs}, \hyperpage{21}
-    \subitem {n\+Frames}, \hyperpage{21}
-    \subitem {ParamT}, \hyperpage{11}
-    \subitem {position}, \hyperpage{21}
-    \subitem {print\+Tracks}, \hyperpage{17}
-    \subitem {rho}, \hyperpage{21}
-    \subitem {S\+E\+\_\+feature}, \hyperpage{21}
-    \subitem {S\+E\+\_\+position}, \hyperpage{21}
-    \subitem {Sp\+MatT}, \hyperpage{11}
-    \subitem {state}, \hyperpage{22}
-    \subitem {StateT}, \hyperpage{12}
-    \subitem {track\+Assignment}, \hyperpage{22}
-    \subitem {Track\+VecT}, \hyperpage{11}
-    \subitem {tracks}, \hyperpage{22}
-    \subitem {TrackT}, \hyperpage{11}
-    \subitem {U\+MatT}, \hyperpage{11}
-    \subitem {U\+N\+T\+R\+A\+C\+K\+ED}, \hyperpage{12}
-    \subitem {U\+VecT}, \hyperpage{11}
-    \subitem {Vec\+ParamT}, \hyperpage{11}
-    \subitem {VecT}, \hyperpage{11}
-  \item {tracker\+::\+Logical\+Error}, \hyperpage{22}
-    \subitem {Logical\+Error}, \hyperpage{23}
-  \item {tracker\+::\+Parameter\+Value\+Error}, \hyperpage{24}
-    \subitem {Parameter\+Value\+Error}, \hyperpage{25}
-  \item {tracker\+::\+Tracker}, \hyperpage{25}
-    \subitem {$\sim$\+Tracker}, \hyperpage{29}
-    \subitem {feature}, \hyperpage{30}
-    \subitem {first\+Frame}, \hyperpage{30}
-    \subitem {FloatT}, \hyperpage{27}
-    \subitem {frame\+Idx}, \hyperpage{31}
-    \subitem {frame\+Loc\+Idx}, \hyperpage{31}
-    \subitem {generate\+Tracks}, \hyperpage{29}
-    \subitem {get\+Stats}, \hyperpage{29}
-    \subitem {I\+MatT}, \hyperpage{27}
-    \subitem {I\+Vec\+FieldT}, \hyperpage{28}
-    \subitem {I\+VecT}, \hyperpage{28}
-    \subitem {IdxT}, \hyperpage{27}
-    \subitem {Index\+VectorT}, \hyperpage{27}
-    \subitem {initialize\+Tracks}, \hyperpage{29, 30}
-    \subitem {last\+Frame}, \hyperpage{31}
-    \subitem {log2pi}, \hyperpage{31}
-    \subitem {MatT}, \hyperpage{28}
-    \subitem {N}, \hyperpage{31}
-    \subitem {n\+Dims}, \hyperpage{31}
-    \subitem {n\+Features}, \hyperpage{31}
-    \subitem {n\+Frame\+Locs}, \hyperpage{32}
-    \subitem {n\+Frames}, \hyperpage{32}
-    \subitem {ParamT}, \hyperpage{28}
-    \subitem {position}, \hyperpage{32}
-    \subitem {print\+Tracks}, \hyperpage{30}
-    \subitem {S\+E\+\_\+feature}, \hyperpage{32}
-    \subitem {S\+E\+\_\+position}, \hyperpage{32}
-    \subitem {track\+Assignment}, \hyperpage{32}
-    \subitem {Track\+VecT}, \hyperpage{28}
-    \subitem {Tracker}, \hyperpage{29}
-    \subitem {tracks}, \hyperpage{32}
-    \subitem {TrackT}, \hyperpage{28}
-    \subitem {Vec\+ParamT}, \hyperpage{28}
-    \subitem {VecT}, \hyperpage{28}
+		\hyperpage{4}
+  \item {tracker\+::\+L\+A\+P\+Track}, \hyperpage{8}
+    \subitem {birth\+Frame\+Idx}, \hyperpage{18}
+    \subitem {check\+Frame\+Idxs}, \hyperpage{13}
+    \subitem {close\+Gaps}, \hyperpage{13}
+    \subitem {compute\+F2\+F\+Cost\+Mat}, \hyperpage{14}
+    \subitem {compute\+Gap\+Close\+Matrix}, \hyperpage{14}
+    \subitem {cost\+\_\+epsilon}, \hyperpage{18}
+    \subitem {D}, \hyperpage{19}
+    \subitem {debug\+Close\+Gaps}, \hyperpage{15}
+    \subitem {debug\+F2F}, \hyperpage{15}
+    \subitem {F2\+F\+\_\+\+L\+I\+N\+K\+ED}, \hyperpage{13}
+    \subitem {feature}, \hyperpage{19}
+    \subitem {feature\+Var}, \hyperpage{19}
+    \subitem {first\+Frame}, \hyperpage{19}
+    \subitem {FloatT}, \hyperpage{11}
+    \subitem {frame\+Birth\+Start\+Idx}, \hyperpage{19}
+    \subitem {frame\+Idx}, \hyperpage{19}
+    \subitem {frame\+Loc\+Idx}, \hyperpage{19}
+    \subitem {G\+A\+P\+S\+\_\+\+C\+L\+O\+S\+ED}, \hyperpage{13}
+    \subitem {generate\+Tracks}, \hyperpage{16}
+    \subitem {get\+Stats}, \hyperpage{16}
+    \subitem {I\+MatT}, \hyperpage{11}
+    \subitem {I\+Vec\+FieldT}, \hyperpage{11}
+    \subitem {I\+VecT}, \hyperpage{11}
+    \subitem {IdxT}, \hyperpage{11}
+    \subitem {Index\+VectorT}, \hyperpage{11}
+    \subitem {initialize\+Tracks}, \hyperpage{17}
+    \subitem {koff}, \hyperpage{19}
+    \subitem {kon}, \hyperpage{20}
+    \subitem {L\+A\+P\+Track}, \hyperpage{13}
+    \subitem {last\+Frame}, \hyperpage{20}
+    \subitem {link\+F2F}, \hyperpage{17}
+    \subitem {log1mkoff}, \hyperpage{20}
+    \subitem {log1mkon}, \hyperpage{20}
+    \subitem {log2pi}, \hyperpage{20}
+    \subitem {logkoff}, \hyperpage{20}
+    \subitem {logkon}, \hyperpage{20}
+    \subitem {logrho}, \hyperpage{20}
+    \subitem {MatT}, \hyperpage{12}
+    \subitem {max\+Feature\+Displacement\+Sigma}, \hyperpage{21}
+    \subitem {max\+Gap\+Close\+Frames}, \hyperpage{21}
+    \subitem {max\+Position\+Displacement\+Sigma}, \hyperpage{21}
+    \subitem {max\+Speed}, \hyperpage{21}
+    \subitem {min\+Cost}, \hyperpage{21}
+    \subitem {min\+Final\+Track\+Length}, \hyperpage{21}
+    \subitem {min\+Gap\+Close\+Track\+Length}, \hyperpage{21}
+    \subitem {N}, \hyperpage{21}
+    \subitem {n\+Dims}, \hyperpage{22}
+    \subitem {n\+Features}, \hyperpage{22}
+    \subitem {n\+Frame\+Locs}, \hyperpage{22}
+    \subitem {n\+Frames}, \hyperpage{22}
+    \subitem {ParamT}, \hyperpage{12}
+    \subitem {position}, \hyperpage{22}
+    \subitem {print\+Tracks}, \hyperpage{18}
+    \subitem {rho}, \hyperpage{22}
+    \subitem {S\+E\+\_\+feature}, \hyperpage{22}
+    \subitem {S\+E\+\_\+position}, \hyperpage{22}
+    \subitem {Sp\+MatT}, \hyperpage{12}
+    \subitem {state}, \hyperpage{23}
+    \subitem {StateT}, \hyperpage{13}
+    \subitem {track\+Assignment}, \hyperpage{23}
+    \subitem {Track\+VecT}, \hyperpage{12}
+    \subitem {tracks}, \hyperpage{23}
+    \subitem {TrackT}, \hyperpage{12}
+    \subitem {U\+MatT}, \hyperpage{12}
+    \subitem {U\+N\+T\+R\+A\+C\+K\+ED}, \hyperpage{13}
+    \subitem {U\+VecT}, \hyperpage{12}
+    \subitem {Vec\+ParamT}, \hyperpage{12}
+    \subitem {VecT}, \hyperpage{12}
+  \item {tracker\+::\+Logical\+Error}, \hyperpage{23}
+    \subitem {Logical\+Error}, \hyperpage{24}
+  \item {tracker\+::\+Parameter\+Value\+Error}, \hyperpage{25}
+    \subitem {Parameter\+Value\+Error}, \hyperpage{26}
+  \item {tracker\+::\+Tracker}, \hyperpage{26}
+    \subitem {$\sim$\+Tracker}, \hyperpage{30}
+    \subitem {feature}, \hyperpage{31}
+    \subitem {first\+Frame}, \hyperpage{31}
+    \subitem {FloatT}, \hyperpage{28}
+    \subitem {frame\+Idx}, \hyperpage{32}
+    \subitem {frame\+Loc\+Idx}, \hyperpage{32}
+    \subitem {generate\+Tracks}, \hyperpage{30}
+    \subitem {get\+Stats}, \hyperpage{30}
+    \subitem {I\+MatT}, \hyperpage{28}
+    \subitem {I\+Vec\+FieldT}, \hyperpage{29}
+    \subitem {I\+VecT}, \hyperpage{29}
+    \subitem {IdxT}, \hyperpage{28}
+    \subitem {Index\+VectorT}, \hyperpage{28}
+    \subitem {initialize\+Tracks}, \hyperpage{30, 31}
+    \subitem {last\+Frame}, \hyperpage{32}
+    \subitem {log2pi}, \hyperpage{32}
+    \subitem {MatT}, \hyperpage{29}
+    \subitem {N}, \hyperpage{32}
+    \subitem {n\+Dims}, \hyperpage{32}
+    \subitem {n\+Features}, \hyperpage{32}
+    \subitem {n\+Frame\+Locs}, \hyperpage{33}
+    \subitem {n\+Frames}, \hyperpage{33}
+    \subitem {ParamT}, \hyperpage{29}
+    \subitem {position}, \hyperpage{33}
+    \subitem {print\+Tracks}, \hyperpage{31}
+    \subitem {S\+E\+\_\+feature}, \hyperpage{33}
+    \subitem {S\+E\+\_\+position}, \hyperpage{33}
+    \subitem {track\+Assignment}, \hyperpage{33}
+    \subitem {Track\+VecT}, \hyperpage{29}
+    \subitem {Tracker}, \hyperpage{30}
+    \subitem {tracks}, \hyperpage{33}
+    \subitem {TrackT}, \hyperpage{29}
+    \subitem {Vec\+ParamT}, \hyperpage{29}
+    \subitem {VecT}, \hyperpage{29}
   \item {Tracker\+Error}
-    \subitem {tracker}, \hyperpage{3}
+    \subitem {tracker}, \hyperpage{4}
   \item {tracks}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{22}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{32}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{23}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{33}
   \item {TrackT}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{11}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{28}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{12}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{29}
 
   \indexspace
 
   \item {U\+MatT}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{11}
-  \item {U\+N\+T\+R\+A\+C\+K\+ED}
     \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{12}
+  \item {U\+N\+T\+R\+A\+C\+K\+ED}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{13}
   \item {U\+VecT}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{11}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{12}
 
   \indexspace
 
   \item {Vec\+ParamT}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{11}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{28}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{12}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{29}
   \item {VecT}
-    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{11}
-    \subitem {tracker\+::\+Tracker}, \hyperpage{28}
+    \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{12}
+    \subitem {tracker\+::\+Tracker}, \hyperpage{29}
 
 \end{theindex}
