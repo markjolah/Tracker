@@ -6,12 +6,12 @@
 # Environment variables to be set:
 #  BUILD_TYPE
 #
-PACKAGE_NAME=$(grep -Po "project\(\K([A-Za-z]+)" ${SRC_PATH}/CMakeLists.txt)
 if [ -z "$BUILD_TYPE" ]; then
     BUILD_TYPE="Release"
 fi
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 SRC_PATH=${SCRIPT_DIR}/..
+PACKAGE_NAME=$(grep -Po "project\(\K([A-Za-z]+)" ${SRC_PATH}/CMakeLists.txt)
 INSTALL_PATH=${SCRIPT_DIR}/../_travis.install
 BUILD_PATH=${SCRIPT_DIR}/../_travis.build/${BUILD_TYPE}
 NUM_PROCS=`grep -c ^processor /proc/cpuinfo`
