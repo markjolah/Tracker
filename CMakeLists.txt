@@ -42,19 +42,19 @@ list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_CURRENT_LIST_DIR}/cmake/UncommonCMakeMod
 
 ### Dependencies
 include(AddExternalDependency)
-set(EXTERNAL_DEPENDENCY_TESTING TESTING PASS_CACHE_VARIABLES OPT_INSTALL_TESTING)
 #BacktraceException allows for exceptions that encode a backtrace for debugging
-add_external_dependency(NAME BacktraceException URL https://github.com/markjolah/BacktraceException.git SHARED ${EXTERNAL_DEPENDENCY_TESTING})
+set(BacktraceExceptionURL https://github.com/markjolah/BacktraceException.git CACHE STRING "URL of BacktraceException library dependency")
+add_external_dependency(NAME BacktraceException URL ${BacktraceExceptionURL} VARS OPT_INSTALL_TESTING)
 if(OPT_MATLAB)
     set(MexIFaceURL https://github.com/markjolah/MexIFace.git CACHE STRING "URL of MexIFace library dependency")
     add_external_dependency(NAME MexIFace URL ${MexIFaceURL} VARS OPT_INSTALL_TESTING)
 endif()
 
 #Armadillo
+find_package(OpenMP REQUIRED)
 find_package(Armadillo REQUIRED COMPONENTS CXX11)
 set_property(DIRECTORY APPEND PROPERTY COMPILE_DEFINITIONS ${ARMADILLO_PRIVATE_COMPILE_DEFINITIONS})
 
-find_package(OpenMP REQUIRED)
 
 include(ConfigureDebugBuilds) #setup debug build configurations
 
