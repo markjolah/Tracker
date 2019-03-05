@@ -1,10 +1,9 @@
 \href{https://travis-ci.org/markjolah/Tracker}{\tt } \subsection*{Tracker}
 
-Tracker is a particle tracking trajectory connector tool that is based on a sparse-\/matrix \href{https://en.wikipedia.org/wiki/Assignment_problem}{\tt linear assignment problem (L\+AP)} solver.
+Tracker is a particle tracking trajectory connector tool that generates trajectories by tracking swarms of interacting particles through a sequence of video frames. Tracker formulates optimal trajectory connection problems as instances of the \href{https://en.wikipedia.org/wiki/Assignment_problem}{\tt linear assignment problem (L\+AP)}, and uses the a sparse-\/matrix implementation of the \href{https://dl.acm.org/citation.cfm?id=30107}{\tt Jonker-\/\+Volgenant Algorithm} to solve the L\+AP problems.
 \begin{DoxyItemize}
-\item Tracker uses a sparse matrix formulations of the \href{https://dl.acm.org/citation.cfm?id=30107}{\tt Jonker-\/\+Volgenant Algorithm}
 \item Tracker provides C++ and Matlab object-\/oriented interfaces. \href{http://markolah.pecos.us/Tracker/classtracker_1_1LAPTrack.html}{\tt {\ttfamily tracker\+::\+L\+A\+P\+Track}}
-\item Tracker is designed for cross-\/platform complilation to Linux and Windows 64-\/bit targets.
+\item Tracker is designed for cross-\/platform compilation to Linux and Windows 64-\/bit targets.
 \end{DoxyItemize}
 
 \subsubsection*{Trajectory connection problem}
@@ -26,19 +25,77 @@ The Tracker Doxygen documentation can be build with the {\ttfamily O\+P\+T\+\_\+
 \item \href{https://github.com/markjolah/Tracker}{\tt Tracker github repository}
 \end{DoxyItemize}
 
-\subsubsection*{Dependencies}
+\subsubsection*{Installing}
+
+Tracker uses the C\+Make build system. The script \href{https://github.com/markjolah/Tracker/blob/master/build.sh}{\tt {\ttfamily build.\+sh}} sets the project-\/specific C\+Make options to sensible values and builds the project under {\ttfamily ./\+\_\+build/\+Release} and installs it to the {\ttfamily ./\+\_\+install} prefix, which can be set with the {\ttfamily I\+N\+S\+T\+A\+L\+L\+\_\+\+P\+R\+E\+F\+IX} environment variable. \begin{DoxyVerb}INSTALL_PREFIX="..." ./build.sh <additional cmake args...>
+\end{DoxyVerb}
+
+
+Edit {\ttfamily build.\+sh} to customize or alternatively use the C\+Make gui directly\+: \begin{DoxyVerb}cmake -B $BUILD_DIR -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR
+cmake-gui $BUILD_DIR
+cmake --build $BUILD_DIR --target install
+\end{DoxyVerb}
+
+
+\paragraph*{Dependencies}
 
 
 \begin{DoxyItemize}
 \item \href{http://arma.sourceforge.net/docs.html}{\tt {\itshape Armadillo}} -\/ A high-\/performance array library for C++.
+\begin{DoxyItemize}
+\item \mbox{[}Ubuntu\+: \href{https://packages.ubuntu.com/search?keywords=libarmadillo-dev}{\tt {\ttfamily libarmadillo-\/dev}}\mbox{]}~ \mbox{[}Gentoo\+: \href{https://packages.gentoo.org/packages/sci-libs/armadillo}{\tt {\ttfamily sci-\/libs/armadillo}}\mbox{]}
+\end{DoxyItemize}
 \end{DoxyItemize}
 
-\paragraph*{External Projects}
+\subparagraph*{External Projects}
 
-These packages are specialized C\+Make projects. If they are not currently installed, at the start of the build process, the \href{https://github.com/markjolah/UncommonCMakeModules/blob/master/AddExternalDependency.cmake}{\tt Add\+External\+Dependency.\+cmake} will automatically download, configure, build and install C\+Make-\/based projects to the {\ttfamily C\+M\+A\+K\+E\+\_\+\+I\+N\+S\+T\+A\+L\+L\+\_\+\+P\+R\+E\+F\+IX}. This process is completed before C\+Make configure-\/time so calls to the normal {\ttfamily find\+\_\+package()} command are used to find the auto-\/added Dependencies.
+These packages are specialized C\+Make projects. If they are not installed on the development system, the \href{https://github.com/markjolah/UncommonCMakeModules/blob/master/AddExternalDependency.cmake}{\tt add\+\_\+external\+\_\+dependency()} function will automatically download, configure, build and install them to {\ttfamily C\+M\+A\+K\+E\+\_\+\+I\+N\+S\+T\+A\+L\+L\+\_\+\+P\+R\+E\+F\+IX}.
 
 
 \begin{DoxyItemize}
 \item \href{https://markjolah.github.io/BacktraceException}{\tt Backtrace\+Exception} -\/ A library to provide debugging output on exception calls. Important for Matlab debugging.
-\item \href{https://markjolah.github.io/MexIFace}{\tt Mex\+I\+Face} -\/ A C++/\+Matlab object oriented interface library for high-\/performance numerical computations. Provides cross-\/compilation to Matlab R2016b+ target environments on Linux and Windows 64-\/bit targets. 
+\item \href{https://markjolah.github.io/MexIFace}{\tt Mex\+I\+Face} -\/ Mex\+I\+Face provides an object-\/oriented C++/\+Matlab interface and provides cross-\/compilation support to build for Matlab target environments on Linux and Windows 64-\/bit targets.
+\end{DoxyItemize}
+
+\paragraph*{C\+Make options}
+
+The following C\+Make options control the build.
+\begin{DoxyItemize}
+\item {\ttfamily B\+U\+I\+L\+D\+\_\+\+S\+H\+A\+R\+E\+D\+\_\+\+L\+I\+BS} -\/ Build shared libraries
+\item {\ttfamily B\+U\+I\+L\+D\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+L\+I\+BS} -\/ Build static libraries
+\item {\ttfamily B\+U\+I\+L\+D\+\_\+\+T\+E\+S\+T\+I\+NG} -\/ Build testing framework
+\item {\ttfamily O\+P\+T\+\_\+\+D\+OC} -\/ Build documentation
+\item {\ttfamily O\+P\+T\+\_\+\+I\+N\+S\+T\+A\+L\+L\+\_\+\+T\+E\+S\+T\+I\+NG} -\/ Install testing executables in install-\/tree.
+\item {\ttfamily O\+P\+T\+\_\+\+E\+X\+P\+O\+R\+T\+\_\+\+B\+U\+I\+L\+D\+\_\+\+T\+R\+EE} -\/ Export the package from the build-\/tree and place in the \href{https://cmake.org/cmake/help/latest/manual/cmake-packages.7.html#user-package-registry}{\tt C\+Make user package registry}.
+\item {\ttfamily O\+P\+T\+\_\+\+M\+A\+T\+L\+AB} -\/ Enable matlab module building with Mex\+I\+Face.
+\end{DoxyItemize}
+
+\paragraph*{Building for matlab}
+
+See\+:
+
+\subsubsection*{Using tracker}
+
+\paragraph*{Using Tracker in C++ applications}
+
+Tracker exports a \href{https://cmake.org/cmake/help/latest/manual/cmake-packages.7.html#config-file-packages}{\tt C\+Make config-\/file}, allowing it to be found easily with C\+Make build systtems 
+\begin{DoxyCode}
+1 find\_package(Tracker)
+2 target\_link\_libraries($\{MY\_TARGET\} Tracker::Tracker)
+\end{DoxyCode}
+ In the C++ source 
+\begin{DoxyCode}
+\textcolor{preprocessor}{#include <\hyperlink{LAPTrack_8h}{Tracker/LAPTrack.h}>}
+\hyperlink{classtracker_1_1LAPTrack}{tracker::LAPTrack} \hyperlink{namespacetracker}{tracker}(params);
+\end{DoxyCode}
+ \paragraph*{Using Tracker in Matlab applications}
+
+\subsubsection*{L\+I\+C\+E\+N\+SE}
+
+
+\begin{DoxyItemize}
+\item Copyright\+: 2013-\/2019
+\item Author\+: Mark J. Olah
+\item Email\+: (\href{mailto:mjo@cs.unm}{\tt mjo@cs.\+unm} D\+OT edu)
+\item L\+I\+C\+E\+N\+SE\+: Apache 2.\+0. See \href{https://github.com/markjolah/Tracker/blob/master/LICENSE}{\tt L\+I\+C\+E\+N\+SE} file. 
 \end{DoxyItemize}

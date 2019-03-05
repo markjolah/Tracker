@@ -1,17 +1,17 @@
-\indexentry{tracker@{tracker}|hyperpage}{4}
-\indexentry{tracker@{tracker}!Tracker\+Error@{Tracker\+Error}|hyperpage}{4}
-\indexentry{Tracker\+Error@{Tracker\+Error}!tracker@{tracker}|hyperpage}{4}
-\indexentry{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse$<$ Float\+T $>$@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse$<$ Float\+T $>$}|hyperpage}{4}
-\indexentry{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}!check\+Costs@{check\+Costs}|hyperpage}{5}
-\indexentry{check\+Costs@{check\+Costs}!tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}|hyperpage}{5}
-\indexentry{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}!check\+Solution@{check\+Solution}|hyperpage}{5}
-\indexentry{check\+Solution@{check\+Solution}!tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}|hyperpage}{5}
-\indexentry{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}!compute\+Cost@{compute\+Cost}|hyperpage}{5}
-\indexentry{compute\+Cost@{compute\+Cost}!tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}|hyperpage}{5}
-\indexentry{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}!solve@{solve}|hyperpage}{6}
-\indexentry{solve@{solve}!tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}|hyperpage}{6}
-\indexentry{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}!solve\+L\+A\+P\+\_\+orig@{solve\+L\+A\+P\+\_\+orig}|hyperpage}{6}
-\indexentry{solve\+L\+A\+P\+\_\+orig@{solve\+L\+A\+P\+\_\+orig}!tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}|hyperpage}{6}
+\indexentry{tracker@{tracker}|hyperpage}{5}
+\indexentry{tracker@{tracker}!Tracker\+Error@{Tracker\+Error}|hyperpage}{6}
+\indexentry{Tracker\+Error@{Tracker\+Error}!tracker@{tracker}|hyperpage}{6}
+\indexentry{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse$<$ Float\+T $>$@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse$<$ Float\+T $>$}|hyperpage}{6}
+\indexentry{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}!check\+Costs@{check\+Costs}|hyperpage}{6}
+\indexentry{check\+Costs@{check\+Costs}!tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}|hyperpage}{6}
+\indexentry{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}!check\+Solution@{check\+Solution}|hyperpage}{6}
+\indexentry{check\+Solution@{check\+Solution}!tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}|hyperpage}{6}
+\indexentry{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}!compute\+Cost@{compute\+Cost}|hyperpage}{6}
+\indexentry{compute\+Cost@{compute\+Cost}!tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}|hyperpage}{6}
+\indexentry{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}!solve@{solve}|hyperpage}{7}
+\indexentry{solve@{solve}!tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}|hyperpage}{7}
+\indexentry{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}!solve\+L\+A\+P\+\_\+orig@{solve\+L\+A\+P\+\_\+orig}|hyperpage}{7}
+\indexentry{solve\+L\+A\+P\+\_\+orig@{solve\+L\+A\+P\+\_\+orig}!tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse@{tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}|hyperpage}{7}
 \indexentry{tracker\+::\+L\+A\+P\+Track@{tracker\+::\+L\+A\+P\+Track}|hyperpage}{8}
 \indexentry{tracker\+::\+L\+A\+P\+Track@{tracker\+::\+L\+A\+P\+Track}!FloatT@{FloatT}|hyperpage}{11}
 \indexentry{FloatT@{FloatT}!tracker\+::\+L\+A\+P\+Track@{tracker\+::\+L\+A\+P\+Track}|hyperpage}{11}

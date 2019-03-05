@@ -11,15 +11,15 @@
   \indexspace
 
   \item {check\+Costs}
-    \subitem {tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}, \hyperpage{5}
+    \subitem {tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}, \hyperpage{6}
   \item {check\+Frame\+Idxs}
     \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{13}
   \item {check\+Solution}
-    \subitem {tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}, \hyperpage{5}
+    \subitem {tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}, \hyperpage{6}
   \item {close\+Gaps}
     \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{13}
   \item {compute\+Cost}
-    \subitem {tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}, \hyperpage{5}
+    \subitem {tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}, \hyperpage{6}
   \item {compute\+F2\+F\+Cost\+Mat}
     \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{14}
   \item {compute\+Gap\+Close\+Matrix}
@@ -195,9 +195,9 @@
     \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{22}
     \subitem {tracker\+::\+Tracker}, \hyperpage{33}
   \item {solve}
-    \subitem {tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}, \hyperpage{6}
+    \subitem {tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}, \hyperpage{7}
   \item {solve\+L\+A\+P\+\_\+orig}
-    \subitem {tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}, \hyperpage{6}
+    \subitem {tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}, \hyperpage{7}
   \item {Sp\+MatT}
     \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{12}
   \item {state}
@@ -215,18 +215,18 @@
     \subitem {tracker\+::\+Tracker}, \hyperpage{29}
   \item {Tracker}
     \subitem {tracker\+::\+Tracker}, \hyperpage{30}
-  \item {tracker}, \hyperpage{4}
-    \subitem {Tracker\+Error}, \hyperpage{4}
+  \item {tracker}, \hyperpage{5}
+    \subitem {Tracker\+Error}, \hyperpage{6}
   \item {Tracker.\+cpp}, \hyperpage{38}
   \item {Tracker.\+h}, \hyperpage{39}
   \item {tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse}
-    \subitem {check\+Costs}, \hyperpage{5}
-    \subitem {check\+Solution}, \hyperpage{5}
-    \subitem {compute\+Cost}, \hyperpage{5}
-    \subitem {solve}, \hyperpage{6}
-    \subitem {solve\+L\+A\+P\+\_\+orig}, \hyperpage{6}
+    \subitem {check\+Costs}, \hyperpage{6}
+    \subitem {check\+Solution}, \hyperpage{6}
+    \subitem {compute\+Cost}, \hyperpage{6}
+    \subitem {solve}, \hyperpage{7}
+    \subitem {solve\+L\+A\+P\+\_\+orig}, \hyperpage{7}
   \item {tracker\+::\+L\+A\+P\+\_\+\+J\+V\+Sparse$<$ Float\+T $>$}, 
-		\hyperpage{4}
+		\hyperpage{6}
   \item {tracker\+::\+L\+A\+P\+Track}, \hyperpage{8}
     \subitem {birth\+Frame\+Idx}, \hyperpage{18}
     \subitem {check\+Frame\+Idxs}, \hyperpage{13}
@@ -336,7 +336,7 @@
     \subitem {Vec\+ParamT}, \hyperpage{29}
     \subitem {VecT}, \hyperpage{29}
   \item {Tracker\+Error}
-    \subitem {tracker}, \hyperpage{4}
+    \subitem {tracker}, \hyperpage{6}
   \item {tracks}
     \subitem {tracker\+::\+L\+A\+P\+Track}, \hyperpage{23}
     \subitem {tracker\+::\+Tracker}, \hyperpage{33}

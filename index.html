@@ -25,7 +25,7 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Tracker
    </div>
-   <div id="projectbrief">Tracjector connection algorithms using linear assignment problem solvers.</div>
+   <div id="projectbrief">Trajectory connection algorithms using linear assignment problem solvers.</div>
   </td>
  </tr>
  </tbody>
@@ -81,10 +81,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a href="https://travis-ci.org/markjolah/Tracker"></a> </p><h1>Tracker</h1>
-<p>Tracker is a particle tracking trajectory connector tool that is based on a sparse-matrix <a href="https://en.wikipedia.org/wiki/Assignment_problem">linear assignment problem (LAP)</a> solver.</p><ul>
-<li>Tracker uses a sparse matrix formulations of the <a href="https://dl.acm.org/citation.cfm?id=30107">Jonker-Volgenant Algorithm</a></li>
+<p>Tracker is a particle tracking trajectory connector tool that generates trajectories by tracking swarms of interacting particles through a sequence of video frames. Tracker formulates optimal trajectory connection problems as instances of the <a href="https://en.wikipedia.org/wiki/Assignment_problem">linear assignment problem (LAP)</a>, and uses the a sparse-matrix implementation of the <a href="https://dl.acm.org/citation.cfm?id=30107">Jonker-Volgenant Algorithm</a> to solve the LAP problems.</p><ul>
 <li>Tracker provides C++ and Matlab object-oriented interfaces. <a href="http://markolah.pecos.us/Tracker/classtracker_1_1LAPTrack.html"><code>tracker::LAPTrack</code></a></li>
-<li>Tracker is designed for cross-platform complilation to Linux and Windows 64-bit targets.</li>
+<li>Tracker is designed for cross-platform compilation to Linux and Windows 64-bit targets.</li>
 </ul>
 <h2>Trajectory connection problem</h2>
 <p>In single particle tracking applications, a set of likely particles are localized for each frame of a video capture. The goal of trajectory connection is to partition the localizations from all the frames into a set of trajectories. Each trajectory is a sequence of localizations which are likely to be from the same object (point emitter).</p>
@@ -97,15 +96,45 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li><a href="https://markjolah.github.io/Tracker/pdf/Tracker-0.1-reference.pdf">Tracker PDF Manual</a></li>
 <li><a href="https://github.com/markjolah/Tracker">Tracker github repository</a></li>
 </ul>
-<h2>Dependencies</h2>
+<h2>Installing</h2>
+<p>Tracker uses the CMake build system. The script <a href="https://github.com/markjolah/Tracker/blob/master/build.sh"><code>build.sh</code></a> sets the project-specific CMake options to sensible values and builds the project under <code>./_build/Release</code> and installs it to the <code>./_install</code> prefix, which can be set with the <code>INSTALL_PREFIX</code> environment variable. </p><pre class="fragment">INSTALL_PREFIX="..." ./build.sh &lt;additional cmake args...&gt;
+</pre><p>Edit <code>build.sh</code> to customize or alternatively use the CMake gui directly: </p><pre class="fragment">cmake -B $BUILD_DIR -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR
+cmake-gui $BUILD_DIR
+cmake --build $BUILD_DIR --target install
+</pre><h3>Dependencies</h3>
 <ul>
-<li><a href="http://arma.sourceforge.net/docs.html"><em>Armadillo</em></a> - A high-performance array library for C++.</li>
+<li><a href="http://arma.sourceforge.net/docs.html"><em>Armadillo</em></a> - A high-performance array library for C++.<ul>
+<li>[Ubuntu: <a href="https://packages.ubuntu.com/search?keywords=libarmadillo-dev"><code>libarmadillo-dev</code></a>]&#160; [Gentoo: <a href="https://packages.gentoo.org/packages/sci-libs/armadillo"><code>sci-libs/armadillo</code></a>]</li>
 </ul>
-<h3>External Projects</h3>
-<p>These packages are specialized CMake projects. If they are not currently installed, at the start of the build process, the <a href="https://github.com/markjolah/UncommonCMakeModules/blob/master/AddExternalDependency.cmake">AddExternalDependency.cmake</a> will automatically download, configure, build and install CMake-based projects to the <code>CMAKE_INSTALL_PREFIX</code>. This process is completed before CMake configure-time so calls to the normal <code>find_package()</code> command are used to find the auto-added Dependencies.</p>
+</li>
+</ul>
+<h4>External Projects</h4>
+<p>These packages are specialized CMake projects. If they are not installed on the development system, the <a href="https://github.com/markjolah/UncommonCMakeModules/blob/master/AddExternalDependency.cmake">add_external_dependency()</a> function will automatically download, configure, build and install them to <code>CMAKE_INSTALL_PREFIX</code>.</p>
 <ul>
 <li><a href="https://markjolah.github.io/BacktraceException">BacktraceException</a> - A library to provide debugging output on exception calls. Important for Matlab debugging.</li>
-<li><a href="https://markjolah.github.io/MexIFace">MexIFace</a> - A C++/Matlab object oriented interface library for high-performance numerical computations. Provides cross-compilation to Matlab R2016b+ target environments on Linux and Windows 64-bit targets. </li>
+<li><a href="https://markjolah.github.io/MexIFace">MexIFace</a> - MexIFace provides an object-oriented C++/Matlab interface and provides cross-compilation support to build for Matlab target environments on Linux and Windows 64-bit targets.</li>
+</ul>
+<h3>CMake options</h3>
+<p>The following CMake options control the build.</p><ul>
+<li><code>BUILD_SHARED_LIBS</code> - Build shared libraries</li>
+<li><code>BUILD_STATIC_LIBS</code> - Build static libraries</li>
+<li><code>BUILD_TESTING</code> - Build testing framework</li>
+<li><code>OPT_DOC</code> - Build documentation</li>
+<li><code>OPT_INSTALL_TESTING</code> - Install testing executables in install-tree.</li>
+<li><code>OPT_EXPORT_BUILD_TREE</code> - Export the package from the build-tree and place in the <a href="https://cmake.org/cmake/help/latest/manual/cmake-packages.7.html#user-package-registry">CMake user package registry</a>.</li>
+<li><code>OPT_MATLAB</code> - Enable matlab module building with MexIFace.</li>
+</ul>
+<h3>Building for matlab</h3>
+<p>See:</p>
+<h2>Using tracker</h2>
+<h3>Using Tracker in C++ applications</h3>
+<p>Tracker exports a <a href="https://cmake.org/cmake/help/latest/manual/cmake-packages.7.html#config-file-packages">CMake config-file</a>, allowing it to be found easily with CMake build systtems </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;find_package(Tracker)</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;target_link_libraries(${MY_TARGET} Tracker::Tracker)</div></div><!-- fragment --><p> In the C++ source </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="LAPTrack_8h.html">Tracker/LAPTrack.h</a>&gt;</span></div><div class="line"><a class="code" href="classtracker_1_1LAPTrack.html">tracker::LAPTrack</a> <a class="code" href="namespacetracker.html">tracker</a>(params);</div></div><!-- fragment --> <h3>Using Tracker in Matlab applications</h3>
+<h2>LICENSE</h2>
+<ul>
+<li>Copyright: 2013-2019</li>
+<li>Author: Mark J. Olah</li>
+<li>Email: (<a href="#" onclick="location.href='mai'+'lto:'+'mjo'+'@c'+'s.u'+'nm'; return false;">mjo@c<span style="display: none;">.nosp@m.</span>s.un<span style="display: none;">.nosp@m.</span>m</a> DOT edu)</li>
+<li>LICENSE: Apache 2.0. See <a href="https://github.com/markjolah/Tracker/blob/master/LICENSE">LICENSE</a> file. </li>
 </ul>
 </div></div><!-- contents -->
 <!-- start footer part -->
