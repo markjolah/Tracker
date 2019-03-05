@@ -69,6 +69,7 @@ void testTracking()
     tracker.printTracks();
     tracker.closeGaps();
     tracker.printTracks();
+// //     tracker.getTracks();
 }
 
 int main()
@@ -79,4 +80,3 @@ int main()
     return 0;
 }
 
-/
