@@ -1,5 +1,5 @@
-# Tracker CMakeLists.txt
-# Mark J. Olah [mjo@cs.unm.edu] 2018
+# src/MexIFace/CMakeLists.txt
+# MexIFace Matlab module(s)
 
 # set_property(DIRECTORY APPEND PROPERTY INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR})
 

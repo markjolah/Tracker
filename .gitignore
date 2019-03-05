@@ -1,6 +1,6 @@
 .gdb*
 _build
-_install
+_install*
 _gcc4_9.*
 _win64.*
 _dist

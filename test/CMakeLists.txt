@@ -1,4 +1,5 @@
-# Tracker/test/CMakeLists.txt
+# test/CMakeLists.txt
+# Tracker - testing executables
 
 set(TEST_TARGET test${PROJECT_NAME})
 file(GLOB TEST_SRCS *.cpp)
@@ -16,4 +17,3 @@ if(OPT_INSTALL_TESTING)
     endif()
     install(TARGETS ${TEST_TARGET} RUNTIME DESTINATION ${TESTING_INSTALL_DESTINATION} COMPONENT Testing)
 endif()
-

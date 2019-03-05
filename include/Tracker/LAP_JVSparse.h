@@ -1,6 +1,6 @@
 /** @file LAP_JVSparse.h
  * @author Mark J. Olah (mjo\@cs.unm.edu)
- * @date 05-2015
+ * @date 2015-2019
  * @brief The class declaration for the LAP Jonker Volgenant algorithm
  *
  * This is a modern dense/sparse C++ implementation of Jonker Volgenant algoirthm using armadillo

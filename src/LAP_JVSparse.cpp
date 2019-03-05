@@ -1,6 +1,6 @@
 /** @file LAP_JVSparse.cpp
  *  @author Mark J. Olah (mjo at cs.unm.edu)
- *  @date 05-2015
+ *  @date 2015-2019
  *  @brief The member definitions for the LAP Jonker Volgenant algorithm
  * 
  * This is a modern dense/sparse C++ implementation of Jonker Volgenant algoirthm using armadillo

@@ -1,6 +1,6 @@
 /** @file LAPTrack.h
 * @author Mark J. Olah (mjo\@cs.unm.edu)
-* @date 02-2015
+* @date 2015-2019
 * @brief The class declaration and inline and templated functions for LAPTrack.
 *
 * A simple  LAP/Jaquman based tracker

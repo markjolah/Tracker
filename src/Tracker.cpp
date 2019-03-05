@@ -1,6 +1,6 @@
 /** @file Tracker.cpp
  *  @author Mark J. Olah (mjo at cs.unm.edu)
- *  @date 04-2015
+ *  @date 2015-2019
  *  @brief The member definitions for Tracker
  */
 
